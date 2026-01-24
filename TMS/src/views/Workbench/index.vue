@@ -3,10 +3,38 @@ import { ref } from 'vue'
 
 // 统计数据
 const stats = ref([
-  { label: '今日公司数', value: 28, subText: '今日新增 2 (+7.7%)', icon: '📊', color: 'bg-blue-50', iconColor: 'text-blue-500' },
-  { label: '在岗公司', value: 16, subText: '今日增减 2 (+14.3%)', icon: '✅', color: 'bg-green-50', iconColor: 'text-green-500' },
-  { label: '待审评任务', value: 7, icon: '📋', color: 'bg-orange-50', iconColor: 'text-orange-500', subText: '待今日截止1' },
-  { label: '运单公司', value: 2, icon: '🏠', color: 'bg-red-50', iconColor: 'text-red-500', subText: '增减量 (+12.5%)' }
+  { 
+    label: '今日公司数', 
+    value: 28, 
+    subText: '今日新增 2 (+7.7%)', 
+    icon: '💬', 
+    color: '#E3F2FD', 
+    iconColor: '#2196F3' 
+  },
+  { 
+    label: '在岗司机', 
+    value: 16, 
+    subText: '今日增减数 2 (+14.3%)', 
+    icon: '🚗', 
+    color: '#E8F5E9', 
+    iconColor: '#4CAF50' 
+  },
+  { 
+    label: '待审评任务', 
+    value: 7, 
+    subText: '⚠️ 待今日截止1', 
+    icon: '📋', 
+    color: '#FFF3E0', 
+    iconColor: '#FF9800' 
+  },
+  { 
+    label: '运单公司', 
+    value: 2, 
+    subText: '📈 增减量 (+12.5%)', 
+    icon: '🏠', 
+    color: '#FFEBEE', 
+    iconColor: '#F44336' 
+  }
 ])
 
 // 当前月份
@@ -52,230 +80,514 @@ const calendarDays = ref([
 ])
 
 const weekDays = ['日', '一', '二', '三', '四', '五', '六']
+
+// 订单列表数据
+const orders = ref([
+  { 
+    id: 'TF2023062001', 
+    status: '已完成', 
+    statusColor: '#4CAF50', 
+    route: '北京朝阳区 → 上海浦东区', 
+    info: '散杂货2345 | 重货' 
+  },
+  { 
+    id: 'TF2023062002', 
+    status: '审批待处理', 
+    statusColor: '#FF9800', 
+    route: '广州白云区 → 深圳南山区', 
+    info: '罗湖77255 | 零担' 
+  },
+  { 
+    id: 'TF2023062003', 
+    status: '待审核', 
+    statusColor: '#2196F3', 
+    route: '杭州上城区 → 上海徐汇区', 
+    info: '杭州西湖 | 整车' 
+  },
+  { 
+    id: 'TF2023062004', 
+    status: '运输中', 
+    statusColor: '#9C27B0', 
+    route: '成都武侯区 → 重庆渝北区', 
+    info: '电子产品 | 快运' 
+  },
+  { 
+    id: 'TF2023062005', 
+    status: '已完成', 
+    statusColor: '#4CAF50', 
+    route: '南京鼓楼区 → 苏州工业园', 
+    info: '机械设备 | 重货' 
+  },
+  { 
+    id: 'TF2023062006', 
+    status: '待发货', 
+    statusColor: '#FF5722', 
+    route: '武汉江汉区 → 长沙岳麓区', 
+    info: '日用百货 | 零担' 
+  }
+])
+
+// 快捷功能
+const quickActions = ref([
+  { name: '订单管理', icon: '📋', color: '#FF6B6B' },
+  { name: '智能合单', icon: '🔄', color: '#FF9800' },
+  { name: '数据导出', icon: '📊', color: '#2196F3' },
+  { name: '内容管理', icon: '📁', color: '#FF9800' },
+  { name: '车辆管理', icon: '🚗', color: '#FF6B6B' }
+])
+
+// 物流跟踪列表
+const trackingList = ref([
+  { id: 'TF2023021003', tags: ['北京', '上海', '3吨', '7小时车'] },
+  { id: 'TF2023021004', tags: ['北京', '天津', '1吨', '半挂车'] },
+  { id: 'TF2023021005', tags: ['北京', '南京', '2吨', '7小时车'] },
+  { id: 'TF2023021006', tags: ['北京', '天津', '2吨', '半挂车'] }
+])
+
+// 司机任务列表
+const driverTasks = ref([
+  { 
+    name: '张三', 
+    id: '驾驶员12345',
+    phone: '138****1234',
+    tags: ['物流运输', '快递']
+  },
+  { 
+    name: '李四', 
+    id: '驾驶员7890',
+    phone: '139****5678',
+    tags: ['物流运输', '快递']
+  },
+  { 
+    name: '王五', 
+    id: '驾驶员2468',
+    phone: '136****9012',
+    tags: ['物流运输', '快递']
+  }
+])
+
+// 待办事项
+const todoList = ref([
+  { 
+    icon: '📅',
+    title: '物流合同续签', 
+    desc: '明天下午1点与客户签订物流合同续签',
+    bgColor: '#E3F2FD'
+  },
+  { 
+    icon: '📅',
+    title: '订单管理培训', 
+    desc: '明天下午2点进行订单管理系统培训',
+    bgColor: '#E3F2FD'
+  },
+  { 
+    icon: '📅',
+    title: '车辆年检提醒', 
+    desc: '本周五前完成3辆货车的年检工作',
+    bgColor: '#E3F2FD'
+  },
+  { 
+    icon: '📅',
+    title: '客户回访调研', 
+    desc: '本周内完成重点客户满意度调研',
+    bgColor: '#E3F2FD'
+  }
+])
+
+// 系统通知
+const notifications = ref([
+  { 
+    type: 'info', 
+    icon: 'ℹ️',
+    title: '系统升级通知', 
+    desc: '【系统升级】明天凌晨2点进行系统升级维护，预计持续2小时', 
+    time: '1小时 前',
+    bgColor: '#E3F2FD'
+  },
+  { 
+    type: 'success', 
+    icon: '✅',
+    title: '运单审批通过', 
+    desc: '运单TF-TASK-2023051005已审批通过，请及时安排发货', 
+    time: '2小时 前',
+    bgColor: '#E8F5E9'
+  },
+  { 
+    type: 'warning', 
+    icon: '⚠️',
+    title: 'TASK-2023051005运单超时提醒', 
+    desc: '运单TASK-2023051005已超时，请尽快处理，避免影响客户体验', 
+    time: '3小时 前',
+    bgColor: '#FFF3E0'
+  }
+])
 </script>
 
 <template>
-  <div class="dashboard-container">
+  <div class="workbench-container">
     <!-- 顶部统计卡片 -->
-    <div class="grid grid-cols-4 gap-6 mb-6">
+    <div class="stats-grid">
       <div 
         v-for="(stat, index) in stats" 
         :key="index"
-        class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+        class="stat-card"
       >
-        <div class="flex items-start justify-between">
-          <div>
-            <div class="text-gray-500 text-sm mb-2">{{ stat.label }}</div>
-            <div class="text-3xl font-bold text-gray-800 mb-1">{{ stat.value }}</div>
-            <div class="text-xs text-gray-400">{{ stat.subText }}</div>
+        <div class="stat-content">
+          <div class="stat-label">{{ stat.label }}</div>
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-subtext">{{ stat.subText }}</div>
           </div>
-          <div :class="[stat.color, 'w-12 h-12 rounded-lg flex items-center justify-center']">
-            <span :class="[stat.iconColor, 'text-2xl']">{{ stat.icon }}</span>
-          </div>
+        <div class="stat-icon-wrapper" :style="{ backgroundColor: stat.color }">
+          <span class="stat-icon" :style="{ color: stat.iconColor }">{{ stat.icon }}</span>
         </div>
       </div>
     </div>
 
     <!-- 中间内容区域 -->
-    <div class="grid grid-cols-2 gap-6 mb-6">
+    <div class="content-grid">
+      <!-- 左侧：日历和订单列表 -->
+      <div class="left-section">
       <!-- 运单审批日历视图 -->
-      <div class="bg-white rounded-lg p-6 shadow-sm">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-lg font-semibold text-gray-800">运单审批日历视图</h3>
-          <div class="flex items-center gap-2">
-            <button class="px-2 py-1 hover:bg-gray-100 rounded">
-              <span class="text-gray-600">◀</span>
-            </button>
-            <span class="text-sm font-medium text-gray-700">{{ currentMonth }}</span>
-            <button class="px-2 py-1 hover:bg-gray-100 rounded">
-              <span class="text-gray-600">▶</span>
-            </button>
+        <div class="calendar-card">
+          <div class="card-header">
+            <h3 class="card-title">运单审批日历视图</h3>
+            <div class="month-selector">
+              <button class="month-btn">◀</button>
+              <span class="month-text">{{ currentMonth }}</span>
+              <button class="month-btn">▶</button>
           </div>
         </div>
 
         <!-- 日历表格 -->
         <div class="calendar">
           <!-- 星期标题 -->
-          <div class="grid grid-cols-7 gap-2 mb-2">
-            <div 
-              v-for="day in weekDays" 
-              :key="day"
-              class="text-center text-sm font-medium text-gray-600 py-2"
-            >
+            <div class="week-header">
+              <div v-for="day in weekDays" :key="day" class="week-day">
               {{ day }}
             </div>
           </div>
 
           <!-- 日期格子 -->
-          <div class="grid grid-cols-7 gap-2">
+            <div class="calendar-grid">
             <div 
               v-for="(date, index) in calendarDays" 
               :key="index"
               :class="[
-                'aspect-square flex items-center justify-center text-sm rounded-lg cursor-pointer transition-colors relative',
-                date.isOtherMonth ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-50',
-                date.isHighlight ? 'bg-orange-500 text-white hover:bg-orange-600' : ''
+                  'calendar-day',
+                  { 'other-month': date.isOtherMonth },
+                  { 'highlight': date.isHighlight }
               ]"
             >
               {{ date.day }}
-              <span v-if="date.isHighlight" class="absolute bottom-1 text-xs">•</span>
+                <span v-if="date.isHighlight" class="day-dot">•</span>
+              </div>
+            </div>
             </div>
           </div>
 
-          <!-- 日历底部统计 -->
-          <div class="mt-4 pt-4 border-t border-gray-100">
-            <div class="text-center">
-              <span class="text-4xl font-bold text-orange-500">1696</span>
+        <!-- 订单列表 -->
+        <div class="order-list-card">
+          <div class="order-header">
+            <h3 class="order-title">6月20日共计(总数)</h3>
+          </div>
+          <div class="order-item" v-for="order in orders" :key="order.id">
+            <div class="order-left">
+              <div class="order-id">{{ order.id }}</div>
+              <div class="order-route">{{ order.route }}</div>
+            </div>
+            <div class="order-right">
+              <div class="order-status" :style="{ color: order.statusColor }">
+                {{ order.status }}
+              </div>
+              <div class="order-info">{{ order.info }}</div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- 右侧：趋势图和饼图 -->
+      <div class="right-section">
       <!-- 近7天运单审批趋势 -->
-      <div class="bg-white rounded-lg p-6 shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">近7天运单审批趋势</h3>
+        <div class="trend-card">
+          <h3 class="card-title">近7天运单审批趋势</h3>
         
         <!-- 图例 -->
-        <div class="flex items-center gap-6 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-            <span class="text-sm text-gray-600">审批中数</span>
+          <div class="legend">
+            <div class="legend-item">
+              <span class="legend-dot" style="background: #2196F3"></span>
+              <span class="legend-text">审批中数</span>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-green-500"></span>
-            <span class="text-sm text-gray-600">已通过数</span>
+            <div class="legend-item">
+              <span class="legend-dot" style="background: #4CAF50"></span>
+              <span class="legend-text">已通过数</span>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-orange-500"></span>
-            <span class="text-sm text-gray-600">已驳回数</span>
+            <div class="legend-item">
+              <span class="legend-dot" style="background: #FF9800"></span>
+              <span class="legend-text">已驳回数</span>
           </div>
         </div>
 
-        <!-- 趋势图占位 -->
-        <div class="h-64 bg-gradient-to-b from-orange-50 via-green-50 to-blue-50 rounded-lg flex items-center justify-center relative overflow-hidden">
-          <!-- 模拟折线图 -->
-          <svg class="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="none">
-            <!-- 橙色区域 -->
-            <path d="M 0 60 Q 100 50 200 55 T 400 60 L 400 0 L 0 0 Z" fill="rgba(251, 146, 60, 0.3)" />
-            <!-- 绿色区域 -->
-            <path d="M 0 120 Q 100 110 200 115 T 400 120 L 400 60 Q 300 55 200 55 Q 100 50 0 60 Z" fill="rgba(34, 197, 94, 0.3)" />
-            <!-- 蓝色区域 -->
-            <path d="M 0 180 Q 100 170 200 175 T 400 180 L 400 120 Q 300 115 200 115 Q 100 110 0 120 Z" fill="rgba(59, 130, 246, 0.3)" />
+          <!-- 趋势图 -->
+          <div class="trend-chart">
+            <div class="chart-wrapper">
+              <svg class="chart-svg" viewBox="0 0 700 260" preserveAspectRatio="none">
+                <!-- 橙色区域 (已驳回数) -->
+                <path d="M 0 70 L 100 60 L 200 65 L 300 70 L 400 65 L 500 60 L 600 65 L 700 70 L 700 0 L 0 0 Z" 
+                      fill="rgba(255, 152, 0, 0.25)" />
+                
+                <!-- 绿色区域 (已通过数) -->
+                <path d="M 0 140 L 100 130 L 200 135 L 300 140 L 400 135 L 500 130 L 600 135 L 700 140 L 700 70 L 600 65 L 500 60 L 400 65 L 300 70 L 200 65 L 100 60 L 0 70 Z" 
+                      fill="rgba(76, 175, 80, 0.25)" />
+                
+                <!-- 蓝色区域 (审批中数) -->
+                <path d="M 0 210 L 100 200 L 200 205 L 300 210 L 400 205 L 500 200 L 600 205 L 700 210 L 700 140 L 600 135 L 500 130 L 400 135 L 300 140 L 200 135 L 100 130 L 0 140 Z" 
+                      fill="rgba(33, 150, 243, 0.25)" />
             
             <!-- 折线 -->
-            <polyline points="0,60 100,50 200,55 300,60 400,60" fill="none" stroke="#f97316" stroke-width="2" />
-            <polyline points="0,120 100,110 200,115 300,120 400,120" fill="none" stroke="#22c55e" stroke-width="2" />
-            <polyline points="0,180 100,170 200,175 300,180 400,180" fill="none" stroke="#3b82f6" stroke-width="2" />
+                <polyline points="0,70 100,60 200,65 300,70 400,65 500,60 600,65 700,70" 
+                          fill="none" stroke="#FF9800" stroke-width="2.5" />
+                <polyline points="0,140 100,130 200,135 300,140 400,135 500,130 600,135 700,140" 
+                          fill="none" stroke="#4CAF50" stroke-width="2.5" />
+                <polyline points="0,210 100,200 200,205 300,210 400,205 500,200 600,205 700,210" 
+                          fill="none" stroke="#2196F3" stroke-width="2.5" />
           </svg>
+            </div>
           
           <!-- X轴日期标签 -->
-          <div class="absolute bottom-2 left-0 right-0 flex justify-around text-xs text-gray-500">
+            <div class="chart-labels">
+              <span>7/15</span>
             <span>7/16</span>
             <span>7/17</span>
             <span>7/18</span>
             <span>7/19</span>
             <span>7/20</span>
             <span>7/21</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 饼图区域 -->
+        <div class="pie-charts">
+          <!-- 订单类型分布 -->
+          <div class="pie-card">
+            <h3 class="pie-title">订单类型分布</h3>
+            <div class="pie-content">
+              <div class="pie-chart-wrapper">
+                <svg class="pie-svg" viewBox="0 0 200 200">
+                  <!-- 蓝色 出差类 30% -->
+                  <circle cx="100" cy="100" r="60" fill="none" stroke="#2196F3" stroke-width="40" 
+                          stroke-dasharray="113 377" stroke-dashoffset="0" transform="rotate(-90 100 100)" />
+                  <!-- 橙色 培训类 20% -->
+                  <circle cx="100" cy="100" r="60" fill="none" stroke="#FF9800" stroke-width="40" 
+                          stroke-dasharray="75 377" stroke-dashoffset="-113" transform="rotate(-90 100 100)" />
+                  <!-- 绿色 会议类 25% -->
+                  <circle cx="100" cy="100" r="60" fill="none" stroke="#4CAF50" stroke-width="40" 
+                          stroke-dasharray="94 377" stroke-dashoffset="-188" transform="rotate(-90 100 100)" />
+                  <!-- 红色 出差类 25% -->
+                  <circle cx="100" cy="100" r="60" fill="none" stroke="#F44336" stroke-width="40" 
+                          stroke-dasharray="94 377" stroke-dashoffset="-282" transform="rotate(-90 100 100)" />
+                </svg>
+              </div>
+              <div class="pie-legend">
+                <div class="pie-legend-item">
+                  <span class="pie-dot" style="background: #2196F3"></span>
+                  <span class="pie-label">出差类</span>
+                  <span class="pie-percent">30%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-dot" style="background: #FF9800"></span>
+                  <span class="pie-label">培训类</span>
+                  <span class="pie-percent">20%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-dot" style="background: #4CAF50"></span>
+                  <span class="pie-label">会议类</span>
+                  <span class="pie-percent">25%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-dot" style="background: #F44336"></span>
+                  <span class="pie-label">出差类</span>
+                  <span class="pie-percent">25%</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 底部饼图区域 -->
-    <div class="grid grid-cols-2 gap-6">
-      <!-- 订单类型分布 -->
-      <div class="bg-white rounded-lg p-6 shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">订单类型分布</h3>
-        <div class="flex items-center justify-center h-64">
-          <!-- 饼图占位 -->
-          <div class="relative w-48 h-48">
-            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-              <!-- 蓝色扇形 -->
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#3b82f6" stroke-width="20" 
-                      stroke-dasharray="75 251" stroke-dashoffset="0" />
-              <!-- 橙色扇形 -->
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#f97316" stroke-width="20" 
-                      stroke-dasharray="50 251" stroke-dashoffset="-75" />
-              <!-- 绿色扇形 -->
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="20" 
-                      stroke-dasharray="63 251" stroke-dashoffset="-125" />
-              <!-- 红色扇形 -->
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#ef4444" stroke-width="20" 
-                      stroke-dasharray="63 251" stroke-dashoffset="-188" />
+          <!-- 收款单类型分布 -->
+          <div class="pie-card">
+            <h3 class="pie-title">收款单类型分布</h3>
+            <div class="pie-content">
+              <div class="pie-chart-wrapper">
+                <svg class="pie-svg" viewBox="0 0 200 200">
+                  <!-- 紫色 应付款 37.5% -->
+                  <circle cx="100" cy="100" r="60" fill="none" stroke="#9C27B0" stroke-width="40" 
+                          stroke-dasharray="141 377" stroke-dashoffset="0" transform="rotate(-90 100 100)" />
+                  <!-- 橙色 应收款 37.5% -->
+                  <circle cx="100" cy="100" r="60" fill="none" stroke="#FF9800" stroke-width="40" 
+                          stroke-dasharray="141 377" stroke-dashoffset="-141" transform="rotate(-90 100 100)" />
+                  <!-- 绿色 已完成 25% -->
+                  <circle cx="100" cy="100" r="60" fill="none" stroke="#4CAF50" stroke-width="40" 
+                          stroke-dasharray="94 377" stroke-dashoffset="-282" transform="rotate(-90 100 100)" />
             </svg>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-gray-800">100%</div>
+              </div>
+              <div class="pie-legend">
+                <div class="pie-legend-item">
+                  <span class="pie-dot" style="background: #9C27B0"></span>
+                  <span class="pie-label">应付款</span>
+                  <span class="pie-percent">37.5%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-dot" style="background: #FF9800"></span>
+                  <span class="pie-label">应收款</span>
+                  <span class="pie-percent">37.5%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-dot" style="background: #4CAF50"></span>
+                  <span class="pie-label">已完成</span>
+                  <span class="pie-percent">25%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 快捷功能 -->
+        <div class="quick-actions">
+          <h3 class="quick-title">快捷功能</h3>
+          <div class="quick-grid">
+            <div 
+              v-for="(action, index) in quickActions" 
+              :key="index"
+              class="quick-item"
+            >
+              <div class="quick-icon" :style="{ backgroundColor: action.color }">
+                <span class="icon-text">{{ action.icon }}</span>
+                <span class="icon-badge">⚡</span>
+              </div>
+              <div class="quick-name">{{ action.name }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 数据统计卡片 -->
+        <div class="stats-summary-card">
+          <h3 class="card-title">今日数据概览</h3>
+          <div class="stats-summary-grid">
+            <div class="summary-item">
+              <div class="summary-label">总订单数</div>
+              <div class="summary-value">156</div>
+              <div class="summary-trend up">↑ 12.5%</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">完成订单</div>
+              <div class="summary-value">128</div>
+              <div class="summary-trend up">↑ 8.3%</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">运输中</div>
+              <div class="summary-value">24</div>
+              <div class="summary-trend down">↓ 3.2%</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">待处理</div>
+              <div class="summary-value">4</div>
+              <div class="summary-trend up">↑ 2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部三栏区域 -->
+    <div class="bottom-grid">
+      <!-- 物流跟踪界面 -->
+      <div class="tracking-card">
+        <div class="card-header-with-action">
+          <h3 class="card-title">物流跟踪界面</h3>
+          <a href="#" class="view-all">查看全部</a>
+        </div>
+        <div class="tracking-list">
+          <div v-for="(item, index) in trackingList" :key="index" class="tracking-item">
+            <div class="tracking-header">
+              <span class="tracking-id">{{ item.id }}</span>
+              <button class="add-btn">+</button>
+            </div>
+            <div class="tracking-tags">
+              <span v-for="(tag, i) in item.tags" :key="i" class="tag">{{ tag }}</span>
+            </div>
               </div>
             </div>
           </div>
           
-          <!-- 图例 -->
-          <div class="ml-8 space-y-3">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-              <span class="text-sm text-gray-600">出差类</span>
-              <span class="text-sm font-medium text-gray-800">30%</span>
+      <!-- 司机任务分配 -->
+      <div class="driver-card">
+        <div class="card-header-with-action">
+          <h3 class="card-title">司机任务分配</h3>
+          <div class="header-actions">
+            <a href="#" class="action-link">查看全部</a>
+            <a href="#" class="action-link">最近浏览</a>
+          </div>
+        </div>
+        <div class="driver-list">
+          <div v-for="(driver, index) in driverTasks" :key="index" class="driver-item">
+            <div class="driver-avatar">
+              <div class="avatar-placeholder">👤</div>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-orange-500"></span>
-              <span class="text-sm text-gray-600">培训类</span>
-              <span class="text-sm font-medium text-gray-800">20%</span>
+            <div class="driver-info">
+              <div class="driver-name">{{ driver.name }} [{{ driver.id }}]</div>
+              <div class="driver-meta">
+                <span class="driver-phone">{{ driver.phone }}</span>
+                <span class="driver-tags">
+                  <span v-for="(tag, i) in driver.tags" :key="i" class="tag-small">{{ tag }}</span>
+                </span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-green-500"></span>
-              <span class="text-sm text-gray-600">会议类</span>
-              <span class="text-sm font-medium text-gray-800">25%</span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-red-500"></span>
-              <span class="text-sm text-gray-600">其他类</span>
-              <span class="text-sm font-medium text-gray-800">25%</span>
+            <div class="driver-actions">
+              <button class="btn-primary">查看详情</button>
+              <button class="btn-secondary">联系司机</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 收款单类型分布 -->
-      <div class="bg-white rounded-lg p-6 shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">收款单类型分布</h3>
-        <div class="flex items-center justify-center h-64">
-          <!-- 饼图占位 -->
-          <div class="relative w-48 h-48">
-            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-              <!-- 紫色扇形 -->
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#a855f7" stroke-width="20" 
-                      stroke-dasharray="94 251" stroke-dashoffset="0" />
-              <!-- 橙色扇形 -->
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#f97316" stroke-width="20" 
-                      stroke-dasharray="94 251" stroke-dashoffset="-94" />
-              <!-- 绿色扇形 -->
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="20" 
-                      stroke-dasharray="63 251" stroke-dashoffset="-188" />
-            </svg>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-gray-800">100%</div>
+      <!-- 待办事项和系统通知 -->
+      <div class="todo-notification-card">
+        <!-- 待办事项 -->
+        <div class="todo-section">
+          <div class="section-header">
+            <h3 class="section-title">待办事项</h3>
+            <a href="#" class="view-all">查看全部</a>
+          </div>
+          <div class="todo-list">
+            <div v-for="(todo, index) in todoList" :key="index" class="todo-item">
+              <div class="todo-icon" :style="{ backgroundColor: todo.bgColor }">
+                <span class="icon-calendar">{{ todo.icon }}</span>
               </div>
+              <div class="todo-content">
+                <div class="todo-title">{{ todo.title }}</div>
+                <div class="todo-desc">{{ todo.desc }}</div>
+              </div>
+              <button class="btn-action">立即处理</button>
             </div>
           </div>
+        </div>
           
-          <!-- 图例 -->
-          <div class="ml-8 space-y-3">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-purple-500"></span>
-              <span class="text-sm text-gray-600">应付款</span>
-              <span class="text-sm font-medium text-gray-800">37.5%</span>
+        <!-- 系统通知 -->
+        <div class="notification-section">
+          <div class="section-header">
+            <h3 class="section-title">系统通知 (2)</h3>
+            <a href="#" class="view-all">查看全部</a>
+          </div>
+          <div class="notification-list">
+            <div v-for="(notif, index) in notifications" :key="index" class="notification-item">
+              <div class="notif-icon" :style="{ backgroundColor: notif.bgColor }">
+                <span>{{ notif.icon }}</span>
+              </div>
+              <div class="notif-content">
+                <div class="notif-title">{{ notif.title }}</div>
+                <div class="notif-desc">{{ notif.desc }}</div>
+                <div class="notif-time">{{ notif.time }}</div>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-orange-500"></span>
-              <span class="text-sm text-gray-600">应收款</span>
-              <span class="text-sm font-medium text-gray-800">37.5%</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-green-500"></span>
-              <span class="text-sm text-gray-600">已完成</span>
-              <span class="text-sm font-medium text-gray-800">25%</span>
             </div>
           </div>
         </div>
@@ -285,12 +597,962 @@ const weekDays = ['日', '一', '二', '三', '四', '五', '六']
 </template>
 
 <style scoped>
-.dashboard-container {
+.workbench-container {
+  width: 100%;
+  padding: 0;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* 顶部统计卡片 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+  border: 1px solid #f0f0f0;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #8c8c8c;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.stat-subtext {
+  font-size: 12px;
+  color: #bfbfbf;
+}
+
+.stat-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.stat-icon {
+  font-size: 24px;
+}
+
+/* 中间内容区域 */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 日历卡片 */
+.calendar-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  height: fit-content;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #262626;
+  margin: 0;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.month-btn {
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  color: #595959;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  font-size: 12px;
+}
+
+.month-btn:hover {
+  background: #f0f0f0;
+  color: #262626;
+  border-color: #d9d9d9;
+}
+
+.month-text {
+  font-size: 13px;
+  color: #262626;
+  font-weight: 500;
+  min-width: 90px;
+  text-align: center;
+}
+
+/* 日历 */
+.calendar {
+  width: 100%;
+}
+
+.week-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.week-day {
+  text-align: center;
+  font-size: 12px;
+  color: #8c8c8c;
+  padding: 6px 0;
+  font-weight: 500;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #262626;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+}
+
+.calendar-day:hover {
+  background: #e6f7ff;
+  border-color: #91d5ff;
+}
+
+.calendar-day.other-month {
+  color: #d9d9d9;
+  background: transparent;
+  border-color: transparent;
+}
+
+.calendar-day.highlight {
+  background: #ff6b35;
+  color: white;
+  font-weight: 600;
+  border-color: #ff6b35;
+  box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+}
+
+.day-dot {
+  position: absolute;
+  bottom: 3px;
+  font-size: 6px;
+}
+
+/* 订单列表 */
+.order-list-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-header {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.order-title {
+  font-size: 13px;
+  color: #8c8c8c;
+  margin: 0;
+  font-weight: 500;
+}
+
+.order-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.order-item:hover {
+  background: #fafafa;
+  margin: 0 -12px;
+  padding: 16px 12px;
+  border-radius: 6px;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-left {
+  flex: 1;
+}
+
+.order-id {
+  font-size: 13px;
+  color: #262626;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.order-route {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.order-right {
+  text-align: right;
+}
+
+.order-status {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.order-info {
+  font-size: 11px;
+  color: #bfbfbf;
+}
+
+/* 趋势图卡片 */
+.trend-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  margin: 12px 0 20px 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-text {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.trend-chart {
+  position: relative;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 200px;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+.chart-svg {
   width: 100%;
   height: 100%;
 }
 
-.calendar {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.chart-labels {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0 0 0;
+  font-size: 12px;
+  color: #bfbfbf;
+  background: white;
+}
+
+/* 饼图区域 */
+.pie-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pie-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.pie-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #262626;
+  margin: 0 0 16px 0;
+}
+
+.pie-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pie-chart-wrapper {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.pie-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.pie-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pie-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pie-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pie-label {
+  font-size: 12px;
+  color: #8c8c8c;
+  flex: 1;
+}
+
+.pie-percent {
+  font-size: 12px;
+  color: #262626;
+  font-weight: 600;
+}
+
+/* 快捷功能 */
+.quick-actions {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.quick-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #262626;
+  margin: 0 0 16px 0;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.quick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid #f5f5f5;
+}
+
+.quick-item:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #e8e8e8;
+}
+
+.quick-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.icon-text {
+  font-size: 24px;
+}
+
+.icon-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  font-size: 14px;
+}
+
+.quick-name {
+  font-size: 13px;
+  color: #262626;
+  font-weight: 500;
+}
+
+/* 数据统计概览卡片 */
+.stats-summary-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  margin-top: 16px;
+}
+
+.stats-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.summary-item {
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  transition: all 0.3s;
+}
+
+.summary-item:nth-child(2) {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.summary-item:nth-child(3) {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.summary-item:nth-child(4) {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.summary-label {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.summary-value {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.summary-trend {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.summary-trend.up {
+  color: #fff;
+}
+
+.summary-trend.down {
+  color: #ffeb3b;
+}
+
+/* 底部三栏区域 */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* 物流跟踪界面 */
+.tracking-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.card-header-with-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.view-all {
+  font-size: 12px;
+  color: #1890ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.view-all:hover {
+  color: #40a9ff;
+  text-decoration: underline;
+}
+
+.tracking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tracking-item {
+  padding: 14px;
+  background: #fafafa;
+  border-radius: 6px;
+  border: 1px solid #f5f5f5;
+  transition: all 0.2s;
+}
+
+.tracking-item:hover {
+  background: #f5f5f5;
+  border-color: #e8e8e8;
+}
+
+.tracking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tracking-id {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.add-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  color: #8c8c8c;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-btn:hover {
+  background: #1890ff;
+  color: white;
+  border-color: #1890ff;
+}
+
+.tracking-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 3px 10px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #595959;
+}
+
+/* 司机任务分配 */
+.driver-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-link {
+  font-size: 12px;
+  color: #1890ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.action-link:hover {
+  color: #40a9ff;
+  text-decoration: underline;
+}
+
+.driver-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.driver-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: #fafafa;
+  border-radius: 6px;
+  border: 1px solid #f5f5f5;
+  transition: all 0.2s;
+}
+
+.driver-item:hover {
+  background: #f5f5f5;
+  border-color: #e8e8e8;
+}
+
+.driver-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e6f7ff;
+}
+
+.driver-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #1890ff;
+}
+
+.driver-info {
+  flex: 1;
+}
+
+.driver-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 5px;
+}
+
+.driver-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: #bfbfbf;
+}
+
+.driver-phone {
+  color: #8c8c8c;
+}
+
+.driver-tags {
+  display: flex;
+  gap: 5px;
+}
+
+.tag-small {
+  padding: 2px 6px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  font-size: 10px;
+  color: #595959;
+}
+
+.driver-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-primary {
+  padding: 5px 12px;
+  background: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: #40a9ff;
+}
+
+.btn-secondary {
+  padding: 5px 12px;
+  background: white;
+  color: #1890ff;
+  border: 1px solid #1890ff;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #e6f7ff;
+  border-color: #40a9ff;
+  color: #40a9ff;
+}
+
+/* 待办事项和系统通知 */
+.todo-notification-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #262626;
+  margin: 0;
+}
+
+.todo-list,
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 6px;
+  border: 1px solid #f5f5f5;
+  transition: all 0.2s;
+}
+
+.todo-item:hover {
+  background: #f5f5f5;
+  border-color: #e8e8e8;
+}
+
+.todo-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e6f7ff;
+  border-radius: 6px;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.todo-content {
+  flex: 1;
+}
+
+.todo-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.todo-desc {
+  font-size: 11px;
+  color: #8c8c8c;
+  line-height: 1.5;
+}
+
+.btn-action {
+  padding: 5px 12px;
+  background: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.btn-action:hover {
+  background: #40a9ff;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 6px;
+  border: 1px solid #f5f5f5;
+  transition: all 0.2s;
+}
+
+.notification-item:hover {
+  background: #f5f5f5;
+  border-color: #e8e8e8;
+}
+
+.notif-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.notif-icon.notif-info {
+  background: #e6f7ff;
+}
+
+.notif-icon.notif-success {
+  background: #f6ffed;
+}
+
+.notif-icon.notif-warning {
+  background: #fffbe6;
+}
+
+.notif-content {
+  flex: 1;
+}
+
+.notif-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.notif-desc {
+  font-size: 11px;
+  color: #8c8c8c;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.notif-time {
+  font-size: 10px;
+  color: #bfbfbf;
 }
 </style>

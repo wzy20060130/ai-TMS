@@ -219,4 +219,49 @@ const router = createRouter({
   ],
 });
 
+
+
 export default router;
+
+// 简单路由守卫
+router.beforeEach((to, from, next) => {
+
+
+  async function trySilentRefresh() {
+
+try {
+const res = await fetch('http://localhost:3000/refresh-token', {
+method: 'POST',
+credentials: 'include'
+});
+
+const data = await res.json();
+
+localStorage.setItem('accessToken',data.accessToken)
+
+// 继续渲染应用（或调用你的 app 渲染函数）
+} catch (err) {
+console.error('[auth] refresh error', err);
+window.location.href = '/login';
+}
+}
+trySilentRefresh()
+const accessToken = localStorage.getItem('accessToken')
+  
+ 
+
+  // 没有短 token，且目标不是登录页 -> 跳到登录页
+  if (!accessToken && to.name !== 'login') {
+   
+    return next({ name: 'login' })
+
+  }
+
+  // 已有短 token，且目标是登录页 -> 跳到首页（或你希望的默认页）
+  if (accessToken && to.name === 'login') {
+    return next({ path: '/' })
+  }
+
+  // 其它情况正常放行
+  return next()
+})

@@ -280,6 +280,9 @@ async function onSubmit() {
     } catch (e) {
       console.error('phone login err', e)
       error.value = '请求失败，请稍后重试'
+      console.log('====================================');
+      console.log('11111111151515151515');
+      console.log('====================================');
     }
   }
 }

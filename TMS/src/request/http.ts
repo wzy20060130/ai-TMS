@@ -14,15 +14,46 @@ const http: AxiosInstance = axios.create({
 // 请求拦截器
 http.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // 1. 从本地存储获取 token
-    const token = localStorage.getItem('token')
+    // 1. 定义不需要token的接口列表
+    const whiteList = ['/login', '/register', '/refreshToken']
+    const url = config.url || ''
     
-    // 2. 如果 token 存在，添加到请求头
-    if (token && config.headers) {
-      config.headers.Authorization = `Bearer ${token}`
+    // 2. 如果不是白名单接口，则添加token
+    if (!whiteList.some(path => url.includes(path))) {
+      // 3. 从本地存储获取 token
+      const token = localStorage.getItem('token')
+      
+      // 4. 确保headers对象存在
+      if (!config.headers) {
+        config.headers = {} as any
+      }
+      
+      // 5. 如果 token 存在，添加到请求头
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+        
+        // 开发环境打印token信息（用于调试）
+        if (import.meta.env.DEV) {
+          console.log('已添加token到请求头:', {
+            url: config.url,
+            hasToken: !!token,
+            tokenLength: token.length
+          })
+        }
+      } else {
+        // 开发环境提示缺少token
+        if (import.meta.env.DEV) {
+          console.warn('请求需要token但未找到:', config.url)
+        }
+      }
+    } else {
+      // 开发环境提示这是白名单接口
+      if (import.meta.env.DEV) {
+        console.log('白名单接口，无需token:', config.url)
+      }
     }
     
-    // 3. 添加时间戳，防止缓存
+    // 6. 添加时间戳，防止缓存
     if (config.method === 'get') {
       config.params = {
         ...config.params,
@@ -30,11 +61,12 @@ http.interceptors.request.use(
       }
     }
     
-    // 4. 打印请求信息（开发环境）
+    // 7. 打印请求信息（开发环境）
     if (import.meta.env.DEV) {
       console.log('请求发送:', {
         url: config.url,
         method: config.method,
+        headers: config.headers,
         params: config.params,
         data: config.data
       })

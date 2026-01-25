@@ -176,7 +176,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onBeforeUnmount } from 'vue'
 import bg from '../public/1.jpg'
-import { login } from '../request/http' // 保留你原有的登录函数
+import { getCurrentInstance} from 'vue'
+const { proxy } = getCurrentInstance()!
 import { useRouter } from 'vue-router'
 
 
@@ -232,13 +233,7 @@ async function sendCode() {
 
   sendingCode.value = true
   try {
-    const res = await apiSendSmsCode(form.phone)
-    // 假设后端返回 { success: true } 风格，你根据实际返回调整
-    if (res && res.success) {
-      startCountdown(60)
-    } else {
-      error.value = res?.message || '验证码发送失败'
-    }
+   
   } catch (e) {
     console.error('sendCode err', e)
     error.value = '验证码发送异常，请稍后重试'
@@ -248,42 +243,40 @@ async function sendCode() {
 }
 
 /* 提交登录 */
+
+
+
+
 async function onSubmit() {
   error.value = ''
-  if (mode.value === 'password') {
-    if (!form.username.trim()) { error.value = '请输入账号'; return }
-    if (!form.password) { error.value = '请输入密码'; return }
-
-    try {
-      const res = await login(form.username, form.password, form.remember)
-      if (res && res.success) {
-        route.push('/')
-      } else {
-        error.value = res?.message || '登录失败'
-      }
-    } catch (e) {
-      console.error('login err', e)
-      error.value = '请求失败，请稍后重试'
+ 
+  if (!form.username) {
+    error.value = '请输入账号'
+    return
+  }
+  if (!form.password) {
+    error.value = '请输入密码'
+    return
+  }
+  try {
+    // 注意请求地址与后端保持一致，比如/login
+    const data = await proxy.$http.post('/login', {
+      username: form.username,
+      password: form.password
+    })
+    // 你封装的响应拦截器会拿走外层 code,message 直接返回 data
+    // 因为你后端返回时token等在外层包data内部
+    // 建议后端返回结构的data字段包token和用户信息，在此拿出并存
+    // 这里按后端修改后，假设data形如{ user:{}, accessToken:"..." }
+    if (data && data.accessToken) {
+      localStorage.setItem('token', data.accessToken)
+      localStorage.setItem('userInfo', JSON.stringify(data.user))
+      route.push('/') // 登录成功跳首页
+    } else {
+      error.value = '登录失败，数据异常'
     }
-  } else {
-    // 手机验证码登录
-    if (!phoneValid.value) { error.value = '请输入有效手机号'; return }
-    if (!form.code.trim()) { error.value = '请输入验证码'; return }
-
-    try {
-      const res = await apiLoginWithPhone(form.phone, form.code, form.remember)
-      if (res && res.success) {
-        route.push('/')
-      } else {
-        error.value = res?.message || '登录失败'
-      }
-    } catch (e) {
-      console.error('phone login err', e)
-      error.value = '请求失败，请稍后重试'
-      console.log('====================================');
-      console.log('11111111151515151515');
-      console.log('====================================');
-    }
+  } catch (e: any) {
+    error.value = e.message || '登录异常'
   }
 }
 </script>

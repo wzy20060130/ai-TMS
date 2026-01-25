@@ -4,14 +4,19 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 const User = require('../../model/demo/user')
 
+const app = express();
+
+app.use(express.json());                       // 处理 application/json 格式请求体
+app.use(express.urlencoded({ extended: true })); // 处理 x-www-form-urlencoded 格式请求体
+app.use(express.json());  
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'youraccesstokensecret'
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'yourrefreshtokensecret'
 function getaccessTokens(user) {
   return jwt.sign(user,ACCESS_TOKEN_SECRET,{expiresIn: '2h'})
 }
 router.post('/', async (req, res) => {
-  try {
-    const refreshToken =req.body
+    const {refreshToken} =req.body
+    
     if(!refreshToken){
       return res.status(403).json({
         code:403,
@@ -38,10 +43,7 @@ router.post('/', async (req, res) => {
       const newAccessToken=getaccessTokens({username:user.username})
       res.json({accessToken:newAccessToken})
     })
-  } catch (err) {
-    console.error('refresh-token error:', err)
-    return res.status(500).json({ message: '服务器错误' })
-  }
+   
 })
 
 module.exports = router

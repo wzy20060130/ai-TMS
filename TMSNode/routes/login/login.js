@@ -43,14 +43,15 @@ router.post('/', async (req, res) => {
       const jwtToken=getJwtToken(user.toJSON())
       console.log('1111',jwtToken);
       
-      res.send({
-        code:200,
-        message:"成功获取数据",
-        data:rows[0].dataValues,
-        accessToken:jwtToken.accesstoken,
-        refreshToken:jwtToken.refreshtoken,
-        
-      })
+     res.send({
+  code: 200,
+  message: "成功获取数据",
+  data: {
+    user: user.toJSON(),
+    accessToken: jwtToken.accesstoken,
+    refreshToken: jwtToken.refreshtoken
+  }
+})
      }
 
   }

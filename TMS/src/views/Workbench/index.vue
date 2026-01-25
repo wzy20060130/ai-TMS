@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import * as echarts from 'echarts'
 
+const trendChartRef = ref<HTMLDivElement | null>(null)
+let trendChart: echarts.ECharts | null = null // 保存图表实例
 // 统计数据
 const stats = ref([
   { 
@@ -221,6 +224,208 @@ const notifications = ref([
     bgColor: '#FFF3E0'
   }
 ])
+
+
+onMounted(() => {
+  if (!trendChartRef.value) return
+   trendChart = echarts.init(trendChartRef.value)
+
+  const option = {
+  // 全局颜色池（更柔和的配色）
+  color: ['#4D81FF', '#36CFC9', '#FF7D00'], // 蓝、青、橙（更高级）
+
+  title: {
+    text: '近七天运单审批趋势',
+    textStyle: {
+      fontSize: 16,
+      fontWeight: 'normal',
+      color: '#333'
+    },
+    left: 'center',
+    top: 10
+  },
+
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow', // 改成阴影，更柔和
+      shadowStyle: {
+        color: 'rgba(0, 0, 0, 0.05)'
+      }
+    },
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderColor: '#eee',
+    borderWidth: 1,
+    textStyle: {
+      color: '#666'
+    },
+    padding: [8, 12]
+  },
+
+  legend: {
+    data: [
+      { name: '审批中数', icon: 'circle' },
+      { name: '已通过数', icon: 'rect' },
+      { name: '已驳回数', icon: 'triangle' }
+    ],
+    itemWidth: 12,
+    itemHeight: 12,
+    top: 30,
+    left: 'center',
+    textStyle: {
+      color: '#666',
+      fontSize: 12
+    }
+  },
+
+  grid: {
+    left: '5%',
+    right: '5%',
+    top: '15%',
+    bottom: '10%',
+    containLabel: true
+  },
+
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['7/15', '7/16', '7/17', '7/18', '7/19', '7/20', '7/21'],
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#eee' // 弱化轴线
+        }
+      },
+      axisTick: {
+        show: false // 隐藏刻度
+      },
+      axisLabel: {
+        color: '#999',
+        fontSize: 11
+      }
+    }
+  ],
+
+  yAxis: [
+    {
+      type: 'value',
+      axisLine: {
+        show: false // 隐藏 y 轴线
+      },
+      axisTick: {
+        show: false // 隐藏刻度
+      },
+      splitLine: {
+        lineStyle: {
+          color: '#f5f5f5', // 弱化网格线
+          type: 'dashed' // 虚线更柔和
+        }
+      },
+      axisLabel: {
+        color: '#999',
+        fontSize: 11
+      }
+    }
+  ],
+
+  series: [
+    // 审批中数（最底层）
+    {
+      name: '审批中数',
+      type: 'line',
+      stack: 'Total',
+      smooth: true, // ✅ 平滑曲线，更柔和
+      symbol: 'circle', // 点的形状
+      symbolSize: 6, // ✅ 点更小
+      lineStyle: {
+        width: 2, // ✅ 线条更细
+        color: '#4D81FF'
+      },
+      itemStyle: {
+        color: '#4D81FF'
+      },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(77, 129, 255, 0.3)' }, // 上深
+          { offset: 1, color: 'rgba(77, 129, 255, 0.05)' } // 下浅
+        ])
+      },
+      emphasis: {
+        focus: 'series',
+        itemStyle: {
+          borderWidth: 2,
+          borderColor: '#fff'
+        }
+      },
+      data: [70, 60, 65, 70, 65, 60, 65]
+    },
+    // 已通过数（中间层）
+    {
+      name: '已通过数',
+      type: 'line',
+      stack: 'Total',
+      smooth: true,
+      symbol: 'rect',
+      symbolSize: 6,
+      lineStyle: {
+        width: 2,
+        color: '#36CFC9'
+      },
+      itemStyle: {
+        color: '#36CFC9'
+      },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(54, 207, 201, 0.3)' },
+          { offset: 1, color: 'rgba(54, 207, 201, 0.05)' }
+        ])
+      },
+      emphasis: {
+        focus: 'series',
+        itemStyle: {
+          borderWidth: 2,
+          borderColor: '#fff'
+        }
+      },
+      data: [70, 70, 70, 70, 70, 70, 70]
+    },
+    // 已驳回数（最上层）
+    {
+      name: '已驳回数',
+      type: 'line',
+      stack: 'Total',
+      smooth: true,
+      symbol: 'triangle',
+      symbolSize: 6,
+      lineStyle: {
+        width: 2,
+        color: '#FF7D00'
+      },
+      itemStyle: {
+        color: '#FF7D00'
+      },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(255, 125, 0, 0.3)' },
+          { offset: 1, color: 'rgba(255, 125, 0, 0.05)' }
+        ])
+      },
+      emphasis: {
+        focus: 'series',
+        itemStyle: {
+          borderWidth: 2,
+          borderColor: '#fff'
+        }
+      },
+      data: [70, 70, 70, 70, 70, 70, 70]
+    }
+  ]
+};
+
+    trendChart.setOption(option)
+
+})
 </script>
 
 <template>
@@ -309,61 +514,8 @@ const notifications = ref([
       <div class="right-section">
       <!-- 近7天运单审批趋势 -->
         <div class="trend-card">
-          <h3 class="card-title">近7天运单审批趋势</h3>
-        
-        <!-- 图例 -->
-          <div class="legend">
-            <div class="legend-item">
-              <span class="legend-dot" style="background: #2196F3"></span>
-              <span class="legend-text">审批中数</span>
-          </div>
-            <div class="legend-item">
-              <span class="legend-dot" style="background: #4CAF50"></span>
-              <span class="legend-text">已通过数</span>
-          </div>
-            <div class="legend-item">
-              <span class="legend-dot" style="background: #FF9800"></span>
-              <span class="legend-text">已驳回数</span>
-          </div>
-        </div>
-
-          <!-- 趋势图 -->
-          <div class="trend-chart">
-            <div class="chart-wrapper">
-              <svg class="chart-svg" viewBox="0 0 700 260" preserveAspectRatio="none">
-                <!-- 橙色区域 (已驳回数) -->
-                <path d="M 0 70 L 100 60 L 200 65 L 300 70 L 400 65 L 500 60 L 600 65 L 700 70 L 700 0 L 0 0 Z" 
-                      fill="rgba(255, 152, 0, 0.25)" />
-                
-                <!-- 绿色区域 (已通过数) -->
-                <path d="M 0 140 L 100 130 L 200 135 L 300 140 L 400 135 L 500 130 L 600 135 L 700 140 L 700 70 L 600 65 L 500 60 L 400 65 L 300 70 L 200 65 L 100 60 L 0 70 Z" 
-                      fill="rgba(76, 175, 80, 0.25)" />
-                
-                <!-- 蓝色区域 (审批中数) -->
-                <path d="M 0 210 L 100 200 L 200 205 L 300 210 L 400 205 L 500 200 L 600 205 L 700 210 L 700 140 L 600 135 L 500 130 L 400 135 L 300 140 L 200 135 L 100 130 L 0 140 Z" 
-                      fill="rgba(33, 150, 243, 0.25)" />
-            
-            <!-- 折线 -->
-                <polyline points="0,70 100,60 200,65 300,70 400,65 500,60 600,65 700,70" 
-                          fill="none" stroke="#FF9800" stroke-width="2.5" />
-                <polyline points="0,140 100,130 200,135 300,140 400,135 500,130 600,135 700,140" 
-                          fill="none" stroke="#4CAF50" stroke-width="2.5" />
-                <polyline points="0,210 100,200 200,205 300,210 400,205 500,200 600,205 700,210" 
-                          fill="none" stroke="#2196F3" stroke-width="2.5" />
-          </svg>
-            </div>
-          
-          <!-- X轴日期标签 -->
-            <div class="chart-labels">
-              <span>7/15</span>
-            <span>7/16</span>
-            <span>7/17</span>
-            <span>7/18</span>
-            <span>7/19</span>
-            <span>7/20</span>
-            <span>7/21</span>
-            </div>
-          </div>
+         <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 -->
+          <div ref="trendChartRef" style="width: 100%; height: 300px;"></div>
         </div>
 
         <!-- 饼图区域 -->

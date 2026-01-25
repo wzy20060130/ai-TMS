@@ -9,8 +9,8 @@ const app = express();
 app.use(express.json());                       // 处理 application/json 格式请求体
 app.use(express.urlencoded({ extended: true })); // 处理 x-www-form-urlencoded 格式请求体
 app.use(express.json());  
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'youraccesstokensecret'
-const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'yourrefreshtokensecret'
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET 
+const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET 
 function getaccessTokens(user) {
   return jwt.sign(user,ACCESS_TOKEN_SECRET,{expiresIn: '2h'})
 }

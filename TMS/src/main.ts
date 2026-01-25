@@ -7,8 +7,6 @@ import 'element-plus/dist/index.css'
 import http from "./request/http"
 
 const app = createApp(App)
-
- 
 app.use(router)
 app.use(ElementPlus)
 app.config.globalProperties.$http = http

@@ -1,5 +1,5 @@
-import axios  from 'axios'
-import type { AxiosInstance, AxiosError, InternalAxiosRequestConfig, AxiosResponse } from "axios"
+import type { AxiosInstance, AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios'
+import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
 // 创建axios实例

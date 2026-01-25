@@ -4,6 +4,7 @@ import * as echarts from 'echarts'
 
 const trendChartRef = ref<HTMLDivElement | null>(null)
 let trendChart: echarts.ECharts | null = null // 保存图表实例
+const pieRef = ref<HTMLDivElement | null>(null)
 // 统计数据
 const stats = ref([
   { 
@@ -225,9 +226,8 @@ const notifications = ref([
   }
 ])
 
-
-onMounted(() => {
-  if (!trendChartRef.value) return
+const getTendency = () => {
+   if (!trendChartRef.value) return
    trendChart = echarts.init(trendChartRef.value)
 
   const option = {
@@ -424,7 +424,89 @@ onMounted(() => {
 };
 
     trendChart.setOption(option)
+}
+ 
+   const getPie = () => {
+  if (!pieRef.value) return
+  // 饼图用独立实例，不要和趋势图共用 trendChart
+  const pieChart = echarts.init(pieRef.value)
 
+  const option = {
+    // 全局颜色池（用你项目的配色，柔和不刺眼）
+    color: [
+      '#FF6B6B', '#FF9800', '#2196F3', '#4CAF50', 
+      '#9C27B0', '#00BCD4', '#F44336', '#795548'
+    ],
+
+    //  图例放在右侧，不挤图表
+    legend: {
+      orient: 'vertical', // 垂直排列
+      right: 10, // 右侧留白
+      top: 'center', // 垂直居中
+      itemWidth: 12,
+      itemHeight: 12,
+      textStyle: {
+        color: '#666',
+        fontSize: 12
+      }
+    },
+
+    //  去掉多余工具条，保持简洁
+    toolbox: {
+      show: false // 隐藏工具条
+    },
+
+    //  系列配置（玫瑰图核心）
+    series: [
+      {
+        name: '订单类型分布',
+        type: 'pie',
+        radius: ['30%', '70%'], //  内半径30%，外半径70%，有留白
+        center: ['40%', '50%'], //  饼图左移，给图例留空间
+        roseType: 'area', // 面积模式（按数值大小显示半径）
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 4, // 圆角适中，不笨重
+          borderColor: '#fff', // 白色边框，更精致
+          borderWidth: 2 // 边框宽度
+        },
+        label: {
+          show: false, // 隐藏标签，保持简洁
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 16,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: false // 隐藏引导线，更干净
+        },
+        data: [
+          { value: 40, name: 'rose 1' },
+          { value: 38, name: 'rose 2' },
+          { value: 32, name: 'rose 3' },
+          { value: 30, name: 'rose 4' },
+          { value: 28, name: 'rose 5' },
+          { value: 26, name: 'rose 6' },
+          { value: 22, name: 'rose 7' },
+          { value: 18, name: 'rose 8' }
+        ]
+      }
+    ]
+  }
+
+  pieChart.setOption(option)
+
+  window.addEventListener('resize', () => {
+    pieChart.resize()
+  })
+}
+onMounted(() => {
+  getTendency()
+  getPie()
 })
 </script>
 
@@ -514,7 +596,6 @@ onMounted(() => {
       <div class="right-section">
       <!-- 近7天运单审批趋势 -->
         <div class="trend-card">
-         <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 -->
           <div ref="trendChartRef" style="width: 100%; height: 300px;"></div>
         </div>
 
@@ -522,48 +603,8 @@ onMounted(() => {
         <div class="pie-charts">
           <!-- 订单类型分布 -->
           <div class="pie-card">
-            <h3 class="pie-title">订单类型分布</h3>
-            <div class="pie-content">
-              <div class="pie-chart-wrapper">
-                <svg class="pie-svg" viewBox="0 0 200 200">
-                  <!-- 蓝色 出差类 30% -->
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#2196F3" stroke-width="40" 
-                          stroke-dasharray="113 377" stroke-dashoffset="0" transform="rotate(-90 100 100)" />
-                  <!-- 橙色 培训类 20% -->
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#FF9800" stroke-width="40" 
-                          stroke-dasharray="75 377" stroke-dashoffset="-113" transform="rotate(-90 100 100)" />
-                  <!-- 绿色 会议类 25% -->
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#4CAF50" stroke-width="40" 
-                          stroke-dasharray="94 377" stroke-dashoffset="-188" transform="rotate(-90 100 100)" />
-                  <!-- 红色 出差类 25% -->
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#F44336" stroke-width="40" 
-                          stroke-dasharray="94 377" stroke-dashoffset="-282" transform="rotate(-90 100 100)" />
-                </svg>
-              </div>
-              <div class="pie-legend">
-                <div class="pie-legend-item">
-                  <span class="pie-dot" style="background: #2196F3"></span>
-                  <span class="pie-label">出差类</span>
-                  <span class="pie-percent">30%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-dot" style="background: #FF9800"></span>
-                  <span class="pie-label">培训类</span>
-                  <span class="pie-percent">20%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-dot" style="background: #4CAF50"></span>
-                  <span class="pie-label">会议类</span>
-                  <span class="pie-percent">25%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-dot" style="background: #F44336"></span>
-                  <span class="pie-label">出差类</span>
-                  <span class="pie-percent">25%</span>
+            <div ref="pieRef" style="width: 100%; height: 100%;"></div>
           </div>
-        </div>
-      </div>
-    </div>
 
           <!-- 收款单类型分布 -->
           <div class="pie-card">

@@ -5,6 +5,8 @@ import * as echarts from 'echarts'
 const trendChartRef = ref<HTMLDivElement | null>(null)
 let trendChart: echarts.ECharts | null = null // 保存图表实例
 const pieRef = ref<HTMLDivElement | null>(null)
+const pieRef1 = ref<HTMLDivElement | null>(null)
+  const DateValue = ref()
 // 统计数据
 const stats = ref([
   { 
@@ -41,95 +43,6 @@ const stats = ref([
   }
 ])
 
-// 当前月份
-const currentMonth = ref('2023年6月')
-
-// 日历数据
-const calendarDays = ref([
-  { day: 28, isOtherMonth: true },
-  { day: 29, isOtherMonth: true },
-  { day: 30, isOtherMonth: true },
-  { day: 31, isOtherMonth: true },
-  { day: 1 },
-  { day: 2 },
-  { day: 3 },
-  { day: 4 },
-  { day: 5 },
-  { day: 6 },
-  { day: 7 },
-  { day: 8 },
-  { day: 9 },
-  { day: 10 },
-  { day: 11 },
-  { day: 12 },
-  { day: 13 },
-  { day: 14 },
-  { day: 15 },
-  { day: 16 },
-  { day: 17 },
-  { day: 18 },
-  { day: 19 },
-  { day: 20, isHighlight: true },
-  { day: 21 },
-  { day: 22 },
-  { day: 23 },
-  { day: 24 },
-  { day: 25 },
-  { day: 26 },
-  { day: 27 },
-  { day: 28 },
-  { day: 29 },
-  { day: 30 },
-  { day: 1, isOtherMonth: true }
-])
-
-const weekDays = ['日', '一', '二', '三', '四', '五', '六']
-
-// 订单列表数据
-const orders = ref([
-  { 
-    id: 'TF2023062001', 
-    status: '已完成', 
-    statusColor: '#4CAF50', 
-    route: '北京朝阳区 → 上海浦东区', 
-    info: '散杂货2345 | 重货' 
-  },
-  { 
-    id: 'TF2023062002', 
-    status: '审批待处理', 
-    statusColor: '#FF9800', 
-    route: '广州白云区 → 深圳南山区', 
-    info: '罗湖77255 | 零担' 
-  },
-  { 
-    id: 'TF2023062003', 
-    status: '待审核', 
-    statusColor: '#2196F3', 
-    route: '杭州上城区 → 上海徐汇区', 
-    info: '杭州西湖 | 整车' 
-  },
-  { 
-    id: 'TF2023062004', 
-    status: '运输中', 
-    statusColor: '#9C27B0', 
-    route: '成都武侯区 → 重庆渝北区', 
-    info: '电子产品 | 快运' 
-  },
-  { 
-    id: 'TF2023062005', 
-    status: '已完成', 
-    statusColor: '#4CAF50', 
-    route: '南京鼓楼区 → 苏州工业园', 
-    info: '机械设备 | 重货' 
-  },
-  { 
-    id: 'TF2023062006', 
-    status: '待发货', 
-    statusColor: '#FF5722', 
-    route: '武汉江汉区 → 长沙岳麓区', 
-    info: '日用百货 | 零担' 
-  }
-])
 
 // 快捷功能
 const quickActions = ref([
@@ -461,6 +374,80 @@ const getTendency = () => {
       {
         name: '订单类型分布',
         type: 'pie',
+        radius: ['45%','70%'], //  内半径30%，外半径70%，有留白
+        center: ['40%', '50%'], //  饼图左移，给图例留空间
+        roseType: 'area', // 面积模式（按数值大小显示半径）
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 4, // 圆角适中，不笨重
+          borderColor: '#fff', // 白色边框，更精致
+          borderWidth: 2 // 边框宽度
+        },
+        label: {
+          show: false, // 隐藏标签，保持简洁
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 16,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: false // 隐藏引导线，更干净
+        },
+        data: [
+          { value: 38, name: '待调度' },
+          { value: 38, name: '运输中' },
+          { value: 38, name: '已取消' },
+          { value: 38, name: '已完成' },
+        ]
+      }
+    ]
+  }
+
+  pieChart.setOption(option)
+
+  window.addEventListener('resize', () => {
+    pieChart.resize()
+  })
+}
+
+   const getPie1 = () => {
+  if (!pieRef1.value) return
+  // 饼图用独立实例，不要和趋势图共用 trendChart
+  const pieChart1 = echarts.init(pieRef1.value)
+
+  const option = {
+    // 全局颜色池（用你项目的配色，柔和不刺眼）
+    color: [
+      '#0ca8df', '#43d966', '#ffa651'
+    ],
+
+    //  图例放在右侧，不挤图表
+    legend: {
+      orient: 'vertical', // 垂直排列
+      right: 10, // 右侧留白
+      top: 'center', // 垂直居中
+      itemWidth: 12,
+      itemHeight: 12,
+      textStyle: {
+        color: '#666',
+        fontSize: 12
+      }
+    },
+
+    //  去掉多余工具条，保持简洁
+    toolbox: {
+      show: false // 隐藏工具条
+    },
+
+    //  系列配置（玫瑰图核心）
+    series: [
+      {
+        name: '订单类型分布',
+        type: 'pie',
         radius: ['30%', '70%'], //  内半径30%，外半径70%，有留白
         center: ['40%', '50%'], //  饼图左移，给图例留空间
         roseType: 'area', // 面积模式（按数值大小显示半径）
@@ -485,28 +472,24 @@ const getTendency = () => {
           show: false // 隐藏引导线，更干净
         },
         data: [
-          { value: 40, name: 'rose 1' },
-          { value: 38, name: 'rose 2' },
-          { value: 32, name: 'rose 3' },
-          { value: 30, name: 'rose 4' },
-          { value: 28, name: 'rose 5' },
-          { value: 26, name: 'rose 6' },
-          { value: 22, name: 'rose 7' },
-          { value: 18, name: 'rose 8' }
+          { value: 30, name: '应对单' },
+          { value: 55, name: '运输单' },
+          { value: 45, name: '结账单' },
         ]
       }
     ]
   }
 
-  pieChart.setOption(option)
+  pieChart1.setOption(option)
 
   window.addEventListener('resize', () => {
-    pieChart.resize()
+    pieChart1.resize()
   })
 }
 onMounted(() => {
   getTendency()
   getPie()
+  getPie1()
 })
 </script>
 
@@ -534,61 +517,8 @@ onMounted(() => {
     <div class="content-grid">
       <!-- 左侧：日历和订单列表 -->
       <div class="left-section">
-      <!-- 运单审批日历视图 -->
-        <div class="calendar-card">
-          <div class="card-header">
-            <h3 class="card-title">运单审批日历视图</h3>
-            <div class="month-selector">
-              <button class="month-btn">◀</button>
-              <span class="month-text">{{ currentMonth }}</span>
-              <button class="month-btn">▶</button>
-          </div>
-        </div>
-
-        <!-- 日历表格 -->
-        <div class="calendar">
-          <!-- 星期标题 -->
-            <div class="week-header">
-              <div v-for="day in weekDays" :key="day" class="week-day">
-              {{ day }}
-            </div>
-          </div>
-
-          <!-- 日期格子 -->
-            <div class="calendar-grid">
-            <div 
-              v-for="(date, index) in calendarDays" 
-              :key="index"
-              :class="[
-                  'calendar-day',
-                  { 'other-month': date.isOtherMonth },
-                  { 'highlight': date.isHighlight }
-              ]"
-            >
-              {{ date.day }}
-                <span v-if="date.isHighlight" class="day-dot">•</span>
-              </div>
-            </div>
-            </div>
-          </div>
-
-        <!-- 订单列表 -->
-        <div class="order-list-card">
-          <div class="order-header">
-            <h3 class="order-title">6月20日共计(总数)</h3>
-          </div>
-          <div class="order-item" v-for="order in orders" :key="order.id">
-            <div class="order-left">
-              <div class="order-id">{{ order.id }}</div>
-              <div class="order-route">{{ order.route }}</div>
-            </div>
-            <div class="order-right">
-              <div class="order-status" :style="{ color: order.statusColor }">
-                {{ order.status }}
-              </div>
-              <div class="order-info">{{ order.info }}</div>
-            </div>
-          </div>
+        <div class="calendar-wrapper">
+          <el-calendar v-model="DateValue" />
         </div>
       </div>
 
@@ -603,44 +533,12 @@ onMounted(() => {
         <div class="pie-charts">
           <!-- 订单类型分布 -->
           <div class="pie-card">
-            <div ref="pieRef" style="width: 100%; height: 100%;"></div>
+            <div ref="pieRef" style="width: 100%; height: 220px;"></div>
           </div>
 
           <!-- 收款单类型分布 -->
           <div class="pie-card">
-            <h3 class="pie-title">收款单类型分布</h3>
-            <div class="pie-content">
-              <div class="pie-chart-wrapper">
-                <svg class="pie-svg" viewBox="0 0 200 200">
-                  <!-- 紫色 应付款 37.5% -->
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#9C27B0" stroke-width="40" 
-                          stroke-dasharray="141 377" stroke-dashoffset="0" transform="rotate(-90 100 100)" />
-                  <!-- 橙色 应收款 37.5% -->
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#FF9800" stroke-width="40" 
-                          stroke-dasharray="141 377" stroke-dashoffset="-141" transform="rotate(-90 100 100)" />
-                  <!-- 绿色 已完成 25% -->
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#4CAF50" stroke-width="40" 
-                          stroke-dasharray="94 377" stroke-dashoffset="-282" transform="rotate(-90 100 100)" />
-            </svg>
-              </div>
-              <div class="pie-legend">
-                <div class="pie-legend-item">
-                  <span class="pie-dot" style="background: #9C27B0"></span>
-                  <span class="pie-label">应付款</span>
-                  <span class="pie-percent">37.5%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-dot" style="background: #FF9800"></span>
-                  <span class="pie-label">应收款</span>
-                  <span class="pie-percent">37.5%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-dot" style="background: #4CAF50"></span>
-                  <span class="pie-label">已完成</span>
-                  <span class="pie-percent">25%</span>
-                </div>
-              </div>
-            </div>
+           <div ref="pieRef1" style="width: 100%; height: 240px"></div>
           </div>
         </div>
 
@@ -658,33 +556,6 @@ onMounted(() => {
                 <span class="icon-badge">⚡</span>
               </div>
               <div class="quick-name">{{ action.name }}</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 数据统计卡片 -->
-        <div class="stats-summary-card">
-          <h3 class="card-title">今日数据概览</h3>
-          <div class="stats-summary-grid">
-            <div class="summary-item">
-              <div class="summary-label">总订单数</div>
-              <div class="summary-value">156</div>
-              <div class="summary-trend up">↑ 12.5%</div>
-            </div>
-            <div class="summary-item">
-              <div class="summary-label">完成订单</div>
-              <div class="summary-value">128</div>
-              <div class="summary-trend up">↑ 8.3%</div>
-            </div>
-            <div class="summary-item">
-              <div class="summary-label">运输中</div>
-              <div class="summary-value">24</div>
-              <div class="summary-trend down">↓ 3.2%</div>
-            </div>
-            <div class="summary-item">
-              <div class="summary-label">待处理</div>
-              <div class="summary-value">4</div>
-              <div class="summary-trend up">↑ 2</div>
             </div>
           </div>
         </div>
@@ -871,9 +742,113 @@ onMounted(() => {
 
 .left-section,
 .right-section {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* 日历容器样式 */
+.calendar-wrapper {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-wrapper :deep(.el-calendar) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-wrapper :deep(.el-calendar__header) {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 16px;
+}
+
+.calendar-wrapper :deep(.el-calendar__body) {
+  flex: 1;
+  padding: 0;
+}
+
+.calendar-wrapper :deep(.el-calendar-table) {
+  height: 100%;
+  table-layout: fixed;
+}
+
+.calendar-wrapper :deep(.el-calendar-table thead th) {
+  padding: 12px 0;
+  font-weight: 600;
+  color: #8c8c8c;
+  font-size: 13px;
+}
+
+.calendar-wrapper :deep(.el-calendar-table tbody tr) {
+  height: 80px;
+}
+
+.calendar-wrapper :deep(.el-calendar-table tbody td) {
+  height: 80px !important;
+  min-height: 80px;
+  max-height: 80px;
+  padding: 0 !important;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.calendar-wrapper :deep(.el-calendar-table tbody td.is-selected) {
+  background: #e6f7ff;
+  height: 80px !important;
+  min-height: 80px;
+  max-height: 80px;
+}
+
+.calendar-wrapper :deep(.el-calendar-table tbody td.is-today) {
+  height: 80px !important;
+  min-height: 80px;
+  max-height: 80px;
+}
+
+.calendar-wrapper :deep(.el-calendar-table .el-calendar-day) {
+  height: 80px !important;
+  min-height: 80px;
+  max-height: 80px;
+  padding: 0;
+  margin: 0;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.calendar-wrapper :deep(.el-calendar-table .el-calendar-day .el-calendar-day__content) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.calendar-wrapper :deep(.el-calendar-table .el-calendar-day:hover) {
+  background: #f5f5f5;
+}
+
+.calendar-wrapper :deep(.el-calendar-table td.is-today .el-calendar-day) {
+  color: #1890ff;
+  font-weight: 600;
+  height: 80px !important;
+  min-height: 80px;
+  max-height: 80px;
 }
 
 /* 日历卡片 */

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 统计数据
 const stats = ref([
@@ -9,27 +9,27 @@ const stats = ref([
     label: '货运成本总数',
     value: '¥286,500.00',
     change: '较上月增加 ↑ 2%',
-    color: '#fff'
+    color: '#fff',
   },
   {
     label: '总运费收入',
     value: '¥428,300.00',
     change: '较上月增加 ↑ 5%',
-    color: '#fff'
+    color: '#fff',
   },
   {
     label: '总支出费用',
     value: '¥141,800.00',
     change: '较上月增加 ↑ 3%',
-    color: '#fff'
+    color: '#fff',
   },
   {
     label: '本期盈亏额',
     value: '¥56,200.00',
     change: '较上月 ↑ 8%',
-    color: '#fff'
-  }
-])
+    color: '#fff',
+  },
+]);
 
 // 筛选条件
 const filters = reactive({
@@ -37,8 +37,8 @@ const filters = reactive({
   settlementStatus: '',
   paymentMethod: '',
   keyword: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 成本类型选项
 const costTypeOptions = [
@@ -46,15 +46,15 @@ const costTypeOptions = [
   { label: '运输成本', value: '1' },
   { label: '人工成本', value: '2' },
   { label: '油费成本', value: '3' },
-  { label: '维修成本', value: '4' }
-]
+  { label: '维修成本', value: '4' },
+];
 
 // 结算状态选项
 const settlementStatusOptions = [
   { label: '全部', value: '' },
   { label: '未结算', value: '1' },
-  { label: '已结算', value: '2' }
-]
+  { label: '已结算', value: '2' },
+];
 
 // 货运成本列表
 const costList = ref([
@@ -80,7 +80,7 @@ const costList = ref([
     settlementTag: 'success',
     createDate: '2023-09-03',
     settlementDate: '2023-09-05',
-    actions: ['查看', '编辑']
+    actions: ['查看', '编辑'],
   },
   {
     id: 2,
@@ -104,7 +104,7 @@ const costList = ref([
     settlementTag: 'info',
     createDate: '2023-09-09',
     settlementDate: '2023-09-16',
-    actions: ['查看', '编辑']
+    actions: ['查看', '编辑'],
   },
   {
     id: 3,
@@ -128,7 +128,7 @@ const costList = ref([
     settlementTag: 'success',
     createDate: '2023-09-14',
     settlementDate: '2023-09-16',
-    actions: ['查看', '编辑']
+    actions: ['查看', '编辑'],
   },
   {
     id: 4,
@@ -152,22 +152,22 @@ const costList = ref([
     settlementTag: 'success',
     createDate: '2023-09-17',
     settlementDate: '',
-    actions: ['查看', '编辑']
-  }
-])
+    actions: ['查看', '编辑'],
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -176,46 +176,50 @@ const handleReset = () => {
     settlementStatus: '',
     paymentMethod: '',
     keyword: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 打印
 const handlePrint = () => {
-  ElMessage.success('正在打印...')
-}
+  ElMessage.success('正在打印...');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface CostRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: CostRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: CostRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="cost-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -233,44 +237,44 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">成本类型</label>
-          <el-select v-model="filters.costType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.costType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in costTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">结算状态</label>
-          <el-select v-model="filters.settlementStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.settlementStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in settlementStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">车辆类型/规格</label>
-          <el-input v-model="filters.keyword" placeholder="请输入" clearable />
+          <ElInput v-model="filters.keyword" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的地</label>
-          <el-select v-model="filters.keyword" placeholder="全部" clearable>
-            <el-option label="北京" value="1" />
-            <el-option label="上海" value="2" />
-          </el-select>
+          <ElSelect v-model="filters.keyword" placeholder="全部" clearable>
+            <ElOption label="北京" value="1" />
+            <ElOption label="上海" value="2" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -280,22 +284,22 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入成本单号、订单号等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
@@ -305,121 +309,117 @@ const handleSizeChange = (size: number) => {
         <span class="toolbar-title">列表</span>
       </div>
       <div class="toolbar-right">
-        <el-button @click="handleExport">导出</el-button>
-        <el-button @click="handlePrint">打印</el-button>
-        <el-button text>刷新</el-button>
+        <ElButton @click="handleExport">导出</ElButton>
+        <ElButton @click="handlePrint">打印</ElButton>
+        <ElButton text>刷新</ElButton>
       </div>
     </div>
 
     <!-- 货运成本列表 -->
     <div class="cost-table-card">
-      <el-table :data="costList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="ID" width="80" fixed>
+      <ElTable :data="costList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="ID" width="80" fixed>
           <template #default="{ row }">
             <div class="cost-id">{{ row.id }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="关联订单号" width="130">
+        <ElTableColumn label="关联订单号" width="130">
           <template #default="{ row }">
             <div class="related-order">{{ row.relatedOrder }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运输路线" width="120">
+        <ElTableColumn label="运输路线" width="120">
           <template #default="{ row }">
-            <el-tag :type="row.fleetTag" size="small">{{ row.fleet }}</el-tag>
+            <ElTag :type="row.fleetTag" size="small">{{ row.fleet }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="车辆/司机" width="120">
+        <ElTableColumn label="车辆/司机" width="120">
           <template #default="{ row }">
             <div class="vehicle-driver">
               <div class="vehicle-info">
-                <el-tag :type="row.routeTag" size="small">{{ row.route }}</el-tag>
+                <ElTag :type="row.routeTag" size="small">{{ row.route }}</ElTag>
               </div>
               <div class="driver-info">{{ row.routeInfo }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="司机姓名" width="100">
+        <ElTableColumn label="司机姓名" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.driverTag" size="small">{{ row.driver }}</el-tag>
+            <ElTag :type="row.driverTag" size="small">{{ row.driver }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="燃油费" width="100">
+        <ElTableColumn label="燃油费" width="100">
           <template #default="{ row }">
             <div class="cost-item">{{ row.fuelCost }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="过路费" width="100">
+        <ElTableColumn label="过路费" width="100">
           <template #default="{ row }">
             <div class="cost-item">{{ row.tollCost }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="工资" width="100">
+        <ElTableColumn label="工资" width="100">
           <template #default="{ row }">
             <div class="cost-item">{{ row.laborCost }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="其他" width="100">
+        <ElTableColumn label="其他" width="100">
           <template #default="{ row }">
             <div class="cost-item">{{ row.otherCost }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="总成本" width="100">
+        <ElTableColumn label="总成本" width="100">
           <template #default="{ row }">
             <div class="total-cost">{{ row.totalCost }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="总收益" width="120">
+        <ElTableColumn label="总收益" width="120">
           <template #default="{ row }">
             <div class="profit">{{ row.profit }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="计算盈亏率" width="120">
+        <ElTableColumn label="计算盈亏率" width="120">
           <template #default="{ row }">
             <div class="profit-rate">{{ row.profitRate }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="结算状态" width="100">
+        <ElTableColumn label="结算状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.settlementTag" size="small">{{ row.settlementStatus }}</el-tag>
+            <ElTag :type="row.settlementTag" size="small">{{ row.settlementStatus }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="结算时间" width="120">
+        <ElTableColumn label="结算时间" width="120">
           <template #default="{ row }">
             <div class="settlement-date">{{ row.settlementDate || '-' }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="150" fixed="right">
+        <ElTableColumn label="操作" width="150" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              查看
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 查看 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -646,5 +646,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-
-

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 筛选条件
 const filters = reactive({
@@ -10,22 +10,22 @@ const filters = reactive({
   startCity: '',
   endProvince: '',
   endCity: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 订单状态选项
 const orderStatusOptions = [
   { label: '待合单', value: '1' },
-  { label: '已合单', value: '2' }
-]
+  { label: '已合单', value: '2' },
+];
 
 // 合单统计
 const mergeStats = reactive({
   totalOrders: 15,
   totalGroups: 5,
   totalDistance: 12550,
-  totalVehicles: 2
-})
+  totalVehicles: 2,
+});
 
 // 推荐合单方案
 const recommendPlans = ref([
@@ -40,7 +40,7 @@ const recommendPlans = ref([
         receiver: '广州天河区',
         cargo: '电子产品',
         weight: '500kg',
-        createTime: '2023-05-21'
+        createTime: '2023-05-21',
       },
       {
         orderId: 'ORD-2023051-0-003',
@@ -49,29 +49,29 @@ const recommendPlans = ref([
         receiver: '广州越秀区',
         cargo: '日用百货',
         weight: '300kg',
-        createTime: '2023-05-21'
-      }
+        createTime: '2023-05-21',
+      },
     ],
     route: {
       startCity: '上海',
       endCity: '广州',
       distance: '1360 km',
-      estimatedTime: '24小时'
+      estimatedTime: '24小时',
     },
     vehicle: {
       type: '厢式货车',
-      capacity: '5吨'
+      capacity: '5吨',
     },
     cost: {
       freight: '¥3,200',
-      saving: '节省 ¥800'
+      saving: '节省 ¥800',
     },
     timeline: [
       { city: '上海', time: '2023-05-22 08:00', status: 'start', desc: '装货点1：上海虹口区' },
       { city: '上海', time: '2023-05-22 10:00', status: 'pickup', desc: '装货点2：上海浦东区' },
       { city: '广州', time: '2023-05-23 08:00', status: 'delivery', desc: '卸货点1：广州天河区' },
-      { city: '广州', time: '2023-05-23 10:00', status: 'end', desc: '卸货点2：广州越秀区' }
-    ]
+      { city: '广州', time: '2023-05-23 10:00', status: 'end', desc: '卸货点2：广州越秀区' },
+    ],
   },
   {
     id: 2,
@@ -84,7 +84,7 @@ const recommendPlans = ref([
         receiver: '上海徐汇区',
         cargo: '机械设备',
         weight: '800kg',
-        createTime: '2023-05-21'
+        createTime: '2023-05-21',
       },
       {
         orderId: 'ORD-2023051-0-005',
@@ -93,29 +93,29 @@ const recommendPlans = ref([
         receiver: '上海浦东区',
         cargo: '办公用品',
         weight: '200kg',
-        createTime: '2023-05-21'
-      }
+        createTime: '2023-05-21',
+      },
     ],
     route: {
       startCity: '北京',
       endCity: '上海',
       distance: '1200 km',
-      estimatedTime: '20小时'
+      estimatedTime: '20小时',
     },
     vehicle: {
       type: '平板车',
-      capacity: '3吨'
+      capacity: '3吨',
     },
     cost: {
       freight: '¥2,800',
-      saving: '节省 ¥600'
+      saving: '节省 ¥600',
     },
     timeline: [
       { city: '北京', time: '2023-05-22 09:00', status: 'start', desc: '装货点1：北京朝阳区' },
       { city: '北京', time: '2023-05-22 11:00', status: 'pickup', desc: '装货点2：北京海淀区' },
       { city: '上海', time: '2023-05-23 05:00', status: 'delivery', desc: '卸货点1：上海徐汇区' },
-      { city: '上海', time: '2023-05-23 07:00', status: 'end', desc: '卸货点2：上海浦东区' }
-    ]
+      { city: '上海', time: '2023-05-23 07:00', status: 'end', desc: '卸货点2：上海浦东区' },
+    ],
   },
   {
     id: 3,
@@ -128,29 +128,29 @@ const recommendPlans = ref([
         receiver: '南京玄武区',
         cargo: '服装纺织',
         weight: '400kg',
-        createTime: '2023-05-21'
-      }
+        createTime: '2023-05-21',
+      },
     ],
     route: {
       startCity: '杭州',
       endCity: '南京',
       distance: '280 km',
-      estimatedTime: '5小时'
+      estimatedTime: '5小时',
     },
     vehicle: {
       type: '厢式货车',
-      capacity: '2吨'
+      capacity: '2吨',
     },
     cost: {
       freight: '¥800',
-      saving: '节省 ¥200'
+      saving: '节省 ¥200',
     },
     timeline: [
       { city: '杭州', time: '2023-05-22 08:00', status: 'start', desc: '装货点：杭州西湖区' },
-      { city: '南京', time: '2023-05-22 13:00', status: 'end', desc: '卸货点：南京玄武区' }
-    ]
-  }
-])
+      { city: '南京', time: '2023-05-22 13:00', status: 'end', desc: '卸货点：南京玄武区' },
+    ],
+  },
+]);
 
 // 备选合单方案
 const alternativePlans = ref([
@@ -163,7 +163,7 @@ const alternativePlans = ref([
     volume: '25.4m³',
     createTime: '2023-05-18',
     estimatedCost: '¥5,200',
-    status: '待合单'
+    status: '待合单',
   },
   {
     orderId: 'ORD-2023051-0-008',
@@ -174,7 +174,7 @@ const alternativePlans = ref([
     volume: '18.2m³',
     createTime: '2023-05-19',
     estimatedCost: '¥4,100',
-    status: '待合单'
+    status: '待合单',
   },
   {
     orderId: 'ORD-2023051-0-009',
@@ -185,15 +185,15 @@ const alternativePlans = ref([
     volume: '32.1m³',
     createTime: '2023-05-20',
     estimatedCost: '¥6,800',
-    status: '待合单'
-  }
-])
+    status: '待合单',
+  },
+]);
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -203,25 +203,33 @@ const handleReset = () => {
     startCity: '',
     endProvince: '',
     endCity: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 执行合单
-const handleMerge = (plan: any) => {
-  console.log('执行合单', plan)
-  ElMessage.success('合单方案已提交')
+interface Plan {
+  id: number;
+  [key: string]: unknown;
 }
+const handleMerge = (_plan: Plan) => {
+  // TODO: 实现执行合单逻辑
+  ElMessage.success('合单方案已提交');
+};
 
 // 查看详情
-const handleViewDetail = (order: any) => {
-  console.log('查看详情', order)
+interface Order {
+  id: number;
+  [key: string]: unknown;
 }
+const handleViewDetail = (_order: Order) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 生成新方案
 const handleGenerateNew = () => {
-  ElMessage.success('正在生成新的合单方案...')
-}
+  ElMessage.success('正在生成新的合单方案...');
+};
 </script>
 
 <template>
@@ -233,7 +241,7 @@ const handleGenerateNew = () => {
         <p class="page-desc">系统根据订单信息自动推荐最优合单方案，帮助您降低运输成本</p>
       </div>
       <div class="header-actions">
-        <el-button type="primary" @click="handleGenerateNew">生成新方案</el-button>
+        <ElButton type="primary" @click="handleGenerateNew">生成新方案</ElButton>
       </div>
     </div>
 
@@ -242,50 +250,50 @@ const handleGenerateNew = () => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">订单状态</label>
-          <el-select v-model="filters.orderStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.orderStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in orderStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">出发省份</label>
-          <el-select v-model="filters.startProvince" placeholder="全部" clearable>
-            <el-option label="上海市" value="31" />
-            <el-option label="北京市" value="11" />
-            <el-option label="广东省" value="44" />
-          </el-select>
+          <ElSelect v-model="filters.startProvince" placeholder="全部" clearable>
+            <ElOption label="上海市" value="31" />
+            <ElOption label="北京市" value="11" />
+            <ElOption label="广东省" value="44" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">出发城市</label>
-          <el-select v-model="filters.startCity" placeholder="全部" clearable>
-            <el-option label="市辖区" value="3101" />
-          </el-select>
+          <ElSelect v-model="filters.startCity" placeholder="全部" clearable>
+            <ElOption label="市辖区" value="3101" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的省份</label>
-          <el-select v-model="filters.endProvince" placeholder="全部" clearable>
-            <el-option label="广东省" value="44" />
-            <el-option label="北京市" value="11" />
-          </el-select>
+          <ElSelect v-model="filters.endProvince" placeholder="全部" clearable>
+            <ElOption label="广东省" value="44" />
+            <ElOption label="北京市" value="11" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的城市</label>
-          <el-select v-model="filters.endCity" placeholder="全部" clearable>
-            <el-option label="广州市" value="4401" />
-          </el-select>
+          <ElSelect v-model="filters.endCity" placeholder="全部" clearable>
+            <ElOption label="广州市" value="4401" />
+          </ElSelect>
         </div>
 
         <div class="filter-item date-range">
           <label class="filter-label">日期范围</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -295,8 +303,8 @@ const handleGenerateNew = () => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
     </div>
@@ -311,16 +319,22 @@ const handleGenerateNew = () => {
       <div class="stat-item">
         <div class="stat-label">推荐合单组数</div>
         <div class="stat-value">{{ mergeStats.totalGroups }} <span class="stat-unit">组</span></div>
-        <div class="stat-desc">平均每组 {{ Math.floor(mergeStats.totalOrders / mergeStats.totalGroups) }} 个订单</div>
+        <div class="stat-desc">
+          平均每组 {{ Math.floor(mergeStats.totalOrders / mergeStats.totalGroups) }} 个订单
+        </div>
       </div>
       <div class="stat-item">
         <div class="stat-label">总运输距离</div>
-        <div class="stat-value">{{ mergeStats.totalDistance.toLocaleString() }} <span class="stat-unit">km</span></div>
+        <div class="stat-value">
+          {{ mergeStats.totalDistance.toLocaleString() }} <span class="stat-unit">km</span>
+        </div>
         <div class="stat-desc">较分散运输减少 15%</div>
       </div>
       <div class="stat-item">
         <div class="stat-label">所需车辆数</div>
-        <div class="stat-value">{{ mergeStats.totalVehicles }} <span class="stat-unit">辆</span></div>
+        <div class="stat-value">
+          {{ mergeStats.totalVehicles }} <span class="stat-unit">辆</span>
+        </div>
         <div class="stat-desc">较分散运输减少 8 辆</div>
       </div>
     </div>
@@ -331,19 +345,13 @@ const handleGenerateNew = () => {
     </div>
 
     <div class="plans-list">
-      <div 
-        v-for="plan in recommendPlans" 
-        :key="plan.id"
-        class="plan-card"
-      >
+      <div v-for="plan in recommendPlans" :key="plan.id" class="plan-card">
         <div class="plan-header">
           <div class="plan-title">
             <span class="plan-name">{{ plan.planName }}</span>
-            <el-tag v-if="plan.id === 1" type="success" size="small">推荐方案</el-tag>
+            <ElTag v-if="plan.id === 1" type="success" size="small">推荐方案</ElTag>
           </div>
-          <el-button type="primary" size="small" @click="handleMerge(plan)">
-            执行合单
-          </el-button>
+          <ElButton type="primary" size="small" @click="handleMerge(plan)"> 执行合单 </ElButton>
         </div>
 
         <div class="plan-content">
@@ -351,14 +359,10 @@ const handleGenerateNew = () => {
           <div class="orders-section">
             <div class="section-label">合并订单</div>
             <div class="orders-grid">
-              <div 
-                v-for="(order, index) in plan.orders" 
-                :key="index"
-                class="order-item"
-              >
+              <div v-for="(order, index) in plan.orders" :key="index" class="order-item">
                 <div class="order-header">
                   <span class="order-id">{{ order.orderId }}</span>
-                  <el-tag type="warning" size="small">{{ order.status }}</el-tag>
+                  <ElTag type="warning" size="small">{{ order.status }}</ElTag>
                 </div>
                 <div class="order-info">
                   <div class="info-row">
@@ -386,11 +390,7 @@ const handleGenerateNew = () => {
           <div class="route-section">
             <div class="section-label">运输路线</div>
             <div class="route-timeline">
-              <div 
-                v-for="(point, index) in plan.timeline" 
-                :key="index"
-                class="timeline-item"
-              >
+              <div v-for="(point, index) in plan.timeline" :key="index" class="timeline-item">
                 <div class="timeline-dot" :class="point.status"></div>
                 <div class="timeline-content">
                   <div class="timeline-city">{{ point.city }}</div>
@@ -440,36 +440,36 @@ const handleGenerateNew = () => {
     </div>
 
     <div class="alternative-table">
-      <el-table :data="alternativePlans" stripe>
-        <el-table-column prop="orderId" label="订单编号" width="180" />
-        <el-table-column label="起始地" width="150">
+      <ElTable :data="alternativePlans" stripe>
+        <ElTableColumn prop="orderId" label="订单编号" width="180" />
+        <ElTableColumn label="起始地" width="150">
           <template #default="{ row }">
             {{ row.sender }}
           </template>
-        </el-table-column>
-        <el-table-column label="目的地" width="150">
+        </ElTableColumn>
+        <ElTableColumn label="目的地" width="150">
           <template #default="{ row }">
             {{ row.receiver }}
           </template>
-        </el-table-column>
-        <el-table-column prop="cargo" label="货物" width="120" />
-        <el-table-column prop="weight" label="重量" width="100" />
-        <el-table-column prop="volume" label="体积" width="100" />
-        <el-table-column prop="createTime" label="创建时间" width="120" />
-        <el-table-column prop="estimatedCost" label="预估费用" width="120" />
-        <el-table-column label="状态" width="100">
+        </ElTableColumn>
+        <ElTableColumn prop="cargo" label="货物" width="120" />
+        <ElTableColumn prop="weight" label="重量" width="100" />
+        <ElTableColumn prop="volume" label="体积" width="100" />
+        <ElTableColumn prop="createTime" label="创建时间" width="120" />
+        <ElTableColumn prop="estimatedCost" label="预估费用" width="120" />
+        <ElTableColumn label="状态" width="100">
           <template #default="{ row }">
-            <el-tag type="info" size="small">{{ row.status }}</el-tag>
+            <ElTag type="info" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
-        <el-table-column label="操作" width="120" fixed="right">
+        </ElTableColumn>
+        <ElTableColumn label="操作" width="120" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleViewDetail(row)">
+            <ElButton link type="primary" size="small" @click="handleViewDetail(row)">
               查看详情
-            </el-button>
+            </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
     </div>
   </div>
 </template>

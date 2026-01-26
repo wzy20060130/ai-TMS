@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Plus } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 筛选条件
 const filters = reactive({
@@ -9,8 +9,8 @@ const filters = reactive({
   position: '',
   employeeStatus: '',
   keyword: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 部门选项
 const departmentOptions = [
@@ -18,8 +18,8 @@ const departmentOptions = [
   { label: '总公司', value: '1' },
   { label: '分公司', value: '2' },
   { label: '运输部', value: '3' },
-  { label: '财务部', value: '4' }
-]
+  { label: '财务部', value: '4' },
+];
 
 // 职位选项
 const positionOptions = [
@@ -27,16 +27,16 @@ const positionOptions = [
   { label: '总经理', value: '1' },
   { label: '部门经理', value: '2' },
   { label: '主管', value: '3' },
-  { label: '员工', value: '4' }
-]
+  { label: '员工', value: '4' },
+];
 
 // 员工状态选项
 const employeeStatusOptions = [
   { label: '全部', value: '' },
   { label: '在职', value: '1' },
   { label: '离职', value: '2' },
-  { label: '休假', value: '3' }
-]
+  { label: '休假', value: '3' },
+];
 
 // 员工列表
 const employeeList = ref([
@@ -53,7 +53,7 @@ const employeeList = ref([
     joinDate: '2019-01-10',
     status: '在职',
     statusTag: 'success',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 2,
@@ -68,7 +68,7 @@ const employeeList = ref([
     joinDate: '2019-05-10',
     status: '在职',
     statusTag: 'success',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 3,
@@ -83,7 +83,7 @@ const employeeList = ref([
     joinDate: '2020-01-15',
     status: '在职',
     statusTag: 'success',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 4,
@@ -98,7 +98,7 @@ const employeeList = ref([
     joinDate: '2020-03-08',
     status: '在职',
     statusTag: 'success',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 5,
@@ -113,7 +113,7 @@ const employeeList = ref([
     joinDate: '2020-05-20',
     status: '休假',
     statusTag: 'warning',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 6,
@@ -128,7 +128,7 @@ const employeeList = ref([
     joinDate: '2020-04-01',
     status: '在职',
     statusTag: 'success',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 7,
@@ -143,7 +143,7 @@ const employeeList = ref([
     joinDate: '2020-06-15',
     status: '离职',
     statusTag: 'info',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 8,
@@ -158,22 +158,22 @@ const employeeList = ref([
     joinDate: '2020-01-15',
     status: '在职',
     statusTag: 'success',
-    actions: ['查看', '编辑', '删除']
-  }
-])
+    actions: ['查看', '编辑', '删除'],
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -182,49 +182,53 @@ const handleReset = () => {
     position: '',
     employeeStatus: '',
     keyword: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 新增员工
 const handleAdd = () => {
-  ElMessage.info('跳转到新增员工页面')
-}
+  ElMessage.info('跳转到新增员工页面');
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 打印
 const handlePrint = () => {
-  ElMessage.success('正在打印...')
-}
+  ElMessage.success('正在打印...');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface EmployeeRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: EmployeeRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: EmployeeRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 删除
-const handleDelete = (row: any) => {
-  console.log('删除', row)
-  ElMessage.warning('确认删除该员工？')
-}
+const handleDelete = (_row: EmployeeRow) => {
+  // TODO: 实现删除逻辑
+  ElMessage.warning('确认删除该员工？');
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
@@ -234,53 +238,53 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">部门</label>
-          <el-select v-model="filters.department" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.department" placeholder="全部" clearable>
+            <ElOption
               v-for="item in departmentOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">职务类型/级别</label>
-          <el-select v-model="filters.position" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.position" placeholder="全部" clearable>
+            <ElOption
               v-for="item in positionOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">工资</label>
-          <el-input v-model="filters.keyword" placeholder="请输入" clearable />
+          <ElInput v-model="filters.keyword" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">岗位</label>
-          <el-input v-model="filters.keyword" placeholder="请输入" clearable />
+          <ElInput v-model="filters.keyword" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的地</label>
-          <el-select v-model="filters.employeeStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.employeeStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in employeeStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -290,22 +294,22 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入员工姓名、工号等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
@@ -315,81 +319,75 @@ const handleSizeChange = (size: number) => {
         <span class="toolbar-title">员工列表</span>
       </div>
       <div class="toolbar-right">
-        <el-button type="primary" :icon="Plus" @click="handleAdd">新增</el-button>
-        <el-button @click="handleExport">导出</el-button>
-        <el-button @click="handlePrint">打印</el-button>
-        <el-button text>刷新</el-button>
+        <ElButton type="primary" :icon="Plus" @click="handleAdd">新增</ElButton>
+        <ElButton @click="handleExport">导出</ElButton>
+        <ElButton @click="handlePrint">打印</ElButton>
+        <ElButton text>刷新</ElButton>
       </div>
     </div>
 
     <!-- 员工列表 -->
     <div class="employee-table-card">
-      <el-table :data="employeeList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="员工工号" width="120" fixed>
+      <ElTable :data="employeeList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="员工工号" width="120" fixed>
           <template #default="{ row }">
             <div class="employee-id">{{ row.employeeId }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="姓名" width="150">
+        <ElTableColumn label="姓名" width="150">
           <template #default="{ row }">
             <div class="employee-info">
               <div class="employee-avatar">{{ row.avatar }}</div>
               <div class="employee-name">{{ row.name }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="所属部门" width="150">
+        <ElTableColumn label="所属部门" width="150">
           <template #default="{ row }">
-            <el-tag :type="row.departmentTag" size="small">{{ row.department }}</el-tag>
+            <ElTag :type="row.departmentTag" size="small">{{ row.department }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="职位" width="120">
+        <ElTableColumn label="职位" width="120">
           <template #default="{ row }">
-            <el-tag :type="row.positionTag" size="small">{{ row.position }}</el-tag>
+            <ElTag :type="row.positionTag" size="small">{{ row.position }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="联系电话" width="150">
+        <ElTableColumn label="联系电话" width="150">
           <template #default="{ row }">
             <div class="phone">{{ row.phone }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="入职时间" width="120">
+        <ElTableColumn label="入职时间" width="120">
           <template #default="{ row }">
             <div class="join-date">{{ row.joinDate }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="状态" width="100">
+        <ElTableColumn label="状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusTag" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusTag" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="180" fixed="right">
+        <ElTableColumn label="操作" width="180" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              查看
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
-            <el-button link type="danger" size="small" @click="handleDelete(row)">
-              删除
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 查看 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
+            <ElButton link type="danger" size="small" @click="handleDelete(row)"> 删除 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -557,5 +555,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-
-

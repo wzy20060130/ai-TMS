@@ -1,9 +1,8 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="operations-container">
-    <router-view />
+    <RouterView />
   </div>
 </template>
 
@@ -13,5 +12,3 @@
   height: 100%;
 }
 </style>
-
-

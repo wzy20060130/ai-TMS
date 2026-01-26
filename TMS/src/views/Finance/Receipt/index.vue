@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 统计数据
 const stats = ref([
@@ -10,37 +10,37 @@ const stats = ref([
     value: 128,
     change: '较上月 ↑ 2',
     icon: '📋',
-    color: '#E3F2FD'
+    color: '#E3F2FD',
   },
   {
     label: '收款总金额',
     value: '¥3,586,200',
     change: '较昨日增加',
     icon: '💰',
-    color: '#E8F5E9'
+    color: '#E8F5E9',
   },
   {
     label: '已收金额',
     value: '¥2,953,680',
     change: '较昨日 ↑',
     icon: '👤',
-    color: '#F3E5F5'
+    color: '#F3E5F5',
   },
   {
     label: '未收金额',
     value: '¥632,520',
     change: '较昨日 ↓ 2',
     icon: '📊',
-    color: '#FFF3E0'
+    color: '#FFF3E0',
   },
   {
     label: '未收总数',
     value: 8,
     change: '较上周增加3笔',
     icon: '🔔',
-    color: '#FFEBEE'
-  }
-])
+    color: '#FFEBEE',
+  },
+]);
 
 // 筛选条件
 const filters = reactive({
@@ -50,39 +50,39 @@ const filters = reactive({
   customerType: '',
   settlementStatus: '',
   keyword: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 收款状态选项
 const receiptStatusOptions = [
   { label: '全部', value: '' },
   { label: '待收款', value: '1' },
   { label: '部分收款', value: '2' },
-  { label: '已收款', value: '3' }
-]
+  { label: '已收款', value: '3' },
+];
 
 // 付款状态选项
 const paymentStatusOptions = [
   { label: '全部', value: '' },
   { label: '未付款', value: '1' },
   { label: '部分付款', value: '2' },
-  { label: '已付款', value: '3' }
-]
+  { label: '已付款', value: '3' },
+];
 
 // 付款方式选项
 const paymentMethodOptions = [
   { label: '全部', value: '' },
   { label: '现金', value: '1' },
   { label: '转账', value: '2' },
-  { label: '支票', value: '3' }
-]
+  { label: '支票', value: '3' },
+];
 
 // 结算状态选项
 const settlementStatusOptions = [
   { label: '全部', value: '' },
   { label: '未结算', value: '1' },
-  { label: '已结算', value: '2' }
-]
+  { label: '已结算', value: '2' },
+];
 
 // 收款单列表
 const receiptList = ref([
@@ -98,23 +98,23 @@ const receiptList = ref([
     paymentInfo: {
       total: '¥38,600.00',
       paid: '¥38,600.00',
-      unpaid: '¥0.00'
+      unpaid: '¥0.00',
     },
     status: '已收款',
     statusTag: 'success',
     paymentDate: {
       create: '2023-09-01',
       receive: '2023-09-02',
-      deadline: '16:30:32'
+      deadline: '16:30:32',
     },
     approvalStatus: {
       finance: { status: 'success', label: '已审核' },
       payment: { status: 'success', label: '已付款' },
-      settlement: { status: 'success', label: '已结算' }
+      settlement: { status: 'success', label: '已结算' },
     },
     handler: '张财务',
     createDate: '2023-09-15',
-    actions: ['详情']
+    actions: ['详情'],
   },
   {
     id: 2,
@@ -128,23 +128,23 @@ const receiptList = ref([
     paymentInfo: {
       total: '¥126,300.00',
       paid: '¥60,000.00',
-      unpaid: '¥66,300.00'
+      unpaid: '¥66,300.00',
     },
     status: '部分收款',
     statusTag: 'warning',
     paymentDate: {
       create: '2023-09-02',
       receive: '2023-09-04',
-      deadline: '16:30:32'
+      deadline: '16:30:32',
     },
     approvalStatus: {
       finance: { status: 'success', label: '已审核' },
       payment: { status: 'warning', label: '已付款' },
-      settlement: { status: 'warning', label: '已结算' }
+      settlement: { status: 'warning', label: '已结算' },
     },
     handler: '李会计',
     createDate: '2023-09-16',
-    actions: ['详情']
+    actions: ['详情'],
   },
   {
     id: 3,
@@ -158,23 +158,23 @@ const receiptList = ref([
     paymentInfo: {
       total: '¥89,500.00',
       paid: '¥0.00',
-      unpaid: '¥89,500.00'
+      unpaid: '¥89,500.00',
     },
     status: '未收款',
     statusTag: 'danger',
     paymentDate: {
       create: '2023-09-03',
       receive: '2023-09-03',
-      deadline: '16:42:10'
+      deadline: '16:42:10',
     },
     approvalStatus: {
       finance: { status: 'success', label: '已审核' },
       payment: { status: 'info', label: '已付款' },
-      settlement: { status: 'info', label: '已结算' }
+      settlement: { status: 'info', label: '已结算' },
     },
     handler: '支付宝',
     createDate: '2023-09-17',
-    actions: ['详情']
+    actions: ['详情'],
   },
   {
     id: 4,
@@ -188,23 +188,23 @@ const receiptList = ref([
     paymentInfo: {
       total: '¥215,800.00',
       paid: '¥0.00',
-      unpaid: '¥215,800.00'
+      unpaid: '¥215,800.00',
     },
     status: '消费中',
     statusTag: 'info',
     paymentDate: {
       create: '2023-09-04',
       receive: '2023-09-06',
-      deadline: '11:20:35'
+      deadline: '11:20:35',
     },
     approvalStatus: {
       finance: { status: 'success', label: '已审核' },
       payment: { status: 'warning', label: '已付款' },
-      settlement: { status: 'info', label: '已结算' }
+      settlement: { status: 'info', label: '已结算' },
     },
     handler: '张财务',
     createDate: '2023-09-18',
-    actions: ['详情']
+    actions: ['详情'],
   },
   {
     id: 5,
@@ -218,38 +218,38 @@ const receiptList = ref([
     paymentInfo: {
       total: '¥65,200.00',
       paid: '¥65,200.00',
-      unpaid: '¥0.00'
+      unpaid: '¥0.00',
     },
     status: '已收款',
     statusTag: 'success',
     paymentDate: {
       create: '2023-09-05',
       receive: '2023-09-07',
-      deadline: '10:10:05'
+      deadline: '10:10:05',
     },
     approvalStatus: {
       finance: { status: 'success', label: '已审核' },
       payment: { status: 'success', label: '已付款' },
-      settlement: { status: 'success', label: '已结算' }
+      settlement: { status: 'success', label: '已结算' },
     },
     handler: '微信支付',
     createDate: '2023-09-19',
-    actions: ['详情']
-  }
-])
+    actions: ['详情'],
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -260,31 +260,35 @@ const handleReset = () => {
     customerType: '',
     settlementStatus: '',
     keyword: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface ReceiptRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: ReceiptRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="receipt-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -303,68 +307,68 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">收款单状态</label>
-          <el-select v-model="filters.receiptStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.receiptStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in receiptStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">付款状态</label>
-          <el-select v-model="filters.paymentStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.paymentStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in paymentStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">付款方式</label>
-          <el-select v-model="filters.paymentMethod" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.paymentMethod" placeholder="全部" clearable>
+            <ElOption
               v-for="item in paymentMethodOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">关联订单号</label>
-          <el-input v-model="filters.keyword" placeholder="请输入" clearable />
+          <ElInput v-model="filters.keyword" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">结算状态</label>
-          <el-select v-model="filters.settlementStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.settlementStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in settlementStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的地</label>
-          <el-select v-model="filters.keyword" placeholder="全部" clearable>
-            <el-option label="北京" value="1" />
-            <el-option label="上海" value="2" />
-          </el-select>
+          <ElSelect v-model="filters.keyword" placeholder="全部" clearable>
+            <ElOption label="北京" value="1" />
+            <ElOption label="上海" value="2" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -374,61 +378,61 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入收款单号、客户名称等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
     <!-- 收款单列表 -->
     <div class="receipt-table-card">
-      <el-table :data="receiptList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="收款单号" width="130" fixed>
+      <ElTable :data="receiptList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="收款单号" width="130" fixed>
           <template #default="{ row }">
             <div class="receipt-no">{{ row.receiptNo }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="客户信息" width="180">
+        <ElTableColumn label="客户信息" width="180">
           <template #default="{ row }">
             <div class="customer-info">
               <div class="customer-id">{{ row.customerId }}</div>
               <div class="customer-name">{{ row.customerName }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="订单信息" width="180">
+        <ElTableColumn label="订单信息" width="180">
           <template #default="{ row }">
             <div class="order-info">
               <div class="order-date">{{ row.orderDate }}</div>
               <div v-if="row.orderInfo" class="order-detail">{{ row.orderInfo }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="关联订单" width="150">
+        <ElTableColumn label="关联订单" width="150">
           <template #default="{ row }">
-            <el-tag :type="row.relatedOrderTag" size="small">{{ row.relatedOrder }}</el-tag>
+            <ElTag :type="row.relatedOrderTag" size="small">{{ row.relatedOrder }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="订单金额" width="120">
+        <ElTableColumn label="订单金额" width="120">
           <template #default="{ row }">
             <div class="payment-info">
               <div class="payment-row">
@@ -445,9 +449,9 @@ const handleSizeChange = (size: number) => {
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="收款信息" width="120">
+        <ElTableColumn label="收款信息" width="120">
           <template #default="{ row }">
             <div class="receipt-info">
               <div class="info-row">
@@ -464,63 +468,83 @@ const handleSizeChange = (size: number) => {
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="收款状态" width="100">
+        <ElTableColumn label="收款状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusTag" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusTag" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="收款审核流程" width="150">
+        <ElTableColumn label="收款审核流程" width="150">
           <template #default="{ row }">
             <div class="approval-flow">
               <div class="approval-item">
-                <el-icon :class="['approval-icon', row.approvalStatus.finance.status]">
-                  <component :is="row.approvalStatus.finance.status === 'success' ? 'CircleCheck' : 'CircleClose'" />
-                </el-icon>
+                <ElIcon :class="['approval-icon', row.approvalStatus.finance.status]">
+                  <component
+                    :is="
+                      row.approvalStatus.finance.status === 'success'
+                        ? 'CircleCheck'
+                        : 'CircleClose'
+                    "
+                  />
+                </ElIcon>
                 <span class="approval-label">{{ row.approvalStatus.finance.label }}</span>
               </div>
               <div class="approval-item">
-                <el-icon :class="['approval-icon', row.approvalStatus.payment.status]">
-                  <component :is="row.approvalStatus.payment.status === 'success' ? 'CircleCheck' : row.approvalStatus.payment.status === 'warning' ? 'Warning' : 'CircleClose'" />
-                </el-icon>
+                <ElIcon :class="['approval-icon', row.approvalStatus.payment.status]">
+                  <component
+                    :is="
+                      row.approvalStatus.payment.status === 'success'
+                        ? 'CircleCheck'
+                        : row.approvalStatus.payment.status === 'warning'
+                          ? 'Warning'
+                          : 'CircleClose'
+                    "
+                  />
+                </ElIcon>
                 <span class="approval-label">{{ row.approvalStatus.payment.label }}</span>
               </div>
               <div class="approval-item">
-                <el-icon :class="['approval-icon', row.approvalStatus.settlement.status]">
-                  <component :is="row.approvalStatus.settlement.status === 'success' ? 'CircleCheck' : row.approvalStatus.settlement.status === 'warning' ? 'Warning' : 'CircleClose'" />
-                </el-icon>
+                <ElIcon :class="['approval-icon', row.approvalStatus.settlement.status]">
+                  <component
+                    :is="
+                      row.approvalStatus.settlement.status === 'success'
+                        ? 'CircleCheck'
+                        : row.approvalStatus.settlement.status === 'warning'
+                          ? 'Warning'
+                          : 'CircleClose'
+                    "
+                  />
+                </ElIcon>
                 <span class="approval-label">{{ row.approvalStatus.settlement.label }}</span>
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="经办人" width="100">
+        <ElTableColumn label="经办人" width="100">
           <template #default="{ row }">
             <div class="handler">{{ row.handler }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="创建日期" width="120">
+        <ElTableColumn label="创建日期" width="120">
           <template #default="{ row }">
             <div class="create-date">{{ row.createDate }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="100" fixed="right">
+        <ElTableColumn label="操作" width="100" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              详情
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 详情 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -799,5 +823,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-
-

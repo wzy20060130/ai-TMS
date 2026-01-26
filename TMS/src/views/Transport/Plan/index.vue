@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 统计数据
 const stats = ref([
@@ -10,30 +10,30 @@ const stats = ref([
     value: 126,
     change: '较上周 ↓ 5%',
     icon: '📋',
-    color: '#E3F2FD'
+    color: '#E3F2FD',
   },
   {
     label: '待执行计划',
     value: 48,
     change: '较上周 ↑ 2.2%',
     icon: '⏰',
-    color: '#F3E5F5'
+    color: '#F3E5F5',
   },
   {
     label: '执行中计划',
     value: 32,
     change: '较上周 ↓ 1.1%',
     icon: '🚚',
-    color: '#FFF3E0'
+    color: '#FFF3E0',
   },
   {
     label: '计划完成率',
     value: '96.8%',
     change: '较上周 ↑ 1.5%',
     icon: '✅',
-    color: '#E8F5E9'
-  }
-])
+    color: '#E8F5E9',
+  },
+]);
 
 // 筛选条件
 const filters = reactive({
@@ -43,8 +43,8 @@ const filters = reactive({
   vehicleType: '',
   driverType: '',
   dateRange: [],
-  keyword: ''
-})
+  keyword: '',
+});
 
 // 计划状态选项
 const planStatusOptions = [
@@ -52,32 +52,32 @@ const planStatusOptions = [
   { label: '待执行', value: '1' },
   { label: '执行中', value: '2' },
   { label: '已完成', value: '3' },
-  { label: '已取消', value: '4' }
-]
+  { label: '已取消', value: '4' },
+];
 
 // 计划类型选项
 const planTypeOptions = [
   { label: '全部', value: '' },
   { label: '整车运输', value: '1' },
   { label: '零担运输', value: '2' },
-  { label: '快递运输', value: '3' }
-]
+  { label: '快递运输', value: '3' },
+];
 
 // 路线类型选项
 const routeTypeOptions = [
   { label: '全部', value: '' },
   { label: '短途', value: '1' },
   { label: '中途', value: '2' },
-  { label: '长途', value: '3' }
-]
+  { label: '长途', value: '3' },
+];
 
 // 车辆类型选项
 const vehicleTypeOptions = [
   { label: '全部', value: '' },
   { label: '厢式货车', value: '1' },
   { label: '平板车', value: '2' },
-  { label: '冷藏车', value: '3' }
-]
+  { label: '冷藏车', value: '3' },
+];
 
 // 运输计划列表
 const planList = ref([
@@ -87,165 +87,157 @@ const planList = ref([
     statusType: 'warning',
     orders: [
       { id: 'ORD-2023061001', route: '上海 → 北京' },
-      { id: 'ORD-2023061002', route: '上海 → 天津' }
+      { id: 'ORD-2023061002', route: '上海 → 天津' },
     ],
     route: {
       start: '上海仓库',
-      end: '北京物流配送中心'
+      end: '北京物流配送中心',
     },
     schedule: {
       departureDate: '2023-06-20',
       departureTime: '08:00',
       arrivalDate: '2023-06-21',
-      arrivalTime: '18:00'
+      arrivalTime: '18:00',
     },
     cargo: {
       count: 2,
       weight: '2500kg',
-      volume: '15.5m³'
+      volume: '15.5m³',
     },
     driver: {
       name: '王师傅',
       phone: '138****1234',
-      vehicle: '沪A12345'
+      vehicle: '沪A12345',
     },
     status_label: '车辆调度中',
-    remark: '客户要求准时送达，需要在21日18点前送达'
+    remark: '客户要求准时送达，需要在21日18点前送达',
   },
   {
     id: 'PLAN-2023060002',
     status: '执行中',
     statusType: 'primary',
-    orders: [
-      { id: 'ORD-2023061005', route: '广州 → 深圳' }
-    ],
+    orders: [{ id: 'ORD-2023061005', route: '广州 → 深圳' }],
     route: {
       start: '广州仓库',
-      end: '深圳物流配送中心'
+      end: '深圳物流配送中心',
     },
     schedule: {
       departureDate: '2023-06-20',
       departureTime: '09:00',
       arrivalDate: '2023-06-20',
-      arrivalTime: '15:30'
+      arrivalTime: '15:30',
     },
     cargo: {
       count: 1,
       weight: '500kg',
-      volume: '8.2m³'
+      volume: '8.2m³',
     },
     driver: {
       name: '赵师傅',
       phone: '139****5678',
-      vehicle: '粤A67890'
+      vehicle: '粤A67890',
     },
     status_label: '运输中',
-    remark: '货物已装车，正在运输途中'
+    remark: '货物已装车，正在运输途中',
   },
   {
     id: 'PLAN-2023060003',
     status: '已完成',
     statusType: 'success',
-    orders: [
-      { id: 'ORD-2023061012', route: '北京 → 天津' }
-    ],
+    orders: [{ id: 'ORD-2023061012', route: '北京 → 天津' }],
     route: {
       start: '北京仓库',
-      end: '天津物流配送中心'
+      end: '天津物流配送中心',
     },
     schedule: {
       departureDate: '2023-06-19',
       departureTime: '10:00',
       arrivalDate: '2023-06-19',
-      arrivalTime: '14:10'
+      arrivalTime: '14:10',
     },
     cargo: {
       count: 1,
       weight: '1500kg',
-      volume: '12.0m³'
+      volume: '12.0m³',
     },
     driver: {
       name: '孙师傅',
       phone: '136****9012',
-      vehicle: '京B11111'
+      vehicle: '京B11111',
     },
     status_label: '已签收',
-    remark: '已按时送达，客户已签收'
+    remark: '已按时送达，客户已签收',
   },
   {
     id: 'PLAN-2023060004',
     status: '待执行',
     statusType: 'warning',
-    orders: [
-      { id: 'ORD-2023061023', route: '成都 → 重庆' }
-    ],
+    orders: [{ id: 'ORD-2023061023', route: '成都 → 重庆' }],
     route: {
       start: '成都仓库',
-      end: '重庆物流配送中心'
+      end: '重庆物流配送中心',
     },
     schedule: {
       departureDate: '2023-06-20',
       departureTime: '14:00',
       arrivalDate: '2023-06-20',
-      arrivalTime: '20:30'
+      arrivalTime: '20:30',
     },
     cargo: {
       count: 1,
       weight: '800kg',
-      volume: '10.5m³'
+      volume: '10.5m³',
     },
     driver: {
       name: '刘师傅',
       phone: '137****7890',
-      vehicle: '川A22222'
+      vehicle: '川A22222',
     },
     status_label: '待装货',
-    remark: '预计今日14点装货，20点30分送达'
+    remark: '预计今日14点装货，20点30分送达',
   },
   {
     id: 'PLAN-2023060005',
     status: '已取消',
     statusType: 'info',
-    orders: [
-      { id: 'ORD-2023061025', route: '武汉 → 长沙' }
-    ],
+    orders: [{ id: 'ORD-2023061025', route: '武汉 → 长沙' }],
     route: {
       start: '武汉仓库',
-      end: '长沙物流配送中心'
+      end: '长沙物流配送中心',
     },
     schedule: {
       departureDate: '2023-06-19',
       departureTime: '08:00',
       arrivalDate: '2023-06-19',
-      arrivalTime: '16:00'
+      arrivalTime: '16:00',
     },
     cargo: {
       count: 1,
       weight: '700kg',
-      volume: '9.5m³'
+      volume: '9.5m³',
     },
     driver: {
       name: '吴师傅',
       phone: '138****1234',
-      vehicle: '鄂A33333'
+      vehicle: '鄂A33333',
     },
     status_label: '已取消',
-    remark: '客户取消订单，运输计划已取消'
-  }
-])
+    remark: '客户取消订单，运输计划已取消',
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -256,51 +248,55 @@ const handleReset = () => {
     vehicleType: '',
     driverType: '',
     dateRange: [],
-    keyword: ''
-  })
-}
+    keyword: '',
+  });
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 新增计划
 const handleAdd = () => {
-  ElMessage.info('跳转到新增运输计划页面')
-}
+  ElMessage.info('跳转到新增运输计划页面');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface PlanRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: PlanRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: PlanRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 删除
-const handleDelete = (row: any) => {
-  console.log('删除', row)
-}
+const handleDelete = (_row: PlanRow) => {
+  // TODO: 实现删除逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="plan-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -319,63 +315,63 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">计划状态</label>
-          <el-select v-model="filters.planStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.planStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in planStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">计划类型</label>
-          <el-select v-model="filters.planType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.planType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in planTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">路线类型</label>
-          <el-select v-model="filters.routeType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.routeType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in routeTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">车辆类型</label>
-          <el-select v-model="filters.vehicleType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.vehicleType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in vehicleTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">驾驶员类型</label>
-          <el-select v-model="filters.driverType" placeholder="全部" clearable>
-            <el-option label="自有司机" value="1" />
-            <el-option label="外协司机" value="2" />
-          </el-select>
+          <ElSelect v-model="filters.driverType" placeholder="全部" clearable>
+            <ElOption label="自有司机" value="1" />
+            <ElOption label="外协司机" value="2" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -385,55 +381,55 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入计划编号、订单编号等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
     <!-- 操作栏 -->
     <div class="toolbar">
       <div class="toolbar-left">
-        <el-button type="danger" :icon="Plus" @click="handleAdd">新增</el-button>
-        <el-button type="primary" :icon="Download" @click="handleExport">导出</el-button>
+        <ElButton type="danger" :icon="Plus" @click="handleAdd">新增</ElButton>
+        <ElButton type="primary" :icon="Download" @click="handleExport">导出</ElButton>
       </div>
       <div class="toolbar-right">
-        <el-button text>刷新</el-button>
-        <el-button text>批量操作</el-button>
+        <ElButton text>刷新</ElButton>
+        <ElButton text>批量操作</ElButton>
       </div>
     </div>
 
     <!-- 运输计划列表 -->
     <div class="plan-table-card">
-      <el-table :data="planList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="计划编号" width="150" fixed>
+      <ElTable :data="planList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="计划编号" width="150" fixed>
           <template #default="{ row }">
             <div class="plan-id">{{ row.id }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="计划状态" width="100">
+        <ElTableColumn label="计划状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusType" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusType" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="关联订单号" width="200">
+        <ElTableColumn label="关联订单号" width="200">
           <template #default="{ row }">
             <div class="orders-list">
               <div v-for="(order, index) in row.orders" :key="index" class="order-item">
@@ -442,95 +438,95 @@ const handleSizeChange = (size: number) => {
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="出发地/目的地" width="200">
+        <ElTableColumn label="出发地/目的地" width="200">
           <template #default="{ row }">
             <div class="route-info">
               <div class="route-start">起：{{ row.route.start }}</div>
               <div class="route-end">止：{{ row.route.end }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="发车时间" width="150">
+        <ElTableColumn label="发车时间" width="150">
           <template #default="{ row }">
             <div class="schedule-info">
               <div class="schedule-date">{{ row.schedule.departureDate }}</div>
               <div class="schedule-time">{{ row.schedule.departureTime }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="预计到达" width="150">
+        <ElTableColumn label="预计到达" width="150">
           <template #default="{ row }">
             <div class="schedule-info">
               <div class="schedule-date">{{ row.schedule.arrivalDate }}</div>
               <div class="schedule-time">{{ row.schedule.arrivalTime }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="货量/重量" width="120">
+        <ElTableColumn label="货量/重量" width="120">
           <template #default="{ row }">
             <div class="cargo-info">
               <div class="cargo-count">{{ row.cargo.count }}单</div>
               <div class="cargo-weight">{{ row.cargo.weight }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="司机/车辆" width="150">
+        <ElTableColumn label="司机/车辆" width="150">
           <template #default="{ row }">
             <div class="driver-info">
               <div class="driver-name">{{ row.driver.name }}</div>
               <div class="driver-detail">{{ row.driver.phone }} | {{ row.driver.vehicle }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="执行状态" width="120">
+        <ElTableColumn label="执行状态" width="120">
           <template #default="{ row }">
             <div class="status-label">{{ row.status_label }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="备注信息" width="200">
+        <ElTableColumn label="备注信息" width="200">
           <template #default="{ row }">
             <div class="remark">{{ row.remark }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="200" fixed="right">
+        <ElTableColumn label="操作" width="200" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
+            <ElButton link type="primary" size="small" @click="handleView(row)">
               查看详情
-            </el-button>
-            <el-button 
-              v-if="row.status === '待执行'" 
-              link 
-              type="primary" 
-              size="small" 
+            </ElButton>
+            <ElButton
+              v-if="row.status === '待执行'"
+              link
+              type="primary"
+              size="small"
               @click="handleEdit(row)"
             >
               编辑计划
-            </el-button>
-            <el-button 
-              v-if="row.status === '待执行'" 
-              link 
-              type="danger" 
-              size="small" 
+            </ElButton>
+            <ElButton
+              v-if="row.status === '待执行'"
+              link
+              type="danger"
+              size="small"
               @click="handleDelete(row)"
             >
               取消计划
-            </el-button>
+            </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -800,4 +796,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-

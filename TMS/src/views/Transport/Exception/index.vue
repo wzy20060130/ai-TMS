@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Download } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Download } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 统计数据
 const stats = ref([
@@ -10,30 +10,30 @@ const stats = ref([
     value: 86,
     change: '较昨日 ↑ 2.3%',
     icon: '📋',
-    color: '#E3F2FD'
+    color: '#E3F2FD',
   },
   {
     label: '待处理异常',
     value: 42,
     change: '较昨日 ↑ 1.7%',
     icon: '⚠️',
-    color: '#F3E5F5'
+    color: '#F3E5F5',
   },
   {
     label: '已处理异常',
     value: 44,
     change: '较昨日 ↑ 3.8%',
     icon: '✅',
-    color: '#FFF3E0'
+    color: '#FFF3E0',
   },
   {
     label: '已关闭异常',
     value: 16,
     change: '较昨日 ↑ 1.6%',
     icon: '🔒',
-    color: '#E8F5E9'
-  }
-])
+    color: '#E8F5E9',
+  },
+]);
 
 // 筛选条件
 const filters = reactive({
@@ -43,8 +43,8 @@ const filters = reactive({
   processingStatus: '',
   handler: '',
   dateRange: [],
-  keyword: ''
-})
+  keyword: '',
+});
 
 // 异常状态选项
 const exceptionStatusOptions = [
@@ -52,8 +52,8 @@ const exceptionStatusOptions = [
   { label: '待处理', value: '1' },
   { label: '处理中', value: '2' },
   { label: '已处理', value: '3' },
-  { label: '已关闭', value: '4' }
-]
+  { label: '已关闭', value: '4' },
+];
 
 // 异常类型选项
 const exceptionTypeOptions = [
@@ -62,24 +62,24 @@ const exceptionTypeOptions = [
   { label: '货物损坏', value: '2' },
   { label: '货物丢失', value: '3' },
   { label: '拒收', value: '4' },
-  { label: '其他', value: '5' }
-]
+  { label: '其他', value: '5' },
+];
 
 // 紧急程度选项
 const urgencyLevelOptions = [
   { label: '全部', value: '' },
   { label: '紧急', value: '1' },
   { label: '重要', value: '2' },
-  { label: '一般', value: '3' }
-]
+  { label: '一般', value: '3' },
+];
 
 // 处理状态选项
 const processingStatusOptions = [
   { label: '全部', value: '' },
   { label: '待处理', value: '1' },
   { label: '处理中', value: '2' },
-  { label: '已解决', value: '3' }
-]
+  { label: '已解决', value: '3' },
+];
 
 // 异常订单列表
 const exceptionList = ref([
@@ -99,7 +99,7 @@ const exceptionList = ref([
     handler: '未分配',
     processingTime: '-',
     description: '客户反馈货物未按时送达，延误2小时，客户要求尽快送达，否则将取消订单',
-    solution: '-'
+    solution: '-',
   },
   {
     id: 'ABN-2023061002',
@@ -117,7 +117,7 @@ const exceptionList = ref([
     handler: '王五',
     processingTime: '2023-06-16 15:30',
     description: '收货方反馈货物包装破损，部分货物受损，需要重新配送或赔偿',
-    solution: '与客户协商后，重新配送完好货物，损坏货物按价值赔偿30%'
+    solution: '与客户协商后，重新配送完好货物，损坏货物按价值赔偿30%',
   },
   {
     id: 'ABN-2023061003',
@@ -135,7 +135,7 @@ const exceptionList = ref([
     handler: '孙七',
     processingTime: '2023-06-16 16:45',
     description: '收货方拒收货物，理由是订单有误，需要核实订单信息并重新配送',
-    solution: '正在与客户沟通确认订单信息'
+    solution: '正在与客户沟通确认订单信息',
   },
   {
     id: 'ABN-2023061004',
@@ -153,7 +153,7 @@ const exceptionList = ref([
     handler: '吴九',
     processingTime: '2023-06-16 10:30',
     description: '运输车辆在途中发生故障，无法继续运输，需要调配其他车辆接替运输',
-    solution: '已调配备用车辆接替运输，货物已按时送达'
+    solution: '已调配备用车辆接替运输，货物已按时送达',
   },
   {
     id: 'ABN-2023061005',
@@ -171,22 +171,22 @@ const exceptionList = ref([
     handler: '未分配',
     processingTime: '-',
     description: '客户临时取消订单，货物已装车准备发运，需要协商取消费用及货物退回事宜',
-    solution: '-'
-  }
-])
+    solution: '-',
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -197,47 +197,51 @@ const handleReset = () => {
     processingStatus: '',
     handler: '',
     dateRange: [],
-    keyword: ''
-  })
-}
+    keyword: '',
+  });
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 批量处理
 const handleBatchProcess = () => {
-  ElMessage.info('批量处理异常')
-}
+  ElMessage.info('批量处理异常');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface ExceptionRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: ExceptionRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 处理异常
-const handleProcess = (row: any) => {
-  console.log('处理异常', row)
-  ElMessage.success('已分配处理人员')
-}
+const handleProcess = (_row: ExceptionRow) => {
+  // TODO: 实现处理异常逻辑
+  ElMessage.success('已分配处理人员');
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="exception-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -256,64 +260,64 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">异常状态</label>
-          <el-select v-model="filters.exceptionStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.exceptionStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in exceptionStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">异常类型</label>
-          <el-select v-model="filters.exceptionType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.exceptionType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in exceptionTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">紧急程度/优先级</label>
-          <el-select v-model="filters.urgencyLevel" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.urgencyLevel" placeholder="全部" clearable>
+            <ElOption
               v-for="item in urgencyLevelOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">处理状态</label>
-          <el-select v-model="filters.processingStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.processingStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in processingStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">主责人</label>
-          <el-select v-model="filters.handler" placeholder="全部" clearable>
-            <el-option label="张三" value="1" />
-            <el-option label="李四" value="2" />
-            <el-option label="王五" value="3" />
-          </el-select>
+          <ElSelect v-model="filters.handler" placeholder="全部" clearable>
+            <ElOption label="张三" value="1" />
+            <ElOption label="李四" value="2" />
+            <ElOption label="王五" value="3" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -323,140 +327,133 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入异常编号、订单编号等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
     <!-- 操作栏 -->
     <div class="toolbar">
       <div class="toolbar-left">
-        <el-button type="primary" :icon="Download" @click="handleExport">导出</el-button>
-        <el-button @click="handleBatchProcess">批量处理</el-button>
+        <ElButton type="primary" :icon="Download" @click="handleExport">导出</ElButton>
+        <ElButton @click="handleBatchProcess">批量处理</ElButton>
       </div>
       <div class="toolbar-right">
-        <el-button text>刷新</el-button>
-        <el-button text>已处理异常</el-button>
+        <ElButton text>刷新</ElButton>
+        <ElButton text>已处理异常</ElButton>
       </div>
     </div>
 
     <!-- 异常订单列表 -->
     <div class="exception-table-card">
-      <el-table :data="exceptionList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="异常编号" width="150" fixed>
+      <ElTable :data="exceptionList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="异常编号" width="150" fixed>
           <template #default="{ row }">
             <div class="exception-id">{{ row.id }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="关联订单号" width="150">
+        <ElTableColumn label="关联订单号" width="150">
           <template #default="{ row }">
             <div class="order-no">{{ row.orderNo }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="关联运单/提货单" width="180">
+        <ElTableColumn label="关联运单/提货单" width="180">
           <template #default="{ row }">
             <div class="related-info">
               <div class="related-item">运单：{{ row.waybillNo }}</div>
               <div class="related-item">提货：{{ row.pickupNo }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="异常类型" width="120">
+        <ElTableColumn label="异常类型" width="120">
           <template #default="{ row }">
-            <el-tag :type="row.exceptionTypeTag" size="small">{{ row.exceptionType }}</el-tag>
+            <ElTag :type="row.exceptionTypeTag" size="small">{{ row.exceptionType }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="异常状态" width="100">
+        <ElTableColumn label="异常状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusType" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusType" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="优先级" width="100">
+        <ElTableColumn label="优先级" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.urgencyType" size="small">{{ row.urgency }}</el-tag>
+            <ElTag :type="row.urgencyType" size="small">{{ row.urgency }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="上报人/时间" width="180">
+        <ElTableColumn label="上报人/时间" width="180">
           <template #default="{ row }">
             <div class="reporter-info">
               <div class="reporter-name">{{ row.reporter }}</div>
               <div class="reporter-time">{{ row.reportTime }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="处理人/时间" width="180">
+        <ElTableColumn label="处理人/时间" width="180">
           <template #default="{ row }">
             <div class="handler-info">
               <div class="handler-name">{{ row.handler }}</div>
               <div class="handler-time">{{ row.processingTime }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="异常描述" width="250">
+        <ElTableColumn label="异常描述" width="250">
           <template #default="{ row }">
             <div class="description">{{ row.description }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="处理方案" width="250">
+        <ElTableColumn label="处理方案" width="250">
           <template #default="{ row }">
             <div class="solution">{{ row.solution || '-' }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="150" fixed="right">
+        <ElTableColumn label="操作" width="150" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              详情
-            </el-button>
-            <el-button 
-              v-if="row.status === '待处理'" 
-              link 
-              type="primary" 
-              size="small" 
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 详情 </ElButton>
+            <ElButton
+              v-if="row.status === '待处理'"
+              link
+              type="primary"
+              size="small"
               @click="handleProcess(row)"
             >
               处理
-            </el-button>
-            <el-button 
-              v-if="row.status === '已处理'" 
-              link 
-              type="success" 
-              size="small"
-            >
+            </ElButton>
+            <ElButton v-if="row.status === '已处理'" link type="success" size="small">
               查看
-            </el-button>
+            </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -677,4 +674,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-

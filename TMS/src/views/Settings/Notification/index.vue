@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ref, computed } from 'vue';
+import { ElMessage } from 'element-plus';
 
 // 当前激活的标签
-const activeTab = ref('all')
+const activeTab = ref('all');
 
 // 消息统计
 const stats = ref([
@@ -13,7 +13,7 @@ const stats = ref([
     desc: '共有56条消息',
     icon: '🔔',
     color: '#E3F2FD',
-    type: 'all'
+    type: 'all',
   },
   {
     label: '未读消息',
@@ -22,7 +22,7 @@ const stats = ref([
     icon: '📬',
     color: '#FFEBEE',
     type: 'unread',
-    badge: true
+    badge: true,
   },
   {
     label: '系统通知',
@@ -30,7 +30,7 @@ const stats = ref([
     desc: '包含：维护通知',
     icon: '⚙️',
     color: '#F3E5F5',
-    type: 'system'
+    type: 'system',
   },
   {
     label: '互动消息',
@@ -38,17 +38,17 @@ const stats = ref([
     desc: '包含：点赞通知',
     icon: '💬',
     color: '#E8F5E9',
-    type: 'interaction'
-  }
-])
+    type: 'interaction',
+  },
+]);
 
 // 消息类型标签
 const messageTabs = [
   { label: '全部通知', value: 'all' },
   { label: '系统通知', value: 'system' },
   { label: '订单通知', value: 'order' },
-  { label: '任务通知', value: 'task', badge: 3 }
-]
+  { label: '任务通知', value: 'task', badge: 3 },
+];
 
 // 消息筛选标签
 const filterTabs = [
@@ -56,11 +56,11 @@ const filterTabs = [
   { label: '数字人通知', value: 'digital' },
   { label: '公文通知', value: 'document' },
   { label: '评论消息', value: 'comment' },
-  { label: '系统公告', value: 'announcement' }
-]
+  { label: '系统公告', value: 'announcement' },
+];
 
 // 当前筛选
-const activeFilter = ref('all')
+const activeFilter = ref('all');
 
 // 消息列表
 const messageList = ref([
@@ -70,10 +70,11 @@ const messageList = ref([
     icon: '📋',
     iconColor: '#1890ff',
     title: '新订单提醒',
-    content: '您有一个新的订单号为：ORD-2023061501/2，发货地：上海市浦东新区，目的地：北京市朝阳区，请及时处理。',
+    content:
+      '您有一个新的订单号为：ORD-2023061501/2，发货地：上海市浦东新区，目的地：北京市朝阳区，请及时处理。',
     time: '10分钟前',
     isRead: false,
-    actions: ['查看详情']
+    actions: ['查看详情'],
   },
   {
     id: 2,
@@ -81,10 +82,11 @@ const messageList = ref([
     icon: '🔔',
     iconColor: '#faad14',
     title: '运输状态变更',
-    content: '运输订单号：TASK-2023061402/3已到达目的地，当前位置：山东省济南市，预计到达时间：明日上午10点。',
+    content:
+      '运输订单号：TASK-2023061402/3已到达目的地，当前位置：山东省济南市，预计到达时间：明日上午10点。',
     time: '30分钟前',
     isRead: false,
-    actions: ['查看详情']
+    actions: ['查看详情'],
   },
   {
     id: 3,
@@ -95,7 +97,7 @@ const messageList = ref([
     content: '运输订单号：TASK-2023061402/3已完成，货物已送达目的地，签收人：王经理。',
     time: '2小时前',
     isRead: false,
-    actions: ['查看详情']
+    actions: ['查看详情'],
   },
   {
     id: 4,
@@ -106,7 +108,7 @@ const messageList = ref([
     content: '系统将于2023年6月21日00:00-02:00进行维护，期间可能会影响正常使用，敬请谅解。',
     time: '昨天 10:30',
     isRead: true,
-    actions: ['查看详情']
+    actions: ['查看详情'],
   },
   {
     id: 5,
@@ -117,7 +119,7 @@ const messageList = ref([
     content: '您有一个订单号为：PLAN-2023061300/2超过预期时间，预计送达时间：2023-06-14 08:00。',
     time: '昨天 16:45',
     isRead: true,
-    actions: ['查看详情']
+    actions: ['查看详情'],
   },
   {
     id: 6,
@@ -128,68 +130,80 @@ const messageList = ref([
     content: '运输订单号：TASK-2023061402/3已完成，货物已送达目的地，签收人：王经理。',
     time: '2023-01-17',
     isRead: true,
-    actions: ['查看详情']
-  }
-])
+    actions: ['查看详情'],
+  },
+]);
 
 // 过滤后的消息列表
 const filteredMessages = computed(() => {
   if (activeTab.value === 'all') {
-    return messageList.value
+    return messageList.value;
   }
-  return messageList.value.filter(msg => msg.type === activeTab.value)
-})
+  return messageList.value.filter(msg => msg.type === activeTab.value);
+});
 
 // 未读消息数量
-const unreadCount = computed(() => {
-  return messageList.value.filter(msg => !msg.isRead).length
-})
+const _unreadCount = computed(() => {
+  return messageList.value.filter(msg => !msg.isRead).length;
+});
 
 // 切换标签
 const handleTabChange = (tab: string) => {
-  activeTab.value = tab
-}
+  activeTab.value = tab;
+};
 
 // 切换筛选
 const handleFilterChange = (filter: string) => {
-  activeFilter.value = filter
-}
+  activeFilter.value = filter;
+};
 
 // 标记已读
 const markAsRead = (id: number) => {
-  const message = messageList.value.find(msg => msg.id === id)
+  const message = messageList.value.find(msg => msg.id === id);
   if (message) {
-    message.isRead = true
-    ElMessage.success('已标记为已读')
+    message.isRead = true;
+    ElMessage.success('已标记为已读');
   }
-}
+};
 
 // 全部标记已读
 const markAllAsRead = () => {
   messageList.value.forEach(msg => {
-    msg.isRead = true
-  })
-  ElMessage.success('已全部标记为已读')
-}
+    msg.isRead = true;
+  });
+  ElMessage.success('已全部标记为已读');
+};
 
 // 查看详情
-const handleView = (message: any) => {
-  console.log('查看详情', message)
-  markAsRead(message.id)
+interface Message {
+  id: number;
+  type: string;
+  icon: string;
+  iconColor: string;
+  title: string;
+  content: string;
+  time: string;
+  isRead: boolean;
+  actions: string[];
 }
+
+const handleView = (message: Message) => {
+  // TODO: 实现查看详情逻辑
+  markAsRead(message.id);
+};
 
 // 加载更多
 const loadMore = () => {
-  ElMessage.info('加载更多消息...')
-}
+  ElMessage.info('加载更多消息...');
+};
 </script>
 
 <template>
   <div class="notification-container">
     <!-- 统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -200,7 +214,7 @@ const loadMore = () => {
         <div class="stat-content">
           <div class="stat-label">
             {{ stat.label }}
-            <el-badge v-if="stat.badge && stat.value > 0" :value="stat.value" class="stat-badge" />
+            <ElBadge v-if="stat.badge && stat.value > 0" :value="stat.value" class="stat-badge" />
           </div>
           <div class="stat-value">{{ stat.value }}</div>
           <div class="stat-desc">{{ stat.desc }}</div>
@@ -221,12 +235,12 @@ const loadMore = () => {
             @click="handleTabChange(tab.value)"
           >
             {{ tab.label }}
-            <el-badge v-if="tab.badge" :value="tab.badge" class="tab-badge" />
+            <ElBadge v-if="tab.badge" :value="tab.badge" class="tab-badge" />
           </div>
         </div>
         <div class="tabs-right">
-          <el-button text @click="markAllAsRead">全部标记已读</el-button>
-          <el-button text>打印</el-button>
+          <ElButton text @click="markAllAsRead">全部标记已读</ElButton>
+          <ElButton text>打印</ElButton>
         </div>
       </div>
 
@@ -251,7 +265,10 @@ const loadMore = () => {
           class="message-item"
           :class="{ unread: !message.isRead }"
         >
-          <div class="message-icon" :style="{ backgroundColor: message.iconColor + '20', color: message.iconColor }">
+          <div
+            class="message-icon"
+            :style="{ backgroundColor: message.iconColor + '20', color: message.iconColor }"
+          >
             {{ message.icon }}
           </div>
           <div class="message-content">
@@ -261,20 +278,20 @@ const loadMore = () => {
             </div>
             <div class="message-text">{{ message.content }}</div>
             <div class="message-actions">
-              <el-button link type="primary" size="small" @click="handleView(message)">
+              <ElButton link type="primary" size="small" @click="handleView(message)">
                 查看详情
-              </el-button>
+              </ElButton>
             </div>
           </div>
           <div v-if="!message.isRead" class="message-badge">
-            <el-badge is-dot />
+            <ElBadge is-dot />
           </div>
         </div>
       </div>
 
       <!-- 加载更多 -->
       <div class="load-more">
-        <el-button text type="primary" @click="loadMore">加载更多</el-button>
+        <ElButton text type="primary" @click="loadMore">加载更多</ElButton>
       </div>
     </div>
   </div>
@@ -550,5 +567,3 @@ const loadMore = () => {
   }
 }
 </style>
-
-

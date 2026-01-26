@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 车辆统计数据
 const vehicleStats = ref([
   {
     label: '总行驶里程',
     value: '628 km',
-    icon: '📍'
+    icon: '📍',
   },
   {
     label: '剩余里程',
     value: '156 km',
-    icon: '🚗'
+    icon: '🚗',
   },
   {
     label: '预计到达时间',
     value: '14:30',
-    icon: '⏰'
+    icon: '⏰',
   },
   {
     label: '预计时间',
     value: '7小时50分',
-    icon: '⏱️'
-  }
-])
+    icon: '⏱️',
+  },
+]);
 
 // 轨迹回放控制
 const playbackControl = reactive({
   isPlaying: false,
   currentTime: '昨天24小时',
-  speed: 1
-})
+  speed: 1,
+});
 
 // 历史车辆列表
 const historicalVehicles = ref([
@@ -47,9 +47,9 @@ const historicalVehicles = ref([
     address: '朝阳区建国门外大街1号',
     updateTime: 'ORD2023093001',
     coordinates: '北京',
-    lastUpdate: '刚刚'
-  }
-])
+    lastUpdate: '刚刚',
+  },
+]);
 
 // 当前车辆列表
 const currentVehicles = ref([
@@ -62,7 +62,7 @@ const currentVehicles = ref([
     driver: '张师傅',
     location: '北京-上海',
     address: '当前位置：杭州市西湖区',
-    progress: '运输中'
+    progress: '运输中',
   },
   {
     id: 2,
@@ -73,7 +73,7 @@ const currentVehicles = ref([
     driver: '李师傅',
     location: '广州-深圳',
     address: '当前位置：深圳市南山区',
-    progress: '运输中'
+    progress: '运输中',
   },
   {
     id: 3,
@@ -84,7 +84,7 @@ const currentVehicles = ref([
     driver: '王师傅',
     location: '成都-重庆',
     address: '当前位置：成都市武侯区',
-    progress: '待命中'
+    progress: '待命中',
   },
   {
     id: 4,
@@ -95,30 +95,34 @@ const currentVehicles = ref([
     driver: '赵师傅',
     location: '西安-兰州',
     address: '当前位置：西安市雁塔区',
-    progress: '离线'
-  }
-])
+    progress: '离线',
+  },
+]);
 
 // 搜索关键词
-const searchKeyword = ref('')
+const searchKeyword = ref('');
 
 // 播放/暂停
 const togglePlayback = () => {
-  playbackControl.isPlaying = !playbackControl.isPlaying
-  ElMessage.success(playbackControl.isPlaying ? '开始播放' : '暂停播放')
-}
+  playbackControl.isPlaying = !playbackControl.isPlaying;
+  ElMessage.success(playbackControl.isPlaying ? '开始播放' : '暂停播放');
+};
 
 // 选择车辆
-const selectVehicle = (vehicle: any) => {
-  console.log('选择车辆', vehicle)
-  ElMessage.info(`已选择车辆：${vehicle.plateNumber}`)
+interface Vehicle {
+  plateNumber: string;
+  [key: string]: unknown;
 }
+const selectVehicle = (vehicle: Vehicle) => {
+  // TODO: 实现选择车辆逻辑
+  ElMessage.info(`已选择车辆：${vehicle.plateNumber}`);
+};
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', searchKeyword.value)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 </script>
 
 <template>
@@ -143,18 +147,18 @@ const handleSearch = () => {
       <div class="playback-section">
         <h3 class="section-title">轨迹回放控制</h3>
         <div class="playback-controls">
-          <el-button 
-            :type="playbackControl.isPlaying ? 'danger' : 'primary'" 
+          <ElButton
+            :type="playbackControl.isPlaying ? 'danger' : 'primary'"
             @click="togglePlayback"
           >
             {{ playbackControl.isPlaying ? '⏸ 暂停回放' : '▶ 开始回放' }}
-          </el-button>
-          <el-button>⏹ 停止</el-button>
-          <el-select v-model="playbackControl.currentTime" style="width: 150px">
-            <el-option label="昨天24小时" value="昨天24小时" />
-            <el-option label="最近7天" value="最近7天" />
-            <el-option label="最近30天" value="最近30天" />
-          </el-select>
+          </ElButton>
+          <ElButton>⏹ 停止</ElButton>
+          <ElSelect v-model="playbackControl.currentTime" style="width: 150px">
+            <ElOption label="昨天24小时" value="昨天24小时" />
+            <ElOption label="最近7天" value="最近7天" />
+            <ElOption label="最近30天" value="最近30天" />
+          </ElSelect>
         </div>
       </div>
 
@@ -162,8 +166,8 @@ const handleSearch = () => {
       <div class="vehicles-section">
         <h3 class="section-title">历史车辆</h3>
         <div class="vehicle-list">
-          <div 
-            v-for="vehicle in historicalVehicles" 
+          <div
+            v-for="vehicle in historicalVehicles"
             :key="vehicle.id"
             class="vehicle-item"
             @click="selectVehicle(vehicle)"
@@ -213,30 +217,30 @@ const handleSearch = () => {
       <!-- 顶部搜索和车辆列表 -->
       <div class="top-section">
         <div class="search-bar">
-          <el-input
+          <ElInput
             v-model="searchKeyword"
             placeholder="请输入车牌号或司机姓名"
             clearable
             @keyup.enter="handleSearch"
           >
             <template #prefix>
-              <el-icon><Search /></el-icon>
+              <ElIcon><Search /></ElIcon>
             </template>
-          </el-input>
-          <el-select placeholder="车辆状态" style="width: 150px; margin-left: 10px">
-            <el-option label="全部" value="" />
-            <el-option label="运输中" value="1" />
-            <el-option label="待命中" value="2" />
-            <el-option label="离线" value="3" />
-          </el-select>
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
+          </ElInput>
+          <ElSelect placeholder="车辆状态" style="width: 150px; margin-left: 10px">
+            <ElOption label="全部" value="" />
+            <ElOption label="运输中" value="1" />
+            <ElOption label="待命中" value="2" />
+            <ElOption label="离线" value="3" />
+          </ElSelect>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
         </div>
 
         <div class="vehicle-cards">
           <h3 class="section-title">监控车辆列表</h3>
           <div class="cards-grid">
-            <div 
-              v-for="vehicle in currentVehicles" 
+            <div
+              v-for="vehicle in currentVehicles"
               :key="vehicle.id"
               class="vehicle-card"
               @click="selectVehicle(vehicle)"
@@ -248,9 +252,18 @@ const handleSearch = () => {
                   </span>
                   <span class="plate-text">{{ vehicle.plateNumber }}</span>
                 </div>
-                <el-tag :type="vehicle.status === 'running' ? 'success' : vehicle.status === 'idle' ? 'warning' : 'danger'" size="small">
+                <ElTag
+                  :type="
+                    vehicle.status === 'running'
+                      ? 'success'
+                      : vehicle.status === 'idle'
+                        ? 'warning'
+                        : 'danger'
+                  "
+                  size="small"
+                >
                   {{ vehicle.progress }}
-                </el-tag>
+                </ElTag>
               </div>
               <div class="card-body">
                 <div class="card-info">
@@ -278,7 +291,7 @@ const handleSearch = () => {
             <div class="map-overlay">
               <h3>🗺️ 地图区域</h3>
               <p>此处为地图显示区域</p>
-              <p style="font-size: 12px; color: #8c8c8c; margin-top: 10px;">
+              <p style="font-size: 12px; color: #8c8c8c; margin-top: 10px">
                 可集成百度地图、高德地图或其他地图服务
               </p>
             </div>
@@ -290,19 +303,19 @@ const handleSearch = () => {
           <div class="legend-title">图例</div>
           <div class="legend-items">
             <div class="legend-item">
-              <span class="legend-dot" style="background: #1890ff;">📍</span>
+              <span class="legend-dot" style="background: #1890ff">📍</span>
               <span class="legend-label">LTE 车辆实时</span>
             </div>
             <div class="legend-item">
-              <span class="legend-dot" style="background: #52c41a;">🚗</span>
+              <span class="legend-dot" style="background: #52c41a">🚗</span>
               <span class="legend-label">运输中车辆</span>
             </div>
             <div class="legend-item">
-              <span class="legend-dot" style="background: #faad14;">🅿️</span>
+              <span class="legend-dot" style="background: #faad14">🅿️</span>
               <span class="legend-label">停车点</span>
             </div>
             <div class="legend-item">
-              <span class="legend-dot" style="background: #ff4d4f;">⚠️</span>
+              <span class="legend-dot" style="background: #ff4d4f">⚠️</span>
               <span class="legend-label">当前位置</span>
             </div>
           </div>
@@ -683,5 +696,3 @@ const handleSearch = () => {
   background: #bfbfbf;
 }
 </style>
-
-

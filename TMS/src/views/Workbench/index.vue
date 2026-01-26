@@ -1,48 +1,47 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import * as echarts from 'echarts'
+import { onMounted, ref } from 'vue';
+import * as echarts from 'echarts';
 
-const trendChartRef = ref<HTMLDivElement | null>(null)
-let trendChart: echarts.ECharts | null = null // 保存图表实例
-const pieRef = ref<HTMLDivElement | null>(null)
-const pieRef1 = ref<HTMLDivElement | null>(null)
-  const DateValue = ref()
+const trendChartRef = ref<HTMLDivElement | null>(null);
+let trendChart: echarts.ECharts | null = null; // 保存图表实例
+const pieRef = ref<HTMLDivElement | null>(null);
+const pieRef1 = ref<HTMLDivElement | null>(null);
+const DateValue = ref();
 // 统计数据
 const stats = ref([
-  { 
-    label: '今日公司数', 
-    value: 28, 
-    subText: '今日新增 2 (+7.7%)', 
-    icon: '💬', 
-    color: '#E3F2FD', 
-    iconColor: '#2196F3' 
+  {
+    label: '今日公司数',
+    value: 28,
+    subText: '今日新增 2 (+7.7%)',
+    icon: '💬',
+    color: '#E3F2FD',
+    iconColor: '#2196F3',
   },
-  { 
-    label: '在岗司机', 
-    value: 16, 
-    subText: '今日增减数 2 (+14.3%)', 
-    icon: '🚗', 
-    color: '#E8F5E9', 
-    iconColor: '#4CAF50' 
+  {
+    label: '在岗司机',
+    value: 16,
+    subText: '今日增减数 2 (+14.3%)',
+    icon: '🚗',
+    color: '#E8F5E9',
+    iconColor: '#4CAF50',
   },
-  { 
-    label: '待审评任务', 
-    value: 7, 
-    subText: '⚠️ 待今日截止1', 
-    icon: '📋', 
-    color: '#FFF3E0', 
-    iconColor: '#FF9800' 
+  {
+    label: '待审评任务',
+    value: 7,
+    subText: '⚠️ 待今日截止1',
+    icon: '📋',
+    color: '#FFF3E0',
+    iconColor: '#FF9800',
   },
-  { 
-    label: '运单公司', 
-    value: 2, 
-    subText: '📈 增减量 (+12.5%)', 
-    icon: '🏠', 
-    color: '#FFEBEE', 
-    iconColor: '#F44336' 
-  }
-])
-
+  {
+    label: '运单公司',
+    value: 2,
+    subText: '📈 增减量 (+12.5%)',
+    icon: '🏠',
+    color: '#FFEBEE',
+    iconColor: '#F44336',
+  },
+]);
 
 // 快捷功能
 const quickActions = ref([
@@ -50,306 +49,303 @@ const quickActions = ref([
   { name: '智能合单', icon: '🔄', color: '#FF9800' },
   { name: '数据导出', icon: '📊', color: '#2196F3' },
   { name: '内容管理', icon: '📁', color: '#FF9800' },
-  { name: '车辆管理', icon: '🚗', color: '#FF6B6B' }
-])
+  { name: '车辆管理', icon: '🚗', color: '#FF6B6B' },
+]);
 
 // 物流跟踪列表
 const trackingList = ref([
   { id: 'TF2023021003', tags: ['北京', '上海', '3吨', '7小时车'] },
   { id: 'TF2023021004', tags: ['北京', '天津', '1吨', '半挂车'] },
   { id: 'TF2023021005', tags: ['北京', '南京', '2吨', '7小时车'] },
-  { id: 'TF2023021006', tags: ['北京', '天津', '2吨', '半挂车'] }
-])
+  { id: 'TF2023021006', tags: ['北京', '天津', '2吨', '半挂车'] },
+]);
 
 // 司机任务列表
 const driverTasks = ref([
-  { 
-    name: '张三', 
+  {
+    name: '张三',
     id: '驾驶员12345',
     phone: '138****1234',
-    tags: ['物流运输', '快递']
+    tags: ['物流运输', '快递'],
   },
-  { 
-    name: '李四', 
+  {
+    name: '李四',
     id: '驾驶员7890',
     phone: '139****5678',
-    tags: ['物流运输', '快递']
+    tags: ['物流运输', '快递'],
   },
-  { 
-    name: '王五', 
+  {
+    name: '王五',
     id: '驾驶员2468',
     phone: '136****9012',
-    tags: ['物流运输', '快递']
-  }
-])
+    tags: ['物流运输', '快递'],
+  },
+]);
 
 // 待办事项
 const todoList = ref([
-  { 
+  {
     icon: '📅',
-    title: '物流合同续签', 
+    title: '物流合同续签',
     desc: '明天下午1点与客户签订物流合同续签',
-    bgColor: '#E3F2FD'
+    bgColor: '#E3F2FD',
   },
-  { 
+  {
     icon: '📅',
-    title: '订单管理培训', 
+    title: '订单管理培训',
     desc: '明天下午2点进行订单管理系统培训',
-    bgColor: '#E3F2FD'
+    bgColor: '#E3F2FD',
   },
-  { 
+  {
     icon: '📅',
-    title: '车辆年检提醒', 
+    title: '车辆年检提醒',
     desc: '本周五前完成3辆货车的年检工作',
-    bgColor: '#E3F2FD'
+    bgColor: '#E3F2FD',
   },
-  { 
+  {
     icon: '📅',
-    title: '客户回访调研', 
+    title: '客户回访调研',
     desc: '本周内完成重点客户满意度调研',
-    bgColor: '#E3F2FD'
-  }
-])
+    bgColor: '#E3F2FD',
+  },
+]);
 
 // 系统通知
 const notifications = ref([
-  { 
-    type: 'info', 
+  {
+    type: 'info',
     icon: 'ℹ️',
-    title: '系统升级通知', 
-    desc: '【系统升级】明天凌晨2点进行系统升级维护，预计持续2小时', 
+    title: '系统升级通知',
+    desc: '【系统升级】明天凌晨2点进行系统升级维护，预计持续2小时',
     time: '1小时 前',
-    bgColor: '#E3F2FD'
+    bgColor: '#E3F2FD',
   },
-  { 
-    type: 'success', 
+  {
+    type: 'success',
     icon: '✅',
-    title: '运单审批通过', 
-    desc: '运单TF-TASK-2023051005已审批通过，请及时安排发货', 
+    title: '运单审批通过',
+    desc: '运单TF-TASK-2023051005已审批通过，请及时安排发货',
     time: '2小时 前',
-    bgColor: '#E8F5E9'
+    bgColor: '#E8F5E9',
   },
-  { 
-    type: 'warning', 
+  {
+    type: 'warning',
     icon: '⚠️',
-    title: 'TASK-2023051005运单超时提醒', 
-    desc: '运单TASK-2023051005已超时，请尽快处理，避免影响客户体验', 
+    title: 'TASK-2023051005运单超时提醒',
+    desc: '运单TASK-2023051005已超时，请尽快处理，避免影响客户体验',
     time: '3小时 前',
-    bgColor: '#FFF3E0'
-  }
-])
+    bgColor: '#FFF3E0',
+  },
+]);
 
 const getTendency = () => {
-   if (!trendChartRef.value) return
-   trendChart = echarts.init(trendChartRef.value)
+  if (!trendChartRef.value) return;
+  trendChart = echarts.init(trendChartRef.value);
 
   const option = {
-  // 全局颜色池（更柔和的配色）
-  color: ['#4D81FF', '#36CFC9', '#FF7D00'], // 蓝、青、橙（更高级）
+    // 全局颜色池（更柔和的配色）
+    color: ['#4D81FF', '#36CFC9', '#FF7D00'], // 蓝、青、橙（更高级）
 
-  title: {
-    text: '近七天运单审批趋势',
-    textStyle: {
-      fontSize: 16,
-      fontWeight: 'normal',
-      color: '#333'
+    title: {
+      text: '近七天运单审批趋势',
+      textStyle: {
+        fontSize: 16,
+        fontWeight: 'normal',
+        color: '#333',
+      },
+      left: 'center',
+      top: 10,
     },
-    left: 'center',
-    top: 10
-  },
 
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow', // 改成阴影，更柔和
-      shadowStyle: {
-        color: 'rgba(0, 0, 0, 0.05)'
-      }
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow', // 改成阴影，更柔和
+        shadowStyle: {
+          color: 'rgba(0, 0, 0, 0.05)',
+        },
+      },
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      borderColor: '#eee',
+      borderWidth: 1,
+      textStyle: {
+        color: '#666',
+      },
+      padding: [8, 12],
     },
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    borderColor: '#eee',
-    borderWidth: 1,
-    textStyle: {
-      color: '#666'
-    },
-    padding: [8, 12]
-  },
 
-  legend: {
-    data: [
-      { name: '审批中数', icon: 'circle' },
-      { name: '已通过数', icon: 'rect' },
-      { name: '已驳回数', icon: 'triangle' }
+    legend: {
+      data: [
+        { name: '审批中数', icon: 'circle' },
+        { name: '已通过数', icon: 'rect' },
+        { name: '已驳回数', icon: 'triangle' },
+      ],
+      itemWidth: 12,
+      itemHeight: 12,
+      top: 30,
+      left: 'center',
+      textStyle: {
+        color: '#666',
+        fontSize: 12,
+      },
+    },
+
+    grid: {
+      left: '5%',
+      right: '5%',
+      top: '15%',
+      bottom: '10%',
+      containLabel: true,
+    },
+
+    xAxis: [
+      {
+        type: 'category',
+        boundaryGap: false,
+        data: ['7/15', '7/16', '7/17', '7/18', '7/19', '7/20', '7/21'],
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#eee', // 弱化轴线
+          },
+        },
+        axisTick: {
+          show: false, // 隐藏刻度
+        },
+        axisLabel: {
+          color: '#999',
+          fontSize: 11,
+        },
+      },
     ],
-    itemWidth: 12,
-    itemHeight: 12,
-    top: 30,
-    left: 'center',
-    textStyle: {
-      color: '#666',
-      fontSize: 12
-    }
-  },
 
-  grid: {
-    left: '5%',
-    right: '5%',
-    top: '15%',
-    bottom: '10%',
-    containLabel: true
-  },
+    yAxis: [
+      {
+        type: 'value',
+        axisLine: {
+          show: false, // 隐藏 y 轴线
+        },
+        axisTick: {
+          show: false, // 隐藏刻度
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#f5f5f5', // 弱化网格线
+            type: 'dashed', // 虚线更柔和
+          },
+        },
+        axisLabel: {
+          color: '#999',
+          fontSize: 11,
+        },
+      },
+    ],
 
-  xAxis: [
-    {
-      type: 'category',
-      boundaryGap: false,
-      data: ['7/15', '7/16', '7/17', '7/18', '7/19', '7/20', '7/21'],
-      axisLine: {
-        show: true,
+    series: [
+      // 审批中数（最底层）
+      {
+        name: '审批中数',
+        type: 'line',
+        stack: 'Total',
+        smooth: true, // ✅ 平滑曲线，更柔和
+        symbol: 'circle', // 点的形状
+        symbolSize: 6, // ✅ 点更小
         lineStyle: {
-          color: '#eee' // 弱化轴线
-        }
+          width: 2, // ✅ 线条更细
+          color: '#4D81FF',
+        },
+        itemStyle: {
+          color: '#4D81FF',
+        },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(77, 129, 255, 0.3)' }, // 上深
+            { offset: 1, color: 'rgba(77, 129, 255, 0.05)' }, // 下浅
+          ]),
+        },
+        emphasis: {
+          focus: 'series',
+          itemStyle: {
+            borderWidth: 2,
+            borderColor: '#fff',
+          },
+        },
+        data: [70, 60, 65, 70, 65, 60, 65],
       },
-      axisTick: {
-        show: false // 隐藏刻度
-      },
-      axisLabel: {
-        color: '#999',
-        fontSize: 11
-      }
-    }
-  ],
-
-  yAxis: [
-    {
-      type: 'value',
-      axisLine: {
-        show: false // 隐藏 y 轴线
-      },
-      axisTick: {
-        show: false // 隐藏刻度
-      },
-      splitLine: {
+      // 已通过数（中间层）
+      {
+        name: '已通过数',
+        type: 'line',
+        stack: 'Total',
+        smooth: true,
+        symbol: 'rect',
+        symbolSize: 6,
         lineStyle: {
-          color: '#f5f5f5', // 弱化网格线
-          type: 'dashed' // 虚线更柔和
-        }
+          width: 2,
+          color: '#36CFC9',
+        },
+        itemStyle: {
+          color: '#36CFC9',
+        },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(54, 207, 201, 0.3)' },
+            { offset: 1, color: 'rgba(54, 207, 201, 0.05)' },
+          ]),
+        },
+        emphasis: {
+          focus: 'series',
+          itemStyle: {
+            borderWidth: 2,
+            borderColor: '#fff',
+          },
+        },
+        data: [70, 70, 70, 70, 70, 70, 70],
       },
-      axisLabel: {
-        color: '#999',
-        fontSize: 11
-      }
-    }
-  ],
+      // 已驳回数（最上层）
+      {
+        name: '已驳回数',
+        type: 'line',
+        stack: 'Total',
+        smooth: true,
+        symbol: 'triangle',
+        symbolSize: 6,
+        lineStyle: {
+          width: 2,
+          color: '#FF7D00',
+        },
+        itemStyle: {
+          color: '#FF7D00',
+        },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(255, 125, 0, 0.3)' },
+            { offset: 1, color: 'rgba(255, 125, 0, 0.05)' },
+          ]),
+        },
+        emphasis: {
+          focus: 'series',
+          itemStyle: {
+            borderWidth: 2,
+            borderColor: '#fff',
+          },
+        },
+        data: [70, 70, 70, 70, 70, 70, 70],
+      },
+    ],
+  };
 
-  series: [
-    // 审批中数（最底层）
-    {
-      name: '审批中数',
-      type: 'line',
-      stack: 'Total',
-      smooth: true, // ✅ 平滑曲线，更柔和
-      symbol: 'circle', // 点的形状
-      symbolSize: 6, // ✅ 点更小
-      lineStyle: {
-        width: 2, // ✅ 线条更细
-        color: '#4D81FF'
-      },
-      itemStyle: {
-        color: '#4D81FF'
-      },
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: 'rgba(77, 129, 255, 0.3)' }, // 上深
-          { offset: 1, color: 'rgba(77, 129, 255, 0.05)' } // 下浅
-        ])
-      },
-      emphasis: {
-        focus: 'series',
-        itemStyle: {
-          borderWidth: 2,
-          borderColor: '#fff'
-        }
-      },
-      data: [70, 60, 65, 70, 65, 60, 65]
-    },
-    // 已通过数（中间层）
-    {
-      name: '已通过数',
-      type: 'line',
-      stack: 'Total',
-      smooth: true,
-      symbol: 'rect',
-      symbolSize: 6,
-      lineStyle: {
-        width: 2,
-        color: '#36CFC9'
-      },
-      itemStyle: {
-        color: '#36CFC9'
-      },
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: 'rgba(54, 207, 201, 0.3)' },
-          { offset: 1, color: 'rgba(54, 207, 201, 0.05)' }
-        ])
-      },
-      emphasis: {
-        focus: 'series',
-        itemStyle: {
-          borderWidth: 2,
-          borderColor: '#fff'
-        }
-      },
-      data: [70, 70, 70, 70, 70, 70, 70]
-    },
-    // 已驳回数（最上层）
-    {
-      name: '已驳回数',
-      type: 'line',
-      stack: 'Total',
-      smooth: true,
-      symbol: 'triangle',
-      symbolSize: 6,
-      lineStyle: {
-        width: 2,
-        color: '#FF7D00'
-      },
-      itemStyle: {
-        color: '#FF7D00'
-      },
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: 'rgba(255, 125, 0, 0.3)' },
-          { offset: 1, color: 'rgba(255, 125, 0, 0.05)' }
-        ])
-      },
-      emphasis: {
-        focus: 'series',
-        itemStyle: {
-          borderWidth: 2,
-          borderColor: '#fff'
-        }
-      },
-      data: [70, 70, 70, 70, 70, 70, 70]
-    }
-  ]
+  trendChart.setOption(option);
 };
 
-    trendChart.setOption(option)
-}
- 
-   const getPie = () => {
-  if (!pieRef.value) return
+const getPie = () => {
+  if (!pieRef.value) return;
   // 饼图用独立实例，不要和趋势图共用 trendChart
-  const pieChart = echarts.init(pieRef.value)
+  const pieChart = echarts.init(pieRef.value);
 
   const option = {
     // 全局颜色池（用你项目的配色，柔和不刺眼）
-    color: [
-      '#FF6B6B', '#FF9800', '#2196F3', '#4CAF50', 
-      '#9C27B0', '#00BCD4', '#F44336', '#795548'
-    ],
+    color: ['#FF6B6B', '#FF9800', '#2196F3', '#4CAF50', '#9C27B0', '#00BCD4', '#F44336', '#795548'],
 
     //  图例放在右侧，不挤图表
     legend: {
@@ -360,13 +356,13 @@ const getTendency = () => {
       itemHeight: 12,
       textStyle: {
         color: '#666',
-        fontSize: 12
-      }
+        fontSize: 12,
+      },
     },
 
     //  去掉多余工具条，保持简洁
     toolbox: {
-      show: false // 隐藏工具条
+      show: false, // 隐藏工具条
     },
 
     //  系列配置（玫瑰图核心）
@@ -374,56 +370,54 @@ const getTendency = () => {
       {
         name: '订单类型分布',
         type: 'pie',
-        radius: ['45%','70%'], //  内半径30%，外半径70%，有留白
+        radius: ['45%', '70%'], //  内半径30%，外半径70%，有留白
         center: ['40%', '50%'], //  饼图左移，给图例留空间
         roseType: 'area', // 面积模式（按数值大小显示半径）
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 4, // 圆角适中，不笨重
           borderColor: '#fff', // 白色边框，更精致
-          borderWidth: 2 // 边框宽度
+          borderWidth: 2, // 边框宽度
         },
         label: {
           show: false, // 隐藏标签，保持简洁
-          position: 'center'
+          position: 'center',
         },
         emphasis: {
           label: {
             show: true,
             fontSize: 16,
-            fontWeight: 'bold'
-          }
+            fontWeight: 'bold',
+          },
         },
         labelLine: {
-          show: false // 隐藏引导线，更干净
+          show: false, // 隐藏引导线，更干净
         },
         data: [
           { value: 38, name: '待调度' },
           { value: 38, name: '运输中' },
           { value: 38, name: '已取消' },
           { value: 38, name: '已完成' },
-        ]
-      }
-    ]
-  }
+        ],
+      },
+    ],
+  };
 
-  pieChart.setOption(option)
+  pieChart.setOption(option);
 
   window.addEventListener('resize', () => {
-    pieChart.resize()
-  })
-}
+    pieChart.resize();
+  });
+};
 
-   const getPie1 = () => {
-  if (!pieRef1.value) return
+const getPie1 = () => {
+  if (!pieRef1.value) return;
   // 饼图用独立实例，不要和趋势图共用 trendChart
-  const pieChart1 = echarts.init(pieRef1.value)
+  const pieChart1 = echarts.init(pieRef1.value);
 
   const option = {
     // 全局颜色池（用你项目的配色，柔和不刺眼）
-    color: [
-      '#0ca8df', '#43d966', '#ffa651'
-    ],
+    color: ['#0ca8df', '#43d966', '#ffa651'],
 
     //  图例放在右侧，不挤图表
     legend: {
@@ -434,13 +428,13 @@ const getTendency = () => {
       itemHeight: 12,
       textStyle: {
         color: '#666',
-        fontSize: 12
-      }
+        fontSize: 12,
+      },
     },
 
     //  去掉多余工具条，保持简洁
     toolbox: {
-      show: false // 隐藏工具条
+      show: false, // 隐藏工具条
     },
 
     //  系列配置（玫瑰图核心）
@@ -455,58 +449,54 @@ const getTendency = () => {
         itemStyle: {
           borderRadius: 4, // 圆角适中，不笨重
           borderColor: '#fff', // 白色边框，更精致
-          borderWidth: 2 // 边框宽度
+          borderWidth: 2, // 边框宽度
         },
         label: {
           show: false, // 隐藏标签，保持简洁
-          position: 'center'
+          position: 'center',
         },
         emphasis: {
           label: {
             show: true,
             fontSize: 16,
-            fontWeight: 'bold'
-          }
+            fontWeight: 'bold',
+          },
         },
         labelLine: {
-          show: false // 隐藏引导线，更干净
+          show: false, // 隐藏引导线，更干净
         },
         data: [
           { value: 30, name: '应对单' },
           { value: 55, name: '运输单' },
           { value: 45, name: '结账单' },
-        ]
-      }
-    ]
-  }
+        ],
+      },
+    ],
+  };
 
-  pieChart1.setOption(option)
+  pieChart1.setOption(option);
 
   window.addEventListener('resize', () => {
-    pieChart1.resize()
-  })
-}
+    pieChart1.resize();
+  });
+};
 onMounted(() => {
-  getTendency()
-  getPie()
-  getPie1()
-})
+  getTendency();
+  getPie();
+  getPie1();
+});
 </script>
 
 <template>
   <div class="workbench-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
-        :key="index"
-        class="stat-card"
-      >
+      <div v-for="(stat, index) in stats" :key="index" class="stat-card">
         <div class="stat-content">
           <div class="stat-label">{{ stat.label }}</div>
           <div class="stat-value">{{ stat.value }}</div>
           <div class="stat-subtext">{{ stat.subText }}</div>
-          </div>
+        </div>
         <div class="stat-icon-wrapper" :style="{ backgroundColor: stat.color }">
           <span class="stat-icon" :style="{ color: stat.iconColor }">{{ stat.icon }}</span>
         </div>
@@ -518,27 +508,27 @@ onMounted(() => {
       <!-- 左侧：日历和订单列表 -->
       <div class="left-section">
         <div class="calendar-wrapper">
-          <el-calendar v-model="DateValue" />
+          <ElCalendar v-model="DateValue" />
         </div>
       </div>
 
       <!-- 右侧：趋势图和饼图 -->
       <div class="right-section">
-      <!-- 近7天运单审批趋势 -->
+        <!-- 近7天运单审批趋势 -->
         <div class="trend-card">
-          <div ref="trendChartRef" style="width: 100%; height: 300px;"></div>
+          <div ref="trendChartRef" style="width: 100%; height: 300px"></div>
         </div>
 
         <!-- 饼图区域 -->
         <div class="pie-charts">
           <!-- 订单类型分布 -->
           <div class="pie-card">
-            <div ref="pieRef" style="width: 100%; height: 220px;"></div>
+            <div ref="pieRef" style="width: 100%; height: 220px"></div>
           </div>
 
           <!-- 收款单类型分布 -->
           <div class="pie-card">
-           <div ref="pieRef1" style="width: 100%; height: 240px"></div>
+            <div ref="pieRef1" style="width: 100%; height: 240px"></div>
           </div>
         </div>
 
@@ -546,11 +536,7 @@ onMounted(() => {
         <div class="quick-actions">
           <h3 class="quick-title">快捷功能</h3>
           <div class="quick-grid">
-            <div 
-              v-for="(action, index) in quickActions" 
-              :key="index"
-              class="quick-item"
-            >
+            <div v-for="(action, index) in quickActions" :key="index" class="quick-item">
               <div class="quick-icon" :style="{ backgroundColor: action.color }">
                 <span class="icon-text">{{ action.icon }}</span>
                 <span class="icon-badge">⚡</span>
@@ -579,10 +565,10 @@ onMounted(() => {
             <div class="tracking-tags">
               <span v-for="(tag, i) in item.tags" :key="i" class="tag">{{ tag }}</span>
             </div>
-              </div>
-            </div>
           </div>
-          
+        </div>
+      </div>
+
       <!-- 司机任务分配 -->
       <div class="driver-card">
         <div class="card-header-with-action">
@@ -604,7 +590,7 @@ onMounted(() => {
                 <span class="driver-tags">
                   <span v-for="(tag, i) in driver.tags" :key="i" class="tag-small">{{ tag }}</span>
                 </span>
-            </div>
+              </div>
             </div>
             <div class="driver-actions">
               <button class="btn-primary">查看详情</button>
@@ -635,7 +621,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-          
+
         <!-- 系统通知 -->
         <div class="notification-section">
           <div class="section-header">
@@ -651,7 +637,7 @@ onMounted(() => {
                 <div class="notif-title">{{ notif.title }}</div>
                 <div class="notif-desc">{{ notif.desc }}</div>
                 <div class="notif-time">{{ notif.time }}</div>
-            </div>
+              </div>
             </div>
           </div>
         </div>

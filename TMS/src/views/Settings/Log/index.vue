@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 筛选条件
 const filters = reactive({
@@ -10,8 +10,8 @@ const filters = reactive({
   module: '',
   operationStatus: '',
   keyword: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 操作类型选项
 const operationTypeOptions = [
@@ -19,15 +19,15 @@ const operationTypeOptions = [
   { label: '新增', value: '1' },
   { label: '修改', value: '2' },
   { label: '删除', value: '3' },
-  { label: '查询', value: '4' }
-]
+  { label: '查询', value: '4' },
+];
 
 // 操作状态选项
 const operationStatusOptions = [
   { label: '全部', value: '' },
   { label: '成功', value: '1' },
-  { label: '失败', value: '2' }
-]
+  { label: '失败', value: '2' },
+];
 
 // 操作日志列表
 const logList = ref([
@@ -38,17 +38,18 @@ const logList = ref([
     operator: {
       name: '张伟中',
       username: 'zhangzj',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '192.168.1.105',
     module: '订单管理',
     moduleTag: 'primary',
     operationType: '新增',
     operationTag: 'warning',
-    operationContent: '创建了订单编号：ORD-2023061002的新订单，从：上海市浦东新区，到：北京市朝阳区',
+    operationContent:
+      '创建了订单编号：ORD-2023061002的新订单，从：上海市浦东新区，到：北京市朝阳区',
     status: '成功',
     statusTag: 'success',
-    actions: ['查看']
+    actions: ['查看'],
   },
   {
     id: 2,
@@ -57,17 +58,18 @@ const logList = ref([
     operator: {
       name: '李明中',
       username: 'limzj2',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '192.168.1.87',
     module: '司机管理',
     moduleTag: 'success',
     operationType: '删除',
     operationTag: 'danger',
-    operationContent: '删除了司机信息编号：PLAN-2023061002/1，司机姓名：张三，联系电话：13800138000',
+    operationContent:
+      '删除了司机信息编号：PLAN-2023061002/1，司机姓名：张三，联系电话：13800138000',
     status: '成功',
     statusTag: 'success',
-    actions: ['查看']
+    actions: ['查看'],
   },
   {
     id: 3,
@@ -76,7 +78,7 @@ const logList = ref([
     operator: {
       name: '王伟中',
       username: 'wangzj',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '113.25.87.124',
     module: '订单管理',
@@ -87,7 +89,7 @@ const logList = ref([
     operationContent: '更新了订单编号：TASK-2023061402/1订单信息，更新后编号：TASK-2023061402/2',
     status: '成功',
     statusTag: 'success',
-    actions: ['查看']
+    actions: ['查看'],
   },
   {
     id: 4,
@@ -96,7 +98,7 @@ const logList = ref([
     operator: {
       name: '赵敏管理',
       username: 'zhaomm',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '127.0.0.1',
     module: '系统管理',
@@ -106,7 +108,7 @@ const logList = ref([
     operationContent: '启动系统了TASK用户权限文件，并修改的配置项：258',
     status: '成功',
     statusTag: 'success',
-    actions: ['查看']
+    actions: ['查看'],
   },
   {
     id: 5,
@@ -115,7 +117,7 @@ const logList = ref([
     operator: {
       name: '赵伟中',
       username: 'zhaozj',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '192.168.1.85',
     module: '车辆管理',
@@ -125,7 +127,7 @@ const logList = ref([
     operationContent: '删除了车辆信息编号：CAR-0238，车牌号：沪A-12345',
     status: '成功',
     statusTag: 'success',
-    actions: ['查看']
+    actions: ['查看'],
   },
   {
     id: 6,
@@ -134,7 +136,7 @@ const logList = ref([
     operator: {
       name: '李明中',
       username: 'limzj',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '218.75.36.92',
     module: '用户管理',
@@ -144,7 +146,7 @@ const logList = ref([
     operationContent: '已成功修改Sammi用户基础信息，修改后信息',
     status: '失败',
     statusTag: 'danger',
-    actions: ['查看']
+    actions: ['查看'],
   },
   {
     id: 7,
@@ -153,17 +155,18 @@ const logList = ref([
     operator: {
       name: '李明中',
       username: 'limzj2',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '192.168.1.87',
     module: '司机管理',
     moduleTag: 'success',
     operationType: '删除',
     operationTag: 'danger',
-    operationContent: '删除了司机信息编号：PLAN-2023061002/1，司机姓名：张三，联系电话：13800138000',
+    operationContent:
+      '删除了司机信息编号：PLAN-2023061002/1，司机姓名：张三，联系电话：13800138000',
     status: '成功',
     statusTag: 'success',
-    actions: ['查看']
+    actions: ['查看'],
   },
   {
     id: 8,
@@ -172,7 +175,7 @@ const logList = ref([
     operator: {
       name: '王伟中',
       username: 'wangzj',
-      avatar: '👤'
+      avatar: '👤',
     },
     ipAddress: '113.25.87.124',
     module: '订单管理',
@@ -182,22 +185,22 @@ const logList = ref([
     operationContent: '更新了订单编号：TASK-2023061402/1订单信息，更新后编号：TASK-2023061402/2',
     status: '成功',
     statusTag: 'success',
-    actions: ['查看']
-  }
-])
+    actions: ['查看'],
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -207,33 +210,37 @@ const handleReset = () => {
     module: '',
     operationStatus: '',
     keyword: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 打印
 const handlePrint = () => {
-  ElMessage.success('正在打印...')
-}
+  ElMessage.success('正在打印...');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface LogRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: LogRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
@@ -243,49 +250,49 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">部门类型</label>
-          <el-select v-model="filters.operationType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.operationType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in operationTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">操作人/账号</label>
-          <el-input v-model="filters.operatorName" placeholder="请输入" clearable />
+          <ElInput v-model="filters.operatorName" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">模块ID</label>
-          <el-input v-model="filters.module" placeholder="请输入" clearable />
+          <ElInput v-model="filters.module" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">操作模块</label>
-          <el-select v-model="filters.operationStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.operationStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in operationStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的地</label>
-          <el-select v-model="filters.keyword" placeholder="全部" clearable>
-            <el-option label="北京" value="1" />
-            <el-option label="上海" value="2" />
-          </el-select>
+          <ElSelect v-model="filters.keyword" placeholder="全部" clearable>
+            <ElOption label="北京" value="1" />
+            <ElOption label="上海" value="2" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -295,22 +302,22 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入操作内容、IP地址等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
@@ -320,30 +327,30 @@ const handleSizeChange = (size: number) => {
         <span class="toolbar-title">操作日志列表</span>
       </div>
       <div class="toolbar-right">
-        <el-button @click="handleExport">导出</el-button>
-        <el-button @click="handlePrint">打印</el-button>
-        <el-button text>刷新</el-button>
+        <ElButton @click="handleExport">导出</ElButton>
+        <ElButton @click="handlePrint">打印</ElButton>
+        <ElButton text>刷新</ElButton>
       </div>
     </div>
 
     <!-- 日志列表 -->
     <div class="log-table-card">
-      <el-table :data="logList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="ID" width="100" fixed>
+      <ElTable :data="logList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="ID" width="100" fixed>
           <template #default="{ row }">
             <div class="log-id">{{ row.logId }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作时间" width="180">
+        <ElTableColumn label="操作时间" width="180">
           <template #default="{ row }">
             <div class="operation-time">{{ row.operationTime }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作人" width="150">
+        <ElTableColumn label="操作人" width="150">
           <template #default="{ row }">
             <div class="operator-info">
               <div class="operator-avatar">{{ row.operator.avatar }}</div>
@@ -353,50 +360,48 @@ const handleSizeChange = (size: number) => {
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作IP" width="150">
+        <ElTableColumn label="操作IP" width="150">
           <template #default="{ row }">
             <div class="ip-address">{{ row.ipAddress }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作模块" width="120">
+        <ElTableColumn label="操作模块" width="120">
           <template #default="{ row }">
-            <el-tag :type="row.moduleTag" size="small">{{ row.module }}</el-tag>
+            <ElTag :type="row.moduleTag" size="small">{{ row.module }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作类型" width="100">
+        <ElTableColumn label="操作类型" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.operationTag" size="small">{{ row.operationType }}</el-tag>
+            <ElTag :type="row.operationTag" size="small">{{ row.operationType }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作内容" min-width="300">
+        <ElTableColumn label="操作内容" min-width="300">
           <template #default="{ row }">
             <div class="operation-content">{{ row.operationContent }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作结果" width="100">
+        <ElTableColumn label="操作结果" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusTag" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusTag" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="100" fixed="right">
+        <ElTableColumn label="操作" width="100" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              查看
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 查看 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -580,5 +585,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-
-

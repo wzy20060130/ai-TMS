@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
-import { Upload, Edit } from '@element-plus/icons-vue'
+import { reactive } from 'vue';
+import { ElMessage } from 'element-plus';
+import { Upload, Edit } from '@element-plus/icons-vue';
 
 // 个人资料
 const profile = reactive({
@@ -20,8 +20,8 @@ const profile = reactive({
   address: '北京市朝阳区朝外大街19号楼2单元1001室',
   emergencyContact: '李四',
   emergencyPhone: '13900139000',
-  bio: '热爱编程，喜欢学习新技术，擅长前端开发，熟悉Vue、React等主流框架。'
-})
+  bio: '热爱编程，喜欢学习新技术，擅长前端开发，熟悉Vue、React等主流框架。',
+});
 
 // 安全设置
 const security = reactive({
@@ -29,8 +29,8 @@ const security = reactive({
   paymentPassword: '******',
   emailBind: 'zhangsan@example.com',
   phoneBind: '138****0000',
-  twoFactorAuth: false
-})
+  twoFactorAuth: false,
+});
 
 // 通知设置
 const notifications = reactive({
@@ -38,35 +38,35 @@ const notifications = reactive({
   systemNotify: true,
   taskNotify: true,
   emailNotify: true,
-  smsNotify: false
-})
+  smsNotify: false,
+});
 
 // 保存个人资料
 const saveProfile = () => {
-  console.log('保存个人资料', profile)
-  ElMessage.success('保存成功')
-}
+  // TODO: 实现保存个人资料逻辑
+  ElMessage.success('保存成功');
+};
 
 // 上传头像
 const handleAvatarUpload = () => {
-  ElMessage.success('上传头像成功')
-}
+  ElMessage.success('上传头像成功');
+};
 
 // 修改密码
 const handleChangePassword = (type: string) => {
-  ElMessage.info(`修改${type}`)
-}
+  ElMessage.info(`修改${type}`);
+};
 
 // 解绑
 const handleUnbind = (type: string) => {
-  ElMessage.warning(`确认解绑${type}？`)
-}
+  ElMessage.warning(`确认解绑${type}？`);
+};
 
 // 保存通知设置
 const saveNotifications = () => {
-  console.log('保存通知设置', notifications)
-  ElMessage.success('保存成功')
-}
+  // TODO: 实现保存通知设置逻辑
+  ElMessage.success('保存成功');
+};
 </script>
 
 <template>
@@ -80,7 +80,7 @@ const saveNotifications = () => {
     <!-- 个人资料 -->
     <div class="section-card">
       <h3 class="section-title">个人资料</h3>
-      
+
       <div class="profile-content">
         <!-- 左侧头像 -->
         <div class="avatar-section">
@@ -94,69 +94,67 @@ const saveNotifications = () => {
             <div class="avatar-name">{{ profile.name }}</div>
             <div class="avatar-username">@{{ profile.username }}</div>
           </div>
-          <el-button size="small" :icon="Upload" @click="handleAvatarUpload">
-            上传头像
-          </el-button>
+          <ElButton size="small" :icon="Upload" @click="handleAvatarUpload"> 上传头像 </ElButton>
         </div>
 
         <!-- 右侧信息 -->
         <div class="info-section">
-          <el-form :model="profile" label-width="100px" class="profile-form">
-            <el-row :gutter="40">
-              <el-col :span="12">
-                <el-form-item label="姓名">
-                  <el-input v-model="profile.name" placeholder="请输入姓名" />
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="用户名">
-                  <el-input v-model="profile.username" placeholder="zhangsan01" />
-                </el-form-item>
-              </el-col>
-            </el-row>
+          <ElForm :model="profile" label-width="100px" class="profile-form">
+            <ElRow :gutter="40">
+              <ElCol :span="12">
+                <ElFormItem label="姓名">
+                  <ElInput v-model="profile.name" placeholder="请输入姓名" />
+                </ElFormItem>
+              </ElCol>
+              <ElCol :span="12">
+                <ElFormItem label="用户名">
+                  <ElInput v-model="profile.username" placeholder="zhangsan01" />
+                </ElFormItem>
+              </ElCol>
+            </ElRow>
 
-            <el-row :gutter="40">
-              <el-col :span="12">
-                <el-form-item label="手机号码">
-                  <el-input v-model="profile.phone" placeholder="请输入手机号" />
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="所属部门">
-                  <el-input v-model="profile.department" placeholder="技术部" />
-                </el-form-item>
-              </el-col>
-            </el-row>
+            <ElRow :gutter="40">
+              <ElCol :span="12">
+                <ElFormItem label="手机号码">
+                  <ElInput v-model="profile.phone" placeholder="请输入手机号" />
+                </ElFormItem>
+              </ElCol>
+              <ElCol :span="12">
+                <ElFormItem label="所属部门">
+                  <ElInput v-model="profile.department" placeholder="技术部" />
+                </ElFormItem>
+              </ElCol>
+            </ElRow>
 
-            <el-row :gutter="40">
-              <el-col :span="12">
-                <el-form-item label="联系邮箱">
-                  <el-input v-model="profile.email" placeholder="请输入邮箱" />
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="职位">
-                  <el-input v-model="profile.position" placeholder="前端工程师" />
-                </el-form-item>
-              </el-col>
-            </el-row>
+            <ElRow :gutter="40">
+              <ElCol :span="12">
+                <ElFormItem label="联系邮箱">
+                  <ElInput v-model="profile.email" placeholder="请输入邮箱" />
+                </ElFormItem>
+              </ElCol>
+              <ElCol :span="12">
+                <ElFormItem label="职位">
+                  <ElInput v-model="profile.position" placeholder="前端工程师" />
+                </ElFormItem>
+              </ElCol>
+            </ElRow>
 
-            <el-row :gutter="40">
-              <el-col :span="12">
-                <el-form-item label="入职日期">
-                  <el-input v-model="profile.joinDate" placeholder="2021-08-18" disabled />
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="性别">
-                  <el-select v-model="profile.gender" placeholder="请选择">
-                    <el-option label="男" value="男" />
-                    <el-option label="女" value="女" />
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-form>
+            <ElRow :gutter="40">
+              <ElCol :span="12">
+                <ElFormItem label="入职日期">
+                  <ElInput v-model="profile.joinDate" placeholder="2021-08-18" disabled />
+                </ElFormItem>
+              </ElCol>
+              <ElCol :span="12">
+                <ElFormItem label="性别">
+                  <ElSelect v-model="profile.gender" placeholder="请选择">
+                    <ElOption label="男" value="男" />
+                    <ElOption label="女" value="女" />
+                  </ElSelect>
+                </ElFormItem>
+              </ElCol>
+            </ElRow>
+          </ElForm>
         </div>
       </div>
     </div>
@@ -164,44 +162,48 @@ const saveNotifications = () => {
     <!-- 详细信息 -->
     <div class="section-card">
       <h3 class="section-title">详细信息</h3>
-      
-      <el-form :model="profile" label-width="120px" class="detail-form">
-        <el-form-item label="身份证号码">
-          <el-input v-model="profile.idCard" placeholder="请输入身份证号" style="width: 400px" />
-        </el-form-item>
 
-        <el-form-item label="手机号">
-          <el-input v-model="profile.phone" placeholder="13800138000" style="width: 400px" />
-        </el-form-item>
+      <ElForm :model="profile" label-width="120px" class="detail-form">
+        <ElFormItem label="身份证号码">
+          <ElInput v-model="profile.idCard" placeholder="请输入身份证号" style="width: 400px" />
+        </ElFormItem>
 
-        <el-form-item label="联系地址">
-          <el-input v-model="profile.address" placeholder="请输入联系地址" style="width: 600px" />
-        </el-form-item>
+        <ElFormItem label="手机号">
+          <ElInput v-model="profile.phone" placeholder="13800138000" style="width: 400px" />
+        </ElFormItem>
 
-        <el-form-item label="紧急联系人">
-          <el-input v-model="profile.emergencyContact" placeholder="请输入紧急联系人" style="width: 400px" />
-        </el-form-item>
+        <ElFormItem label="联系地址">
+          <ElInput v-model="profile.address" placeholder="请输入联系地址" style="width: 600px" />
+        </ElFormItem>
 
-        <el-form-item label="个人简介">
-          <el-input
+        <ElFormItem label="紧急联系人">
+          <ElInput
+            v-model="profile.emergencyContact"
+            placeholder="请输入紧急联系人"
+            style="width: 400px"
+          />
+        </ElFormItem>
+
+        <ElFormItem label="个人简介">
+          <ElInput
             v-model="profile.bio"
             type="textarea"
             :rows="4"
             placeholder="热爱编程，喜欢学习新技术，擅长前端开发，熟悉Vue、React等主流框架。"
             style="width: 600px"
           />
-        </el-form-item>
-      </el-form>
+        </ElFormItem>
+      </ElForm>
 
       <div class="form-actions">
-        <el-button type="primary" size="large" @click="saveProfile">保存设置</el-button>
+        <ElButton type="primary" size="large" @click="saveProfile">保存设置</ElButton>
       </div>
     </div>
 
     <!-- 安全设置 -->
     <div class="section-card">
       <h3 class="section-title">安全设置</h3>
-      
+
       <div class="security-list">
         <div class="security-item">
           <div class="security-info">
@@ -209,10 +211,10 @@ const saveNotifications = () => {
             <div class="security-desc">上次修改时间：2023-03-15</div>
           </div>
           <div class="security-actions">
-            <el-button link type="primary" @click="handleChangePassword('登录密码')">
-              <el-icon><Edit /></el-icon>
+            <ElButton link type="primary" @click="handleChangePassword('登录密码')">
+              <ElIcon><Edit /></ElIcon>
               修改密码
-            </el-button>
+            </ElButton>
           </div>
         </div>
 
@@ -222,9 +224,7 @@ const saveNotifications = () => {
             <div class="security-desc">已绑定：138****0000</div>
           </div>
           <div class="security-actions">
-            <el-button link type="primary" @click="handleUnbind('手机')">
-              更换绑定
-            </el-button>
+            <ElButton link type="primary" @click="handleUnbind('手机')"> 更换绑定 </ElButton>
           </div>
         </div>
 
@@ -234,9 +234,7 @@ const saveNotifications = () => {
             <div class="security-desc">已绑定：zhangsan@example.com</div>
           </div>
           <div class="security-actions">
-            <el-button link type="primary" @click="handleUnbind('邮箱')">
-              更换绑定
-            </el-button>
+            <ElButton link type="primary" @click="handleUnbind('邮箱')"> 更换绑定 </ElButton>
           </div>
         </div>
 
@@ -246,7 +244,7 @@ const saveNotifications = () => {
             <div class="security-desc">查看您，最近登录的账号记录</div>
           </div>
           <div class="security-actions">
-            <el-switch v-model="security.twoFactorAuth" />
+            <ElSwitch v-model="security.twoFactorAuth" />
           </div>
         </div>
       </div>
@@ -255,19 +253,19 @@ const saveNotifications = () => {
     <!-- 通知设置 -->
     <div class="section-card">
       <h3 class="section-title">通知设置</h3>
-      
+
       <div class="notification-list">
         <div class="notification-group">
           <div class="group-title">订单通知</div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <div class="notification-label">接到订单提醒</div>
             </div>
             <div class="notification-actions">
-              <el-checkbox v-model="notifications.orderNotify">平台内</el-checkbox>
-              <el-checkbox>短信</el-checkbox>
-              <el-checkbox>邮件</el-checkbox>
+              <ElCheckbox v-model="notifications.orderNotify">平台内</ElCheckbox>
+              <ElCheckbox>短信</ElCheckbox>
+              <ElCheckbox>邮件</ElCheckbox>
             </div>
           </div>
 
@@ -276,9 +274,9 @@ const saveNotifications = () => {
               <div class="notification-label">订单状态变更提醒</div>
             </div>
             <div class="notification-actions">
-              <el-checkbox v-model="notifications.systemNotify">平台内</el-checkbox>
-              <el-checkbox>短信</el-checkbox>
-              <el-checkbox>邮件</el-checkbox>
+              <ElCheckbox v-model="notifications.systemNotify">平台内</ElCheckbox>
+              <ElCheckbox>短信</ElCheckbox>
+              <ElCheckbox>邮件</ElCheckbox>
             </div>
           </div>
 
@@ -287,23 +285,23 @@ const saveNotifications = () => {
               <div class="notification-label">订单超时提醒</div>
             </div>
             <div class="notification-actions">
-              <el-checkbox v-model="notifications.taskNotify">平台内</el-checkbox>
-              <el-checkbox>短信</el-checkbox>
-              <el-checkbox>邮件</el-checkbox>
+              <ElCheckbox v-model="notifications.taskNotify">平台内</ElCheckbox>
+              <ElCheckbox>短信</ElCheckbox>
+              <ElCheckbox>邮件</ElCheckbox>
             </div>
           </div>
         </div>
 
         <div class="notification-group">
           <div class="group-title">系统消息</div>
-          
+
           <div class="notification-item">
             <div class="notification-info">
               <div class="notification-label">系统公告</div>
             </div>
             <div class="notification-actions">
-              <el-checkbox v-model="notifications.emailNotify">平台内</el-checkbox>
-              <el-checkbox>邮件</el-checkbox>
+              <ElCheckbox v-model="notifications.emailNotify">平台内</ElCheckbox>
+              <ElCheckbox>邮件</ElCheckbox>
             </div>
           </div>
 
@@ -312,15 +310,15 @@ const saveNotifications = () => {
               <div class="notification-label">任务分配</div>
             </div>
             <div class="notification-actions">
-              <el-checkbox v-model="notifications.smsNotify">平台内</el-checkbox>
-              <el-checkbox>邮件</el-checkbox>
+              <ElCheckbox v-model="notifications.smsNotify">平台内</ElCheckbox>
+              <ElCheckbox>邮件</ElCheckbox>
             </div>
           </div>
         </div>
       </div>
 
       <div class="form-actions">
-        <el-button type="primary" size="large" @click="saveNotifications">保存设置</el-button>
+        <ElButton type="primary" size="large" @click="saveNotifications">保存设置</ElButton>
       </div>
     </div>
   </div>
@@ -573,5 +571,3 @@ const saveNotifications = () => {
   }
 }
 </style>
-
-

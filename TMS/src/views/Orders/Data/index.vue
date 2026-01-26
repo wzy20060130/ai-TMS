@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue'
+import { ref } from 'vue';
+import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue';
 
 // 统计数据
 const stats = ref([
@@ -10,7 +10,7 @@ const stats = ref([
     change: '+2.5%',
     trend: 'up',
     icon: '📦',
-    color: '#E3F2FD'
+    color: '#E3F2FD',
   },
   {
     label: '待派单订单',
@@ -18,7 +18,7 @@ const stats = ref([
     change: '+2.7%',
     trend: 'up',
     icon: '📋',
-    color: '#F3E5F5'
+    color: '#F3E5F5',
   },
   {
     label: '已派单订单',
@@ -26,7 +26,7 @@ const stats = ref([
     change: '+3.1%',
     trend: 'up',
     icon: '✅',
-    color: '#E8F5E9'
+    color: '#E8F5E9',
   },
   {
     label: '异常订单',
@@ -34,9 +34,9 @@ const stats = ref([
     change: '+0.2%',
     trend: 'up',
     icon: '⚠️',
-    color: '#FFF3E0'
-  }
-])
+    color: '#FFF3E0',
+  },
+]);
 
 // 筛选条件
 const filters = ref({
@@ -45,16 +45,16 @@ const filters = ref({
   paymentStatus: '',
   transportType: '',
   dateRange: [],
-  keyword: ''
-})
+  keyword: '',
+});
 
 // 订单类型选项
 const orderTypeOptions = [
   { label: '全部', value: '' },
   { label: '整车', value: '1' },
   { label: '零担', value: '2' },
-  { label: '快递', value: '3' }
-]
+  { label: '快递', value: '3' },
+];
 
 // 订单状态选项
 const orderStatusOptions = [
@@ -63,24 +63,24 @@ const orderStatusOptions = [
   { label: '已派单', value: '2' },
   { label: '运输中', value: '3' },
   { label: '已完成', value: '4' },
-  { label: '已取消', value: '5' }
-]
+  { label: '已取消', value: '5' },
+];
 
 // 支付状态选项
 const paymentStatusOptions = [
   { label: '全部', value: '' },
   { label: '未支付', value: '1' },
   { label: '部分支付', value: '2' },
-  { label: '已支付', value: '3' }
-]
+  { label: '已支付', value: '3' },
+];
 
 // 运输方式选项
 const transportTypeOptions = [
   { label: '全部', value: '' },
   { label: '公路运输', value: '1' },
   { label: '铁路运输', value: '2' },
-  { label: '航空运输', value: '3' }
-]
+  { label: '航空运输', value: '3' },
+];
 
 // 订单列表数据
 const orderList = ref([
@@ -89,19 +89,19 @@ const orderList = ref([
     subId: 'TQ-2023051001',
     route: {
       from: '上海市虹口区',
-      to: '广州天河区'
+      to: '广州天河区',
     },
     cargo: {
       name: '电子产品',
       code: 'SKU-2023051001',
       weight: '500kg',
-      volume: '10m³'
+      volume: '10m³',
     },
     customer: '华东物流配送中心',
     consignee: {
       name: '张三',
       phone: '138****1234',
-      address: '广州市天河区...'
+      address: '广州市天河区...',
     },
     amount: '¥7,850.00',
     status: '待派单',
@@ -111,26 +111,26 @@ const orderList = ref([
     vehicle: '-',
     createTime: '2023-05-10 09:32',
     creator: '李明',
-    remark: '易碎品，请轻拿轻放'
+    remark: '易碎品，请轻拿轻放',
   },
   {
     id: 'ORD-2023051002',
     subId: 'TQ-2023051002',
     route: {
       from: '上海市浦东新区',
-      to: '南京市玄武区'
+      to: '南京市玄武区',
     },
     cargo: {
       name: '日用百货',
       code: 'SKU-2023051002',
       weight: '800kg',
-      volume: '15m³'
+      volume: '15m³',
     },
     customer: '上海百货物流有限公司',
     consignee: {
       name: '李四',
       phone: '139****5678',
-      address: '南京市玄武区...'
+      address: '南京市玄武区...',
     },
     amount: '¥5,200.00',
     status: '运输中',
@@ -140,26 +140,26 @@ const orderList = ref([
     vehicle: '苏A12345',
     createTime: '2023-05-10 08:15',
     creator: '张伟',
-    remark: ''
+    remark: '',
   },
   {
     id: 'ORD-2023051003',
     subId: 'TQ-2023051003',
     route: {
       from: '北京市朝阳区',
-      to: '成都市武侯区'
+      to: '成都市武侯区',
     },
     cargo: {
       name: '机械设备',
       code: 'SKU-2023051003',
       weight: '1200kg',
-      volume: '20m³'
+      volume: '20m³',
     },
     customer: '北京工业设备公司',
     consignee: {
       name: '王五',
       phone: '136****9012',
-      address: '成都市武侯区...'
+      address: '成都市武侯区...',
     },
     amount: '¥12,500.00',
     status: '已完成',
@@ -169,26 +169,26 @@ const orderList = ref([
     vehicle: '京B67890',
     createTime: '2023-05-09 14:20',
     creator: '刘强',
-    remark: '重货，需要叉车'
+    remark: '重货，需要叉车',
   },
   {
     id: 'ORD-2023051004',
     subId: 'TQ-2023051004',
     route: {
       from: '杭州市西湖区',
-      to: '南京市建邺区'
+      to: '南京市建邺区',
     },
     cargo: {
       name: '服装纺织品',
       code: 'SKU-2023051004',
       weight: '300kg',
-      volume: '8m³'
+      volume: '8m³',
     },
     customer: '杭州纺织进出口公司',
     consignee: {
       name: '赵六',
       phone: '137****3456',
-      address: '南京市建邺区...'
+      address: '南京市建邺区...',
     },
     amount: '¥3,800.00',
     status: '已派单',
@@ -198,26 +198,26 @@ const orderList = ref([
     vehicle: '浙A11111',
     createTime: '2023-05-10 10:45',
     creator: '陈明',
-    remark: ''
+    remark: '',
   },
   {
     id: 'ORD-2023051005',
     subId: 'TQ-2023051005',
     route: {
       from: '深圳市南山区',
-      to: '西安市雁塔区'
+      to: '西安市雁塔区',
     },
     cargo: {
       name: '电子元器件',
       code: 'SKU-2023051005',
       weight: '150kg',
-      volume: '5m³'
+      volume: '5m³',
     },
     customer: '深圳电子科技有限公司',
     consignee: {
       name: '周七',
       phone: '135****7890',
-      address: '西安市雁塔区...'
+      address: '西安市雁塔区...',
     },
     amount: '¥6,200.00',
     status: '异常',
@@ -227,21 +227,21 @@ const orderList = ref([
     vehicle: '粤B22222',
     createTime: '2023-05-08 16:30',
     creator: '杨洋',
-    remark: '客户要求加急'
-  }
-])
+    remark: '客户要求加急',
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1528
-})
+  total: 1528,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters.value)
-}
+  // TODO: 实现搜索逻辑
+};
 
 // 重置
 const handleReset = () => {
@@ -251,51 +251,55 @@ const handleReset = () => {
     paymentStatus: '',
     transportType: '',
     dateRange: [],
-    keyword: ''
-  }
-}
+    keyword: '',
+  };
+};
 
 // 导出
 const handleExport = () => {
-  console.log('导出数据')
-}
+  // TODO: 实现导出逻辑
+};
 
 // 新增订单
 const handleAdd = () => {
-  console.log('新增订单')
-}
+  // TODO: 实现新增订单逻辑
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface OrderRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: OrderRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: OrderRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 删除
-const handleDelete = (row: any) => {
-  console.log('删除', row)
-}
+const handleDelete = (_row: OrderRow) => {
+  // TODO: 实现删除逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="order-data-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -316,55 +320,55 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">订单类型</label>
-          <el-select v-model="filters.orderType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.orderType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in orderTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">订单状态</label>
-          <el-select v-model="filters.orderStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.orderStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in orderStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">支付状态</label>
-          <el-select v-model="filters.paymentStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.paymentStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in paymentStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">运输方式</label>
-          <el-select v-model="filters.transportType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.transportType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in transportTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item date-range">
           <label class="filter-label">日期</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -375,12 +379,8 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">
-            搜索
-          </el-button>
-          <el-button :icon="Refresh" @click="handleReset">
-            重置
-          </el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch"> 搜索 </ElButton>
+          <ElButton :icon="Refresh" @click="handleReset"> 重置 </ElButton>
         </div>
       </div>
     </div>
@@ -388,35 +388,31 @@ const handleSizeChange = (size: number) => {
     <!-- 操作栏 -->
     <div class="toolbar">
       <div class="toolbar-left">
-        <el-button type="danger" :icon="Plus" @click="handleAdd">
-          新增
-        </el-button>
-        <el-button type="primary" :icon="Download" @click="handleExport">
-          导出
-        </el-button>
+        <ElButton type="danger" :icon="Plus" @click="handleAdd"> 新增 </ElButton>
+        <ElButton type="primary" :icon="Download" @click="handleExport"> 导出 </ElButton>
       </div>
       <div class="toolbar-right">
-        <el-button text>刷新</el-button>
-        <el-button text>列设置</el-button>
-        <el-button text>批量操作</el-button>
+        <ElButton text>刷新</ElButton>
+        <ElButton text>列设置</ElButton>
+        <ElButton text>批量操作</ElButton>
       </div>
     </div>
 
     <!-- 订单列表 -->
     <div class="order-table-card">
-      <el-table :data="orderList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="订单编号" width="180">
+      <ElTable :data="orderList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="订单编号" width="180">
           <template #default="{ row }">
             <div class="order-id-cell">
               <div class="main-id">{{ row.id }}</div>
               <div class="sub-id">{{ row.subId }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运输路线" width="200">
+        <ElTableColumn label="运输路线" width="200">
           <template #default="{ row }">
             <div class="route-cell">
               <div class="route-item">
@@ -429,74 +425,66 @@ const handleSizeChange = (size: number) => {
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="货物信息" width="180">
+        <ElTableColumn label="货物信息" width="180">
           <template #default="{ row }">
             <div class="cargo-cell">
               <div class="cargo-name">{{ row.cargo.name }}</div>
-              <div class="cargo-detail">
-                {{ row.cargo.weight }} / {{ row.cargo.volume }}
-              </div>
+              <div class="cargo-detail">{{ row.cargo.weight }} / {{ row.cargo.volume }}</div>
               <div class="cargo-code">{{ row.cargo.code }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="客户名称" prop="customer" width="150" />
+        <ElTableColumn label="客户名称" prop="customer" width="150" />
 
-        <el-table-column label="订单状态" width="100">
+        <ElTableColumn label="订单状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusType" size="small">
+            <ElTag :type="row.statusType" size="small">
               {{ row.status }}
-            </el-tag>
+            </ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运输状态" width="100">
+        <ElTableColumn label="运输状态" width="100">
           <template #default="{ row }">
             <div class="transport-status">{{ row.transportStatus }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="司机/车辆" width="120">
+        <ElTableColumn label="司机/车辆" width="120">
           <template #default="{ row }">
             <div class="driver-cell">
               <div>{{ row.driver }}</div>
               <div class="vehicle-no">{{ row.vehicle }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运费金额" prop="amount" width="120" />
+        <ElTableColumn label="运费金额" prop="amount" width="120" />
 
-        <el-table-column label="订单创建" width="150">
+        <ElTableColumn label="订单创建" width="150">
           <template #default="{ row }">
             <div class="create-cell">
               <div class="create-time">{{ row.createTime }}</div>
               <div class="creator">创建人：{{ row.creator }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="180" fixed="right">
+        <ElTableColumn label="操作" width="180" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              详情
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
-            <el-button link type="danger" size="small" @click="handleDelete(row)">
-              删除
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 详情 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
+            <ElButton link type="danger" size="small" @click="handleDelete(row)"> 删除 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -763,4 +751,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-

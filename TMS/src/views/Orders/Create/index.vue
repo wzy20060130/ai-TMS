@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Plus, Delete } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { reactive } from 'vue';
+import { Plus, Delete } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 表单数据
 const formData = reactive({
@@ -11,7 +11,7 @@ const formData = reactive({
   serviceType: '',
   urgentLevel: '',
   orderRemark: '',
-  
+
   // 发货方信息
   senderName: '',
   senderContact: '',
@@ -22,7 +22,7 @@ const formData = reactive({
   senderAddress: '',
   senderPickupTime: '',
   senderRemark: '',
-  
+
   // 收货方信息
   receiverName: '',
   receiverContact: '',
@@ -33,7 +33,7 @@ const formData = reactive({
   receiverAddress: '',
   receiverDeliveryTime: '',
   receiverRemark: '',
-  
+
   // 货物信息
   cargoList: [
     {
@@ -44,15 +44,15 @@ const formData = reactive({
       weight: '',
       volume: '',
       value: '',
-      remark: ''
-    }
+      remark: '',
+    },
   ],
   totalWeight: '',
   totalVolume: '',
   insuranceType: '',
   insuranceAmount: '',
   specialRequirements: '',
-  
+
   // 费用信息
   paymentMethod: '',
   paymentType: '',
@@ -60,38 +60,38 @@ const formData = reactive({
   actualFreight: '',
   insuranceFee: '',
   otherFees: '',
-  totalAmount: ''
-})
+  totalAmount: '',
+});
 
 // 订单类型选项
 const orderTypeOptions = [
   { label: '整车运输', value: '1' },
   { label: '零担运输', value: '2' },
-  { label: '快递运输', value: '3' }
-]
+  { label: '快递运输', value: '3' },
+];
 
 // 运输方式选项
 const transportTypeOptions = [
   { label: '公路运输', value: '1' },
   { label: '铁路运输', value: '2' },
   { label: '航空运输', value: '3' },
-  { label: '水路运输', value: '4' }
-]
+  { label: '水路运输', value: '4' },
+];
 
 // 服务类型选项
 const serviceTypeOptions = [
   { label: '门到门', value: '1' },
   { label: '门到站', value: '2' },
   { label: '站到门', value: '3' },
-  { label: '站到站', value: '4' }
-]
+  { label: '站到站', value: '4' },
+];
 
 // 紧急程度选项
 const urgentLevelOptions = [
   { label: '普通', value: '1' },
   { label: '加急', value: '2' },
-  { label: '特急', value: '3' }
-]
+  { label: '特急', value: '3' },
+];
 
 // 货物类型选项
 const cargoTypeOptions = [
@@ -99,8 +99,8 @@ const cargoTypeOptions = [
   { label: '易碎品', value: '2' },
   { label: '危险品', value: '3' },
   { label: '贵重物品', value: '4' },
-  { label: '冷藏品', value: '5' }
-]
+  { label: '冷藏品', value: '5' },
+];
 
 // 包装方式选项
 const packingTypeOptions = [
@@ -108,16 +108,16 @@ const packingTypeOptions = [
   { label: '木箱', value: '2' },
   { label: '托盘', value: '3' },
   { label: '编织袋', value: '4' },
-  { label: '裸装', value: '5' }
-]
+  { label: '裸装', value: '5' },
+];
 
 // 保险类型选项
 const insuranceTypeOptions = [
   { label: '不投保', value: '0' },
   { label: '基本险', value: '1' },
   { label: '综合险', value: '2' },
-  { label: '全险', value: '3' }
-]
+  { label: '全险', value: '3' },
+];
 
 // 支付方式选项
 const paymentMethodOptions = [
@@ -125,15 +125,15 @@ const paymentMethodOptions = [
   { label: '银行转账', value: '2' },
   { label: '支付宝', value: '3' },
   { label: '微信支付', value: '4' },
-  { label: '月结', value: '5' }
-]
+  { label: '月结', value: '5' },
+];
 
 // 付款方式选项
 const paymentTypeOptions = [
   { label: '寄付', value: '1' },
   { label: '到付', value: '2' },
-  { label: '第三方付', value: '3' }
-]
+  { label: '第三方付', value: '3' },
+];
 
 // 添加货物
 const addCargo = () => {
@@ -145,30 +145,30 @@ const addCargo = () => {
     weight: '',
     volume: '',
     value: '',
-    remark: ''
-  })
-}
+    remark: '',
+  });
+};
 
 // 删除货物
 const deleteCargo = (index: number) => {
   if (formData.cargoList.length > 1) {
-    formData.cargoList.splice(index, 1)
+    formData.cargoList.splice(index, 1);
   } else {
-    ElMessage.warning('至少保留一条货物信息')
+    ElMessage.warning('至少保留一条货物信息');
   }
-}
+};
 
 // 保存草稿
 const handleSaveDraft = () => {
-  console.log('保存草稿', formData)
-  ElMessage.success('草稿保存成功')
-}
+  // TODO: 实现保存草稿逻辑
+  ElMessage.success('草稿保存成功');
+};
 
 // 提交订单
 const handleSubmit = () => {
-  console.log('提交订单', formData)
-  ElMessage.success('订单创建成功')
-}
+  // TODO: 实现提交订单逻辑
+  ElMessage.success('订单创建成功');
+};
 
 // 重置表单
 const handleReset = () => {
@@ -205,8 +205,8 @@ const handleReset = () => {
         weight: '',
         volume: '',
         value: '',
-        remark: ''
-      }
+        remark: '',
+      },
     ],
     totalWeight: '',
     totalVolume: '',
@@ -219,9 +219,9 @@ const handleReset = () => {
     actualFreight: '',
     insuranceFee: '',
     otherFees: '',
-    totalAmount: ''
-  })
-}
+    totalAmount: '',
+  });
+};
 </script>
 
 <template>
@@ -230,73 +230,73 @@ const handleReset = () => {
     <div class="page-header">
       <h2 class="page-title">创建新订单</h2>
       <div class="page-actions">
-        <el-button @click="handleSaveDraft">保存草稿</el-button>
-        <el-button type="primary" @click="handleSubmit">提交订单</el-button>
+        <ElButton @click="handleSaveDraft">保存草稿</ElButton>
+        <ElButton type="primary" @click="handleSubmit">提交订单</ElButton>
       </div>
     </div>
 
-    <el-form :model="formData" label-width="120px" class="order-form">
+    <ElForm :model="formData" label-width="120px" class="order-form">
       <!-- 基本信息 -->
       <div class="form-section">
         <div class="section-header">
           <span class="section-icon">📋</span>
           <h3 class="section-title">基本信息</h3>
         </div>
-        
+
         <div class="form-grid">
-          <el-form-item label="订单类型" required>
-            <el-select v-model="formData.orderType" placeholder="请选择订单类型">
-              <el-option
+          <ElFormItem label="订单类型" required>
+            <ElSelect v-model="formData.orderType" placeholder="请选择订单类型">
+              <ElOption
                 v-for="item in orderTypeOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
-            </el-select>
-          </el-form-item>
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="运输方式" required>
-            <el-select v-model="formData.transportType" placeholder="请选择运输方式">
-              <el-option
+          <ElFormItem label="运输方式" required>
+            <ElSelect v-model="formData.transportType" placeholder="请选择运输方式">
+              <ElOption
                 v-for="item in transportTypeOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
-            </el-select>
-          </el-form-item>
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="服务类型" required>
-            <el-select v-model="formData.serviceType" placeholder="请选择服务类型">
-              <el-option
+          <ElFormItem label="服务类型" required>
+            <ElSelect v-model="formData.serviceType" placeholder="请选择服务类型">
+              <ElOption
                 v-for="item in serviceTypeOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
-            </el-select>
-          </el-form-item>
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="紧急程度">
-            <el-select v-model="formData.urgentLevel" placeholder="请选择紧急程度">
-              <el-option
+          <ElFormItem label="紧急程度">
+            <ElSelect v-model="formData.urgentLevel" placeholder="请选择紧急程度">
+              <ElOption
                 v-for="item in urgentLevelOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
-            </el-select>
-          </el-form-item>
+            </ElSelect>
+          </ElFormItem>
         </div>
 
-        <el-form-item label="订单备注">
-          <el-input
+        <ElFormItem label="订单备注">
+          <ElInput
             v-model="formData.orderRemark"
             type="textarea"
             :rows="3"
             placeholder="请输入订单备注信息（选填）"
           />
-        </el-form-item>
+        </ElFormItem>
       </div>
 
       <!-- 发货方信息 -->
@@ -304,70 +304,70 @@ const handleReset = () => {
         <div class="section-header">
           <span class="section-icon">📦</span>
           <h3 class="section-title">发货方信息</h3>
-          <el-button text type="primary" size="small">从地址簿选择</el-button>
+          <ElButton text type="primary" size="small">从地址簿选择</ElButton>
         </div>
 
         <div class="form-grid">
-          <el-form-item label="发货方" required>
-            <el-input v-model="formData.senderName" placeholder="请输入发货方名称" />
-          </el-form-item>
+          <ElFormItem label="发货方" required>
+            <ElInput v-model="formData.senderName" placeholder="请输入发货方名称" />
+          </ElFormItem>
 
-          <el-form-item label="联系人" required>
-            <el-input v-model="formData.senderContact" placeholder="请输入联系人姓名" />
-          </el-form-item>
+          <ElFormItem label="联系人" required>
+            <ElInput v-model="formData.senderContact" placeholder="请输入联系人姓名" />
+          </ElFormItem>
 
-          <el-form-item label="联系电话" required>
-            <el-input v-model="formData.senderPhone" placeholder="请输入联系电话" />
-          </el-form-item>
+          <ElFormItem label="联系电话" required>
+            <ElInput v-model="formData.senderPhone" placeholder="请输入联系电话" />
+          </ElFormItem>
 
-          <el-form-item label="提货时间">
-            <el-date-picker
+          <ElFormItem label="提货时间">
+            <ElDatePicker
               v-model="formData.senderPickupTime"
               type="datetime"
               placeholder="选择提货时间"
               style="width: 100%"
             />
-          </el-form-item>
+          </ElFormItem>
         </div>
 
         <div class="form-grid">
-          <el-form-item label="所在省份" required>
-            <el-select v-model="formData.senderProvince" placeholder="请选择省份">
-              <el-option label="上海市" value="31" />
-              <el-option label="北京市" value="11" />
-              <el-option label="广东省" value="44" />
-            </el-select>
-          </el-form-item>
+          <ElFormItem label="所在省份" required>
+            <ElSelect v-model="formData.senderProvince" placeholder="请选择省份">
+              <ElOption label="上海市" value="31" />
+              <ElOption label="北京市" value="11" />
+              <ElOption label="广东省" value="44" />
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="所在城市" required>
-            <el-select v-model="formData.senderCity" placeholder="请选择城市">
-              <el-option label="市辖区" value="3101" />
-            </el-select>
-          </el-form-item>
+          <ElFormItem label="所在城市" required>
+            <ElSelect v-model="formData.senderCity" placeholder="请选择城市">
+              <ElOption label="市辖区" value="3101" />
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="所在区县" required>
-            <el-select v-model="formData.senderDistrict" placeholder="请选择区县">
-              <el-option label="黄浦区" value="310101" />
-              <el-option label="徐汇区" value="310104" />
-            </el-select>
-          </el-form-item>
+          <ElFormItem label="所在区县" required>
+            <ElSelect v-model="formData.senderDistrict" placeholder="请选择区县">
+              <ElOption label="黄浦区" value="310101" />
+              <ElOption label="徐汇区" value="310104" />
+            </ElSelect>
+          </ElFormItem>
         </div>
 
-        <el-form-item label="详细地址" required>
-          <el-input
+        <ElFormItem label="详细地址" required>
+          <ElInput
             v-model="formData.senderAddress"
             placeholder="请输入详细地址（街道、门牌号等）"
           />
-        </el-form-item>
+        </ElFormItem>
 
-        <el-form-item label="发货备注">
-          <el-input
+        <ElFormItem label="发货备注">
+          <ElInput
             v-model="formData.senderRemark"
             type="textarea"
             :rows="2"
             placeholder="请输入发货备注信息（选填）"
           />
-        </el-form-item>
+        </ElFormItem>
       </div>
 
       <!-- 收货方信息 -->
@@ -375,70 +375,70 @@ const handleReset = () => {
         <div class="section-header">
           <span class="section-icon">📮</span>
           <h3 class="section-title">收货方信息</h3>
-          <el-button text type="primary" size="small">从地址簿选择</el-button>
+          <ElButton text type="primary" size="small">从地址簿选择</ElButton>
         </div>
 
         <div class="form-grid">
-          <el-form-item label="收货方" required>
-            <el-input v-model="formData.receiverName" placeholder="请输入收货方名称" />
-          </el-form-item>
+          <ElFormItem label="收货方" required>
+            <ElInput v-model="formData.receiverName" placeholder="请输入收货方名称" />
+          </ElFormItem>
 
-          <el-form-item label="联系人" required>
-            <el-input v-model="formData.receiverContact" placeholder="请输入联系人姓名" />
-          </el-form-item>
+          <ElFormItem label="联系人" required>
+            <ElInput v-model="formData.receiverContact" placeholder="请输入联系人姓名" />
+          </ElFormItem>
 
-          <el-form-item label="联系电话" required>
-            <el-input v-model="formData.receiverPhone" placeholder="请输入联系电话" />
-          </el-form-item>
+          <ElFormItem label="联系电话" required>
+            <ElInput v-model="formData.receiverPhone" placeholder="请输入联系电话" />
+          </ElFormItem>
 
-          <el-form-item label="送达时间">
-            <el-date-picker
+          <ElFormItem label="送达时间">
+            <ElDatePicker
               v-model="formData.receiverDeliveryTime"
               type="datetime"
               placeholder="选择送达时间"
               style="width: 100%"
             />
-          </el-form-item>
+          </ElFormItem>
         </div>
 
         <div class="form-grid">
-          <el-form-item label="所在省份" required>
-            <el-select v-model="formData.receiverProvince" placeholder="请选择省份">
-              <el-option label="广东省" value="44" />
-              <el-option label="北京市" value="11" />
-              <el-option label="上海市" value="31" />
-            </el-select>
-          </el-form-item>
+          <ElFormItem label="所在省份" required>
+            <ElSelect v-model="formData.receiverProvince" placeholder="请选择省份">
+              <ElOption label="广东省" value="44" />
+              <ElOption label="北京市" value="11" />
+              <ElOption label="上海市" value="31" />
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="所在城市" required>
-            <el-select v-model="formData.receiverCity" placeholder="请选择城市">
-              <el-option label="广州市" value="4401" />
-            </el-select>
-          </el-form-item>
+          <ElFormItem label="所在城市" required>
+            <ElSelect v-model="formData.receiverCity" placeholder="请选择城市">
+              <ElOption label="广州市" value="4401" />
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="所在区县" required>
-            <el-select v-model="formData.receiverDistrict" placeholder="请选择区县">
-              <el-option label="天河区" value="440106" />
-              <el-option label="越秀区" value="440104" />
-            </el-select>
-          </el-form-item>
+          <ElFormItem label="所在区县" required>
+            <ElSelect v-model="formData.receiverDistrict" placeholder="请选择区县">
+              <ElOption label="天河区" value="440106" />
+              <ElOption label="越秀区" value="440104" />
+            </ElSelect>
+          </ElFormItem>
         </div>
 
-        <el-form-item label="详细地址" required>
-          <el-input
+        <ElFormItem label="详细地址" required>
+          <ElInput
             v-model="formData.receiverAddress"
             placeholder="请输入详细地址（街道、门牌号等）"
           />
-        </el-form-item>
+        </ElFormItem>
 
-        <el-form-item label="收货备注">
-          <el-input
+        <ElFormItem label="收货备注">
+          <ElInput
             v-model="formData.receiverRemark"
             type="textarea"
             :rows="2"
             placeholder="请输入收货备注信息（选填）"
           />
-        </el-form-item>
+        </ElFormItem>
       </div>
 
       <!-- 货物信息 -->
@@ -446,19 +446,15 @@ const handleReset = () => {
         <div class="section-header">
           <span class="section-icon">📦</span>
           <h3 class="section-title">货物信息</h3>
-          <el-button text type="primary" size="small" :icon="Plus" @click="addCargo">
+          <ElButton text type="primary" size="small" :icon="Plus" @click="addCargo">
             添加货物
-          </el-button>
+          </ElButton>
         </div>
 
-        <div 
-          v-for="(cargo, index) in formData.cargoList" 
-          :key="index"
-          class="cargo-item"
-        >
+        <div v-for="(cargo, index) in formData.cargoList" :key="index" class="cargo-item">
           <div class="cargo-header">
             <span class="cargo-number">货物 {{ index + 1 }}</span>
-            <el-button
+            <ElButton
               v-if="formData.cargoList.length > 1"
               text
               type="danger"
@@ -467,110 +463,110 @@ const handleReset = () => {
               @click="deleteCargo(index)"
             >
               删除
-            </el-button>
+            </ElButton>
           </div>
 
           <div class="form-grid">
-            <el-form-item label="货物名称" required>
-              <el-input v-model="cargo.cargoName" placeholder="请输入货物名称" />
-            </el-form-item>
+            <ElFormItem label="货物名称" required>
+              <ElInput v-model="cargo.cargoName" placeholder="请输入货物名称" />
+            </ElFormItem>
 
-            <el-form-item label="货物类型" required>
-              <el-select v-model="cargo.cargoType" placeholder="请选择货物类型">
-                <el-option
+            <ElFormItem label="货物类型" required>
+              <ElSelect v-model="cargo.cargoType" placeholder="请选择货物类型">
+                <ElOption
                   v-for="item in cargoTypeOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
                 />
-              </el-select>
-            </el-form-item>
+              </ElSelect>
+            </ElFormItem>
 
-            <el-form-item label="包装方式">
-              <el-select v-model="cargo.packingType" placeholder="请选择包装方式">
-                <el-option
+            <ElFormItem label="包装方式">
+              <ElSelect v-model="cargo.packingType" placeholder="请选择包装方式">
+                <ElOption
                   v-for="item in packingTypeOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
                 />
-              </el-select>
-            </el-form-item>
+              </ElSelect>
+            </ElFormItem>
 
-            <el-form-item label="数量">
-              <el-input v-model="cargo.quantity" placeholder="请输入数量">
+            <ElFormItem label="数量">
+              <ElInput v-model="cargo.quantity" placeholder="请输入数量">
                 <template #append>件</template>
-              </el-input>
-            </el-form-item>
+              </ElInput>
+            </ElFormItem>
 
-            <el-form-item label="重量(kg)" required>
-              <el-input v-model="cargo.weight" placeholder="请输入重量">
+            <ElFormItem label="重量(kg)" required>
+              <ElInput v-model="cargo.weight" placeholder="请输入重量">
                 <template #append>kg</template>
-              </el-input>
-            </el-form-item>
+              </ElInput>
+            </ElFormItem>
 
-            <el-form-item label="体积(m³)">
-              <el-input v-model="cargo.volume" placeholder="请输入体积">
+            <ElFormItem label="体积(m³)">
+              <ElInput v-model="cargo.volume" placeholder="请输入体积">
                 <template #append>m³</template>
-              </el-input>
-            </el-form-item>
+              </ElInput>
+            </ElFormItem>
 
-            <el-form-item label="货物价值">
-              <el-input v-model="cargo.value" placeholder="请输入货物价值">
+            <ElFormItem label="货物价值">
+              <ElInput v-model="cargo.value" placeholder="请输入货物价值">
                 <template #prepend>¥</template>
-              </el-input>
-            </el-form-item>
+              </ElInput>
+            </ElFormItem>
           </div>
 
-          <el-form-item label="货物备注">
-            <el-input
+          <ElFormItem label="货物备注">
+            <ElInput
               v-model="cargo.remark"
               type="textarea"
               :rows="2"
               placeholder="请输入货物备注信息（选填）"
             />
-          </el-form-item>
+          </ElFormItem>
         </div>
 
         <div class="form-grid">
-          <el-form-item label="总重量">
-            <el-input v-model="formData.totalWeight" placeholder="自动计算" disabled>
+          <ElFormItem label="总重量">
+            <ElInput v-model="formData.totalWeight" placeholder="自动计算" disabled>
               <template #append>kg</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
 
-          <el-form-item label="总体积">
-            <el-input v-model="formData.totalVolume" placeholder="自动计算" disabled>
+          <ElFormItem label="总体积">
+            <ElInput v-model="formData.totalVolume" placeholder="自动计算" disabled>
               <template #append>m³</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
 
-          <el-form-item label="保险类型">
-            <el-select v-model="formData.insuranceType" placeholder="请选择保险类型">
-              <el-option
+          <ElFormItem label="保险类型">
+            <ElSelect v-model="formData.insuranceType" placeholder="请选择保险类型">
+              <ElOption
                 v-for="item in insuranceTypeOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
-            </el-select>
-          </el-form-item>
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="保险金额">
-            <el-input v-model="formData.insuranceAmount" placeholder="请输入保险金额">
+          <ElFormItem label="保险金额">
+            <ElInput v-model="formData.insuranceAmount" placeholder="请输入保险金额">
               <template #prepend>¥</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
         </div>
 
-        <el-form-item label="特殊要求">
-          <el-input
+        <ElFormItem label="特殊要求">
+          <ElInput
             v-model="formData.specialRequirements"
             type="textarea"
             :rows="2"
             placeholder="请输入特殊要求（如温度控制、装卸要求等）"
           />
-        </el-form-item>
+        </ElFormItem>
       </div>
 
       <!-- 费用信息 -->
@@ -581,67 +577,67 @@ const handleReset = () => {
         </div>
 
         <div class="form-grid">
-          <el-form-item label="付款方式" required>
-            <el-select v-model="formData.paymentMethod" placeholder="请选择付款方式">
-              <el-option
+          <ElFormItem label="付款方式" required>
+            <ElSelect v-model="formData.paymentMethod" placeholder="请选择付款方式">
+              <ElOption
                 v-for="item in paymentMethodOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
-            </el-select>
-          </el-form-item>
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="付款类型" required>
-            <el-select v-model="formData.paymentType" placeholder="请选择付款类型">
-              <el-option
+          <ElFormItem label="付款类型" required>
+            <ElSelect v-model="formData.paymentType" placeholder="请选择付款类型">
+              <ElOption
                 v-for="item in paymentTypeOptions"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
-            </el-select>
-          </el-form-item>
+            </ElSelect>
+          </ElFormItem>
 
-          <el-form-item label="预估运费">
-            <el-input v-model="formData.estimatedFreight" placeholder="系统自动计算">
+          <ElFormItem label="预估运费">
+            <ElInput v-model="formData.estimatedFreight" placeholder="系统自动计算">
               <template #prepend>¥</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
 
-          <el-form-item label="实际运费" required>
-            <el-input v-model="formData.actualFreight" placeholder="请输入实际运费">
+          <ElFormItem label="实际运费" required>
+            <ElInput v-model="formData.actualFreight" placeholder="请输入实际运费">
               <template #prepend>¥</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
 
-          <el-form-item label="保险费">
-            <el-input v-model="formData.insuranceFee" placeholder="请输入保险费">
+          <ElFormItem label="保险费">
+            <ElInput v-model="formData.insuranceFee" placeholder="请输入保险费">
               <template #prepend>¥</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
 
-          <el-form-item label="其他费用">
-            <el-input v-model="formData.otherFees" placeholder="请输入其他费用">
+          <ElFormItem label="其他费用">
+            <ElInput v-model="formData.otherFees" placeholder="请输入其他费用">
               <template #prepend>¥</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
 
-          <el-form-item label="总金额">
-            <el-input v-model="formData.totalAmount" placeholder="自动计算" disabled>
+          <ElFormItem label="总金额">
+            <ElInput v-model="formData.totalAmount" placeholder="自动计算" disabled>
               <template #prepend>¥</template>
-            </el-input>
-          </el-form-item>
+            </ElInput>
+          </ElFormItem>
         </div>
       </div>
 
       <!-- 底部操作按钮 -->
       <div class="form-footer">
-        <el-button size="large" @click="handleReset">重置</el-button>
-        <el-button size="large" @click="handleSaveDraft">保存草稿</el-button>
-        <el-button type="primary" size="large" @click="handleSubmit">提交订单</el-button>
+        <ElButton size="large" @click="handleReset">重置</ElButton>
+        <ElButton size="large" @click="handleSaveDraft">保存草稿</ElButton>
+        <ElButton type="primary" size="large" @click="handleSubmit">提交订单</ElButton>
       </div>
-    </el-form>
+    </ElForm>
   </div>
 </template>
 
@@ -792,4 +788,3 @@ const handleReset = () => {
   color: #ff4d4f;
 }
 </style>
-

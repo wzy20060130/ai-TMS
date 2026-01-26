@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
-import { ArrowLeft } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive } from 'vue';
+import { ElMessage } from 'element-plus';
+import { ArrowLeft } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router';
 
-const router = useRouter()
+const router = useRouter();
 
 // 订单基本信息
 const orderInfo = reactive({
   orderId: 'ORD-2023051001',
   orderStatus: '待派单',
   createTime: '2023-05-10 09:32',
-  
+
   // 发货信息
   senderCompany: '上海宝冠贸易有限公司',
   senderContact: '张三',
   senderPhone: '138****1234',
   senderAddress: '上海市虹口区某某街道123号',
   pickupTime: '2023-05-10 10:00',
-  
+
   // 收货信息
   receiverCompany: '北京宝冠贸易有限公司',
   receiverContact: '李四',
   receiverPhone: '139****5678',
   receiverAddress: '北京市朝阳区某某大厦456号',
-  deliveryTime: '2023-05-11 16:00'
-})
+  deliveryTime: '2023-05-11 16:00',
+});
 
 // 货物信息
 const cargoList = ref([
@@ -36,16 +36,16 @@ const cargoList = ref([
     weight: '850.00',
     volume: '12.50',
     packingType: '纸箱',
-    remark: '易碎品，轻拿轻放'
-  }
-])
+    remark: '易碎品，轻拿轻放',
+  },
+]);
 
 // 运输信息
 const transportInfo = reactive({
   transportType: '公路',
   distance: '2500.00',
-  estimatedTime: '48小时'
-})
+  estimatedTime: '48小时',
+});
 
 // 调度信息
 const dispatchForm = reactive({
@@ -56,60 +56,60 @@ const dispatchForm = reactive({
   departureTime: '',
   estimatedArrival: '',
   transportRoute: '',
-  dispatchRemark: ''
-})
+  dispatchRemark: '',
+});
 
 // 司机类型选项
 const driverTypeOptions = [
   { label: '自有司机', value: '1' },
-  { label: '外协司机', value: '2' }
-]
+  { label: '外协司机', value: '2' },
+];
 
 // 司机列表
 const driverOptions = [
   { label: '王师傅 (京A12345)', value: '1' },
   { label: '赵师傅 (京B67890)', value: '2' },
-  { label: '孙师傅 (浙A11111)', value: '3' }
-]
+  { label: '孙师傅 (浙A11111)', value: '3' },
+];
 
 // 车辆类型选项
 const vehicleTypeOptions = [
   { label: '厢式货车', value: '1' },
   { label: '平板车', value: '2' },
-  { label: '冷藏车', value: '3' }
-]
+  { label: '冷藏车', value: '3' },
+];
 
 // 车辆列表
 const vehicleOptions = [
   { label: '京A12345 (厢式货车)', value: '1' },
   { label: '京B67890 (平板车)', value: '2' },
-  { label: '浙A11111 (冷藏车)', value: '3' }
-]
+  { label: '浙A11111 (冷藏车)', value: '3' },
+];
 
 // 费用信息
 const feeInfo = reactive({
   freightFee: '0.00',
   insuranceFee: '0.00',
   otherFee: '0.00',
-  totalFee: '0.00'
-})
+  totalFee: '0.00',
+});
 
 // 返回
 const handleBack = () => {
-  router.back()
-}
+  router.back();
+};
 
 // 保存草稿
 const handleSaveDraft = () => {
-  console.log('保存草稿', dispatchForm)
-  ElMessage.success('草稿保存成功')
-}
+  // TODO: 实现保存草稿逻辑
+  ElMessage.success('草稿保存成功');
+};
 
 // 提交调度
 const handleSubmit = () => {
-  console.log('提交调度', dispatchForm)
-  ElMessage.success('调度任务已提交')
-}
+  // TODO: 实现提交调度逻辑
+  ElMessage.success('调度任务已提交');
+};
 </script>
 
 <template>
@@ -117,15 +117,15 @@ const handleSubmit = () => {
     <!-- 页面头部 -->
     <div class="page-header">
       <div class="header-left">
-        <el-button :icon="ArrowLeft" text @click="handleBack">返回</el-button>
+        <ElButton :icon="ArrowLeft" text @click="handleBack">返回</ElButton>
         <div class="header-info">
           <h2 class="page-title">订单调度</h2>
           <span class="order-id">{{ orderInfo.orderId }}</span>
         </div>
       </div>
       <div class="header-actions">
-        <el-button @click="handleSaveDraft">保存草稿</el-button>
-        <el-button type="primary" @click="handleSubmit">提交调度</el-button>
+        <ElButton @click="handleSaveDraft">保存草稿</ElButton>
+        <ElButton type="primary" @click="handleSubmit">提交调度</ElButton>
       </div>
     </div>
 
@@ -142,7 +142,7 @@ const handleSubmit = () => {
             <div class="info-item">
               <label class="info-label">订单状态</label>
               <div class="info-value">
-                <el-tag type="warning" size="small">{{ orderInfo.orderStatus }}</el-tag>
+                <ElTag type="warning" size="small">{{ orderInfo.orderStatus }}</ElTag>
               </div>
             </div>
             <div class="info-item">
@@ -227,19 +227,17 @@ const handleSubmit = () => {
             <h3 class="card-title">货物信息</h3>
           </div>
           <div class="cargo-table">
-            <el-table :data="cargoList" border size="small">
-              <el-table-column prop="cargoName" label="货物名称" width="120" />
-              <el-table-column prop="cargoType" label="货物类型" width="100" />
-              <el-table-column prop="quantity" label="数量" width="80" align="center">
-                <template #default="{ row }">
-                  {{ row.quantity }} 件
-                </template>
-              </el-table-column>
-              <el-table-column prop="weight" label="重量(kg)" width="100" align="center" />
-              <el-table-column prop="volume" label="体积(m³)" width="100" align="center" />
-              <el-table-column prop="packingType" label="包装方式" width="100" />
-              <el-table-column prop="remark" label="备注" min-width="150" />
-            </el-table>
+            <ElTable :data="cargoList" border size="small">
+              <ElTableColumn prop="cargoName" label="货物名称" width="120" />
+              <ElTableColumn prop="cargoType" label="货物类型" width="100" />
+              <ElTableColumn prop="quantity" label="数量" width="80" align="center">
+                <template #default="{ row }"> {{ row.quantity }} 件 </template>
+              </ElTableColumn>
+              <ElTableColumn prop="weight" label="重量(kg)" width="100" align="center" />
+              <ElTableColumn prop="volume" label="体积(m³)" width="100" align="center" />
+              <ElTableColumn prop="packingType" label="包装方式" width="100" />
+              <ElTableColumn prop="remark" label="备注" min-width="150" />
+            </ElTable>
           </div>
         </div>
 
@@ -275,87 +273,87 @@ const handleSubmit = () => {
             <h3 class="card-title">调度分配</h3>
           </div>
 
-          <el-form :model="dispatchForm" label-width="120px" class="dispatch-form">
-            <el-form-item label="司机类型" required>
-              <el-select v-model="dispatchForm.driverType" placeholder="请选择司机类型">
-                <el-option
+          <ElForm :model="dispatchForm" label-width="120px" class="dispatch-form">
+            <ElFormItem label="司机类型" required>
+              <ElSelect v-model="dispatchForm.driverType" placeholder="请选择司机类型">
+                <ElOption
                   v-for="item in driverTypeOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
                 />
-              </el-select>
-            </el-form-item>
+              </ElSelect>
+            </ElFormItem>
 
-            <el-form-item label="选择司机" required>
-              <el-select v-model="dispatchForm.driverId" placeholder="请选择司机" filterable>
-                <el-option
+            <ElFormItem label="选择司机" required>
+              <ElSelect v-model="dispatchForm.driverId" placeholder="请选择司机" filterable>
+                <ElOption
                   v-for="item in driverOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
                 />
-              </el-select>
-            </el-form-item>
+              </ElSelect>
+            </ElFormItem>
 
-            <el-form-item label="车辆类型" required>
-              <el-select v-model="dispatchForm.vehicleType" placeholder="请选择车辆类型">
-                <el-option
+            <ElFormItem label="车辆类型" required>
+              <ElSelect v-model="dispatchForm.vehicleType" placeholder="请选择车辆类型">
+                <ElOption
                   v-for="item in vehicleTypeOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
                 />
-              </el-select>
-            </el-form-item>
+              </ElSelect>
+            </ElFormItem>
 
-            <el-form-item label="选择车辆" required>
-              <el-select v-model="dispatchForm.vehicleId" placeholder="请选择车辆" filterable>
-                <el-option
+            <ElFormItem label="选择车辆" required>
+              <ElSelect v-model="dispatchForm.vehicleId" placeholder="请选择车辆" filterable>
+                <ElOption
                   v-for="item in vehicleOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
                 />
-              </el-select>
-            </el-form-item>
+              </ElSelect>
+            </ElFormItem>
 
-            <el-form-item label="计划发车时间" required>
-              <el-date-picker
+            <ElFormItem label="计划发车时间" required>
+              <ElDatePicker
                 v-model="dispatchForm.departureTime"
                 type="datetime"
                 placeholder="选择发车时间"
                 style="width: 100%"
               />
-            </el-form-item>
+            </ElFormItem>
 
-            <el-form-item label="预计到达时间" required>
-              <el-date-picker
+            <ElFormItem label="预计到达时间" required>
+              <ElDatePicker
                 v-model="dispatchForm.estimatedArrival"
                 type="datetime"
                 placeholder="选择到达时间"
                 style="width: 100%"
               />
-            </el-form-item>
+            </ElFormItem>
 
-            <el-form-item label="运输路线">
-              <el-input
+            <ElFormItem label="运输路线">
+              <ElInput
                 v-model="dispatchForm.transportRoute"
                 type="textarea"
                 :rows="3"
                 placeholder="请输入运输路线（选填）"
               />
-            </el-form-item>
+            </ElFormItem>
 
-            <el-form-item label="调度备注">
-              <el-input
+            <ElFormItem label="调度备注">
+              <ElInput
                 v-model="dispatchForm.dispatchRemark"
                 type="textarea"
                 :rows="3"
                 placeholder="请输入调度备注信息（选填）"
               />
-            </el-form-item>
-          </el-form>
+            </ElFormItem>
+          </ElForm>
         </div>
 
         <!-- 费用信息 -->
@@ -387,12 +385,10 @@ const handleSubmit = () => {
 
         <!-- 操作按钮 -->
         <div class="action-buttons">
-          <el-button size="large" style="width: 48%" @click="handleSaveDraft">
-            保存草稿
-          </el-button>
-          <el-button type="primary" size="large" style="width: 48%" @click="handleSubmit">
+          <ElButton size="large" style="width: 48%" @click="handleSaveDraft"> 保存草稿 </ElButton>
+          <ElButton type="primary" size="large" style="width: 48%" @click="handleSubmit">
             提交调度
-          </el-button>
+          </ElButton>
         </div>
       </div>
     </div>
@@ -641,4 +637,3 @@ const handleSubmit = () => {
   gap: 12px;
 }
 </style>
-

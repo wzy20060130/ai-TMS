@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 统计数据
 const stats = ref([
@@ -10,37 +10,37 @@ const stats = ref([
     value: 46,
     change: '较上月 ↑ 2',
     icon: '🚚',
-    color: '#E3F2FD'
+    color: '#E3F2FD',
   },
   {
     label: '今日在岗',
     value: 28,
     change: '出勤率 ↑ 92%',
     icon: '🚛',
-    color: '#E8F5E9'
+    color: '#E8F5E9',
   },
   {
     label: '空闲中',
     value: 10,
     change: '较昨日 ↓ 2',
     icon: '🅿️',
-    color: '#F3E5F5'
+    color: '#F3E5F5',
   },
   {
     label: '空闲',
     value: 5,
     change: '较昨日 ↑ 1',
     icon: '📋',
-    color: '#FFF3E0'
+    color: '#FFF3E0',
   },
   {
     label: '证件即将到期',
     value: 8,
     change: '较上周增加3人',
     icon: '⚠️',
-    color: '#FFEBEE'
-  }
-])
+    color: '#FFEBEE',
+  },
+]);
 
 // 筛选条件
 const filters = reactive({
@@ -50,47 +50,47 @@ const filters = reactive({
   certificateStatus: '',
   workStatus: '',
   keyword: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 司机状态选项
 const driverStatusOptions = [
   { label: '全部', value: '' },
   { label: '在岗', value: '1' },
   { label: '休息', value: '2' },
-  { label: '离职', value: '3' }
-]
+  { label: '离职', value: '3' },
+];
 
 // 司机类型选项
 const driverTypeOptions = [
   { label: '全部', value: '' },
   { label: '专职司机', value: '1' },
-  { label: '兼职司机', value: '2' }
-]
+  { label: '兼职司机', value: '2' },
+];
 
 // 车辆类型选项
 const vehicleTypeOptions = [
   { label: '全部', value: '' },
   { label: '厢式货车', value: '1' },
   { label: '平板车', value: '2' },
-  { label: '冷藏车', value: '3' }
-]
+  { label: '冷藏车', value: '3' },
+];
 
 // 证件状态选项
 const certificateStatusOptions = [
   { label: '全部', value: '' },
   { label: '正常', value: '1' },
   { label: '即将到期', value: '2' },
-  { label: '已过期', value: '3' }
-]
+  { label: '已过期', value: '3' },
+];
 
 // 工作状态选项
 const workStatusOptions = [
   { label: '全部', value: '' },
   { label: '运输中', value: '1' },
   { label: '空闲', value: '2' },
-  { label: '休息', value: '3' }
-]
+  { label: '休息', value: '3' },
+];
 
 // 司机列表
 const driverList = ref([
@@ -113,7 +113,7 @@ const driverList = ref([
     rating: 4.5,
     lastWorkTime: '2020-03-15 09:22',
     certExpireDate: '2023-05-10',
-    actions: ['详情', '编辑']
+    actions: ['详情', '编辑'],
   },
   {
     id: 2,
@@ -134,7 +134,7 @@ const driverList = ref([
     rating: 4.0,
     lastWorkTime: '2021-03-20 14:35',
     certExpireDate: '2023-05-11',
-    actions: ['详情', '编辑']
+    actions: ['详情', '编辑'],
   },
   {
     id: 3,
@@ -155,7 +155,7 @@ const driverList = ref([
     rating: 5.0,
     lastWorkTime: '2019-11-01 10:18',
     certExpireDate: '2023-09-09',
-    actions: ['详情', '编辑']
+    actions: ['详情', '编辑'],
   },
   {
     id: 4,
@@ -176,7 +176,7 @@ const driverList = ref([
     rating: 3.0,
     lastWorkTime: '2022-01-18 16:42',
     certExpireDate: '2023-04-25',
-    actions: ['详情', '编辑']
+    actions: ['详情', '编辑'],
   },
   {
     id: 5,
@@ -197,22 +197,22 @@ const driverList = ref([
     rating: 3.5,
     lastWorkTime: '2020-08-30 08:05',
     certExpireDate: '2023-05-05',
-    actions: ['详情', '编辑']
-  }
-])
+    actions: ['详情', '编辑'],
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -223,46 +223,50 @@ const handleReset = () => {
     certificateStatus: '',
     workStatus: '',
     keyword: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 新增司机
 const handleAdd = () => {
-  ElMessage.info('跳转到新增司机页面')
-}
+  ElMessage.info('跳转到新增司机页面');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface DriverRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: DriverRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: DriverRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="driver-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -281,75 +285,75 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">司机状态</label>
-          <el-select v-model="filters.driverStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.driverStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in driverStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">司机类型</label>
-          <el-select v-model="filters.driverType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.driverType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in driverTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">车辆类型/规格</label>
-          <el-select v-model="filters.vehicleType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.vehicleType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in vehicleTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">证照状态</label>
-          <el-select v-model="filters.certificateStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.certificateStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in certificateStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">所属车队</label>
-          <el-select v-model="filters.workStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.workStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in workStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的地</label>
-          <el-select v-model="filters.keyword" placeholder="全部" clearable>
-            <el-option label="北京" value="1" />
-            <el-option label="上海" value="2" />
-          </el-select>
+          <ElSelect v-model="filters.keyword" placeholder="全部" clearable>
+            <ElOption label="北京" value="1" />
+            <ElOption label="上海" value="2" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -359,42 +363,42 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入司机姓名、手机号等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
     <!-- 操作栏 -->
     <div class="toolbar">
       <div class="toolbar-left">
-        <el-button type="danger" :icon="Plus" @click="handleAdd">新增</el-button>
-        <el-button type="primary" :icon="Download" @click="handleExport">导出</el-button>
+        <ElButton type="danger" :icon="Plus" @click="handleAdd">新增</ElButton>
+        <ElButton type="primary" :icon="Download" @click="handleExport">导出</ElButton>
       </div>
       <div class="toolbar-right">
-        <el-button text>刷新</el-button>
+        <ElButton text>刷新</ElButton>
       </div>
     </div>
 
     <!-- 司机列表 -->
     <div class="driver-table-card">
-      <el-table :data="driverList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="司机信息" width="180" fixed>
+      <ElTable :data="driverList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="司机信息" width="180" fixed>
           <template #default="{ row }">
             <div class="driver-info">
               <div class="driver-avatar">{{ row.avatar }}</div>
@@ -404,95 +408,91 @@ const handleSizeChange = (size: number) => {
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="驾驶证信息" width="150">
+        <ElTableColumn label="驾驶证信息" width="150">
           <template #default="{ row }">
             <div class="license-info">
               <div class="id-card">身份证：{{ row.idCard }}</div>
               <div class="license-type">驾驶证：{{ row.idCard }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="证照" width="100">
+        <ElTableColumn label="证照" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.certificateTag" size="small">{{ row.certificateType }}</el-tag>
+            <ElTag :type="row.certificateTag" size="small">{{ row.certificateType }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="驾驶年限" width="100">
+        <ElTableColumn label="驾驶年限" width="100">
           <template #default="{ row }">
             <div class="driving-years">{{ row.age }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="车辆归属" width="120">
+        <ElTableColumn label="车辆归属" width="120">
           <template #default="{ row }">
             <div class="fleet">{{ row.fleet }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="工作状态" width="150">
+        <ElTableColumn label="工作状态" width="150">
           <template #default="{ row }">
             <div class="work-status">
               <div class="vehicle-info">
-                <el-tag v-if="row.vehicleTag" :type="row.vehicleTag" size="small">
+                <ElTag v-if="row.vehicleTag" :type="row.vehicleTag" size="small">
                   {{ row.vehicle }}
-                </el-tag>
+                </ElTag>
                 <span v-else class="vehicle-text">{{ row.vehicle }}</span>
               </div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="司机状态" width="100">
+        <ElTableColumn label="司机状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusTag" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusTag" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="最近评分" width="120">
+        <ElTableColumn label="最近评分" width="120">
           <template #default="{ row }">
             <div class="rating">
-              <el-rate 
-                v-model="row.rating" 
-                disabled 
-                show-score 
+              <ElRate
+                v-model="row.rating"
+                disabled
+                show-score
                 text-color="#ff9900"
                 score-template="{value}"
               />
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="最新任务时间" width="150">
+        <ElTableColumn label="最新任务时间" width="150">
           <template #default="{ row }">
             <div class="last-work-time">{{ row.lastWorkTime }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="最近证件" width="120">
+        <ElTableColumn label="最近证件" width="120">
           <template #default="{ row }">
             <div class="cert-expire">{{ row.certExpireDate }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="150" fixed="right">
+        <ElTableColumn label="操作" width="150" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              详情
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 详情 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -758,5 +758,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-
-

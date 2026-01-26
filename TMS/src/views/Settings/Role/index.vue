@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Plus } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 筛选条件
 const filters = reactive({
@@ -9,23 +9,23 @@ const filters = reactive({
   roleStatus: '',
   department: '',
   keyword: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 角色类型选项
 const roleTypeOptions = [
   { label: '全部', value: '' },
   { label: '系统管理员', value: '1' },
   { label: '部门管理员', value: '2' },
-  { label: '普通用户', value: '3' }
-]
+  { label: '普通用户', value: '3' },
+];
 
 // 角色状态选项
 const roleStatusOptions = [
   { label: '全部', value: '' },
   { label: '启用', value: '1' },
-  { label: '停用', value: '2' }
-]
+  { label: '停用', value: '2' },
+];
 
 // 角色列表
 const roleList = ref([
@@ -39,7 +39,7 @@ const roleList = ref([
     userCount: 3,
     status: true,
     createDate: '2023-01-15 09:30',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 2,
@@ -51,7 +51,7 @@ const roleList = ref([
     userCount: 8,
     status: true,
     createDate: '2023-02-20 14:25',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ const roleList = ref([
     userCount: 12,
     status: true,
     createDate: '2023-03-05 11:40',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 4,
@@ -75,7 +75,7 @@ const roleList = ref([
     userCount: 5,
     status: false,
     createDate: '2023-04-18 16:10',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 5,
@@ -87,7 +87,7 @@ const roleList = ref([
     userCount: 8,
     status: true,
     createDate: '2023-02-20 14:25',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 6,
@@ -99,7 +99,7 @@ const roleList = ref([
     userCount: 12,
     status: true,
     createDate: '2023-03-05 11:40',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 7,
@@ -111,7 +111,7 @@ const roleList = ref([
     userCount: 5,
     status: false,
     createDate: '2023-04-18 16:10',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 8,
@@ -123,22 +123,22 @@ const roleList = ref([
     userCount: 8,
     status: true,
     createDate: '2023-02-20 14:25',
-    actions: ['查看', '编辑', '删除']
-  }
-])
+    actions: ['查看', '编辑', '删除'],
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -147,55 +147,60 @@ const handleReset = () => {
     roleStatus: '',
     department: '',
     keyword: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 新增角色
 const handleAdd = () => {
-  ElMessage.info('跳转到新增角色页面')
-}
+  ElMessage.info('跳转到新增角色页面');
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 打印
 const handlePrint = () => {
-  ElMessage.success('正在打印...')
-}
+  ElMessage.success('正在打印...');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface RoleRow {
+  id: number;
+  status?: boolean;
+  [key: string]: unknown;
 }
+const handleView = (_row: RoleRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: RoleRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 删除
-const handleDelete = (row: any) => {
-  console.log('删除', row)
-  ElMessage.warning('确认删除该角色？')
-}
+const handleDelete = (_row: RoleRow) => {
+  // TODO: 实现删除逻辑
+  ElMessage.warning('确认删除该角色？');
+};
 
 // 切换状态
-const handleStatusChange = (row: any) => {
-  console.log('切换状态', row)
-  ElMessage.success(row.status ? '已启用' : '已停用')
-}
+const handleStatusChange = (row: RoleRow) => {
+  // TODO: 实现切换状态逻辑
+  ElMessage.success(row.status ? '已启用' : '已停用');
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
@@ -205,46 +210,46 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">部门</label>
-          <el-select v-model="filters.roleType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.roleType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in roleTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">角色名称</label>
-          <el-input v-model="filters.keyword" placeholder="请输入" clearable />
+          <ElInput v-model="filters.keyword" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">角色ID</label>
-          <el-input v-model="filters.keyword" placeholder="请输入" clearable />
+          <ElInput v-model="filters.keyword" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">岗位</label>
-          <el-input v-model="filters.department" placeholder="全部" clearable />
+          <ElInput v-model="filters.department" placeholder="全部" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的地</label>
-          <el-select v-model="filters.roleStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.roleStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in roleStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -254,22 +259,22 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入角色名称、角色代码等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
@@ -279,77 +284,71 @@ const handleSizeChange = (size: number) => {
         <span class="toolbar-title">角色列表</span>
       </div>
       <div class="toolbar-right">
-        <el-button type="primary" :icon="Plus" @click="handleAdd">新增</el-button>
-        <el-button @click="handleExport">导出</el-button>
-        <el-button @click="handlePrint">打印</el-button>
-        <el-button text>刷新</el-button>
+        <ElButton type="primary" :icon="Plus" @click="handleAdd">新增</ElButton>
+        <ElButton @click="handleExport">导出</ElButton>
+        <ElButton @click="handlePrint">打印</ElButton>
+        <ElButton text>刷新</ElButton>
       </div>
     </div>
 
     <!-- 角色列表 -->
     <div class="role-table-card">
-      <el-table :data="roleList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="角色名称" width="150" fixed>
-          <template #default="{ row }">
-            <el-tag :type="row.roleNameTag" size="small">{{ row.roleName }}</el-tag>
-          </template>
-        </el-table-column>
+      <ElTable :data="roleList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
 
-        <el-table-column label="角色ID" width="180">
+        <ElTableColumn label="角色名称" width="150" fixed>
+          <template #default="{ row }">
+            <ElTag :type="row.roleNameTag" size="small">{{ row.roleName }}</ElTag>
+          </template>
+        </ElTableColumn>
+
+        <ElTableColumn label="角色ID" width="180">
           <template #default="{ row }">
             <div class="role-code">{{ row.roleCode }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="所属部门" width="150">
+        <ElTableColumn label="所属部门" width="150">
           <template #default="{ row }">
-            <el-tag :type="row.departmentTag" size="small">{{ row.department }}</el-tag>
+            <ElTag :type="row.departmentTag" size="small">{{ row.department }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="用户数量" width="100">
+        <ElTableColumn label="用户数量" width="100">
           <template #default="{ row }">
             <div class="user-count">{{ row.userCount }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="状态" width="100">
+        <ElTableColumn label="状态" width="100">
           <template #default="{ row }">
-            <el-switch
+            <ElSwitch
               v-model="row.status"
               active-text="启用"
               inactive-text="停用"
               @change="handleStatusChange(row)"
             />
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="创建时间" width="180">
+        <ElTableColumn label="创建时间" width="180">
           <template #default="{ row }">
             <div class="create-date">{{ row.createDate }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="180" fixed="right">
+        <ElTableColumn label="操作" width="180" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              查看
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
-            <el-button link type="danger" size="small" @click="handleDelete(row)">
-              删除
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 查看 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
+            <ElButton link type="danger" size="small" @click="handleDelete(row)"> 删除 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -507,5 +506,3 @@ const handleSizeChange = (size: number) => {
   color: #262626;
 }
 </style>
-
-

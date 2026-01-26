@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
-import { Plus, Upload } from '@element-plus/icons-vue'
+import { ref, reactive } from 'vue';
+import { ElMessage } from 'element-plus';
+import { Plus, Upload } from '@element-plus/icons-vue';
 
 // 当前激活的标签页
-const activeTab = ref('basic')
+const activeTab = ref('basic');
 
 // 基本信息表单
 const basicForm = reactive({
@@ -18,8 +18,8 @@ const basicForm = reactive({
   businessScope: '物流运输、仓储服务、货运代理等业务',
   contactPerson: '',
   contactPhone: '',
-  contactEmail: ''
-})
+  contactEmail: '',
+});
 
 // 收费配置表单
 const feeForm = reactive({
@@ -28,61 +28,61 @@ const feeForm = reactive({
   accountName: '长沙顺丰速运有限公司',
   bankCode: '102290003456',
   taxRate: '',
-  isDefaultAccount: true
-})
+  isDefaultAccount: true,
+});
 
 // Logo设置
-const logoForm = reactive({
+const _logoForm = reactive({
   mainLogo: '',
   loginLogo: '',
-  favicon: ''
-})
+  favicon: '',
+});
 
 // 银行账户列表
-const bankAccounts = ref([
+const _bankAccounts = ref([
   {
     id: 1,
     openAccount: '中国工商银行【上海分行】',
     accountNumber: '6222021002025346789',
     accountName: '长沙顺丰速运有限公司',
     bankCode: '102290003456',
-    isDefault: true
-  }
-])
+    isDefault: true,
+  },
+]);
 
 // 保存基本信息
 const saveBasicInfo = () => {
-  console.log('保存基本信息', basicForm)
-  ElMessage.success('保存成功')
-}
+  // TODO: 实现保存基本信息逻辑
+  ElMessage.success('保存成功');
+};
 
 // 保存收费配置
-const saveFeeConfig = () => {
-  console.log('保存收费配置', feeForm)
-  ElMessage.success('保存成功')
-}
+const _saveFeeConfig = () => {
+  // TODO: 实现保存收费配置逻辑
+  ElMessage.success('保存成功');
+};
 
 // 添加银行账户
 const addBankAccount = () => {
-  ElMessage.info('添加银行账户')
-}
+  ElMessage.info('添加银行账户');
+};
 
 // 删除银行账户
-const deleteBankAccount = (id: number) => {
-  ElMessage.warning('确认删除该银行账户？')
-}
+const _deleteBankAccount = (_id: number) => {
+  ElMessage.warning('确认删除该银行账户？');
+};
 
 // 上传Logo
-const handleLogoUpload = (type: string) => {
-  console.log('上传Logo', type)
-  ElMessage.success('上传成功')
-}
+const handleLogoUpload = (_type: string) => {
+  // TODO: 实现上传Logo逻辑
+  ElMessage.success('上传成功');
+};
 
 // 删除Logo
-const handleLogoDelete = (type: string) => {
-  console.log('删除Logo', type)
-  ElMessage.success('删除成功')
-}
+const handleLogoDelete = (_type: string) => {
+  // TODO: 实现删除Logo逻辑
+  ElMessage.success('删除成功');
+};
 </script>
 
 <template>
@@ -94,91 +94,94 @@ const handleLogoDelete = (type: string) => {
     </div>
 
     <!-- 标签页 -->
-    <el-tabs v-model="activeTab" class="company-tabs">
+    <ElTabs v-model="activeTab" class="company-tabs">
       <!-- 基本信息 -->
-      <el-tab-pane label="基本信息" name="basic">
+      <ElTabPane label="基本信息" name="basic">
         <div class="tab-content">
           <div class="section-card">
             <h3 class="section-title">网站基本信息</h3>
-            
-            <el-form :model="basicForm" label-width="120px" class="company-form">
-              <el-row :gutter="40">
-                <el-col :span="12">
-                  <el-form-item label="网站名称">
-                    <el-input v-model="basicForm.companyName" placeholder="长沙顺丰速运有限公司" />
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item label="网站简称">
-                    <el-input v-model="basicForm.companyShortName" placeholder="长沙顺丰" />
-                  </el-form-item>
-                </el-col>
-              </el-row>
 
-              <el-form-item label="企业地址">
-                <el-input v-model="basicForm.companyAddress" placeholder="上海市浦东新区张江高科技园区1号楼2号" />
-              </el-form-item>
+            <ElForm :model="basicForm" label-width="120px" class="company-form">
+              <ElRow :gutter="40">
+                <ElCol :span="12">
+                  <ElFormItem label="网站名称">
+                    <ElInput v-model="basicForm.companyName" placeholder="长沙顺丰速运有限公司" />
+                  </ElFormItem>
+                </ElCol>
+                <ElCol :span="12">
+                  <ElFormItem label="网站简称">
+                    <ElInput v-model="basicForm.companyShortName" placeholder="长沙顺丰" />
+                  </ElFormItem>
+                </ElCol>
+              </ElRow>
 
-              <el-form-item label="网站简介">
-                <el-input
+              <ElFormItem label="企业地址">
+                <ElInput
+                  v-model="basicForm.companyAddress"
+                  placeholder="上海市浦东新区张江高科技园区1号楼2号"
+                />
+              </ElFormItem>
+
+              <ElFormItem label="网站简介">
+                <ElInput
                   v-model="basicForm.businessScope"
                   type="textarea"
                   :rows="4"
                   placeholder="长沙顺丰速运有限公司成立于2000年，是一家专业从事物流运输、仓储服务、货运代理等业务的现代化物流企业。公司拥有完善的物流网络和专业的服务团队，致力于为客户提供高效、安全、便捷的物流解决方案。"
                 />
-              </el-form-item>
-            </el-form>
+              </ElFormItem>
+            </ElForm>
           </div>
 
           <div class="section-card">
             <h3 class="section-title">收费配置信息</h3>
-            
-            <el-form :model="feeForm" label-width="120px" class="company-form">
-              <el-row :gutter="40">
-                <el-col :span="12">
-                  <el-form-item label="开户银行">
-                    <el-input v-model="feeForm.openAccount" placeholder="中国工商银行【上海分行】" />
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item label="银行账号">
-                    <el-input v-model="feeForm.accountNumber" placeholder="6222021002025346789" />
-                  </el-form-item>
-                </el-col>
-              </el-row>
 
-              <el-row :gutter="40">
-                <el-col :span="12">
-                  <el-form-item label="开户名">
-                    <el-input v-model="feeForm.accountName" placeholder="长沙顺丰速运有限公司" />
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item label="银行代码">
-                    <el-input v-model="feeForm.bankCode" placeholder="102290003456" />
-                  </el-form-item>
-                </el-col>
-              </el-row>
+            <ElForm :model="feeForm" label-width="120px" class="company-form">
+              <ElRow :gutter="40">
+                <ElCol :span="12">
+                  <ElFormItem label="开户银行">
+                    <ElInput v-model="feeForm.openAccount" placeholder="中国工商银行【上海分行】" />
+                  </ElFormItem>
+                </ElCol>
+                <ElCol :span="12">
+                  <ElFormItem label="银行账号">
+                    <ElInput v-model="feeForm.accountNumber" placeholder="6222021002025346789" />
+                  </ElFormItem>
+                </ElCol>
+              </ElRow>
 
-              <el-form-item label="备注信息">
-                <el-input
+              <ElRow :gutter="40">
+                <ElCol :span="12">
+                  <ElFormItem label="开户名">
+                    <ElInput v-model="feeForm.accountName" placeholder="长沙顺丰速运有限公司" />
+                  </ElFormItem>
+                </ElCol>
+                <ElCol :span="12">
+                  <ElFormItem label="银行代码">
+                    <ElInput v-model="feeForm.bankCode" placeholder="102290003456" />
+                  </ElFormItem>
+                </ElCol>
+              </ElRow>
+
+              <ElFormItem label="备注信息">
+                <ElInput
                   type="textarea"
                   :rows="3"
                   placeholder="此账户为对外收款账户，用于收取客户的运费等费用。请仔细核对账户信息，确保准确无误。"
                 />
-              </el-form-item>
+              </ElFormItem>
 
-              <el-form-item>
-                <el-checkbox v-model="feeForm.isDefaultAccount">设为默认收款账户</el-checkbox>
-              </el-form-item>
+              <ElFormItem>
+                <ElCheckbox v-model="feeForm.isDefaultAccount">设为默认收款账户</ElCheckbox>
+              </ElFormItem>
 
-              <el-form-item>
-                <el-button type="primary" @click="addBankAccount">
-                  <el-icon><Plus /></el-icon>
+              <ElFormItem>
+                <ElButton type="primary" @click="addBankAccount">
+                  <ElIcon><Plus /></ElIcon>
                   添加其他收款账户
-                </el-button>
-              </el-form-item>
-            </el-form>
+                </ElButton>
+              </ElFormItem>
+            </ElForm>
           </div>
 
           <div class="section-card">
@@ -190,21 +193,23 @@ const handleLogoDelete = (type: string) => {
               <div class="logo-item">
                 <div class="logo-label">
                   <span class="label-text">主Logo</span>
-                  <span class="label-desc">显示在系统顶部，建议尺寸：180×60px，支持PNG、JPG格式</span>
+                  <span class="label-desc"
+                    >显示在系统顶部，建议尺寸：180×60px，支持PNG、JPG格式</span
+                  >
                 </div>
                 <div class="logo-upload">
                   <div class="logo-preview">
                     <div class="logo-placeholder">
-                      <el-icon class="logo-icon"><Picture /></el-icon>
+                      <ElIcon class="logo-icon"><Picture /></ElIcon>
                       <span class="logo-text">长沙顺丰速运有限公司</span>
                     </div>
                   </div>
                   <div class="logo-actions">
-                    <el-button size="small" @click="handleLogoUpload('main')">
-                      <el-icon><Upload /></el-icon>
+                    <ElButton size="small" @click="handleLogoUpload('main')">
+                      <ElIcon><Upload /></ElIcon>
                       上传Logo
-                    </el-button>
-                    <el-button size="small" @click="handleLogoDelete('main')">删除</el-button>
+                    </ElButton>
+                    <ElButton size="small" @click="handleLogoDelete('main')">删除</ElButton>
                   </div>
                 </div>
               </div>
@@ -213,23 +218,25 @@ const handleLogoDelete = (type: string) => {
               <div class="logo-item">
                 <div class="logo-label">
                   <span class="label-text">登录Logo</span>
-                  <span class="label-desc">显示在登录页面，建议尺寸：200×80px，支持PNG、JPG格式</span>
+                  <span class="label-desc"
+                    >显示在登录页面，建议尺寸：200×80px，支持PNG、JPG格式</span
+                  >
                 </div>
                 <div class="logo-upload">
                   <div class="logo-preview">
                     <div class="logo-placeholder">
                       <div class="logo-demo">
-                        <el-icon class="demo-icon" :size="40"><Briefcase /></el-icon>
+                        <ElIcon class="demo-icon" :size="40"><Briefcase /></ElIcon>
                         <span class="demo-text">长沙顺丰速运有限公司</span>
                       </div>
                     </div>
                   </div>
                   <div class="logo-actions">
-                    <el-button size="small" @click="handleLogoUpload('login')">
-                      <el-icon><Upload /></el-icon>
+                    <ElButton size="small" @click="handleLogoUpload('login')">
+                      <ElIcon><Upload /></ElIcon>
                       上传Logo
-                    </el-button>
-                    <el-button size="small" @click="handleLogoDelete('login')">删除</el-button>
+                    </ElButton>
+                    <ElButton size="small" @click="handleLogoDelete('login')">删除</ElButton>
                   </div>
                 </div>
               </div>
@@ -238,21 +245,23 @@ const handleLogoDelete = (type: string) => {
               <div class="logo-item">
                 <div class="logo-label">
                   <span class="label-text">网站Logo</span>
-                  <span class="label-desc">显示在浏览器标签页，建议尺寸：32×32px，支持ICO、PNG格式</span>
+                  <span class="label-desc"
+                    >显示在浏览器标签页，建议尺寸：32×32px，支持ICO、PNG格式</span
+                  >
                 </div>
                 <div class="logo-upload">
                   <div class="logo-preview favicon-preview">
                     <div class="favicon-placeholder">
-                      <el-icon class="favicon-icon" :size="32"><Grid /></el-icon>
+                      <ElIcon class="favicon-icon" :size="32"><Grid /></ElIcon>
                       <span class="favicon-text">企业名称 或 简称 文字</span>
                     </div>
                   </div>
                   <div class="logo-actions">
-                    <el-button size="small" @click="handleLogoUpload('favicon')">
-                      <el-icon><Upload /></el-icon>
+                    <ElButton size="small" @click="handleLogoUpload('favicon')">
+                      <ElIcon><Upload /></ElIcon>
                       上传Logo
-                    </el-button>
-                    <el-button size="small" @click="handleLogoDelete('favicon')">删除</el-button>
+                    </ElButton>
+                    <ElButton size="small" @click="handleLogoDelete('favicon')">删除</ElButton>
                   </div>
                 </div>
               </div>
@@ -261,30 +270,30 @@ const handleLogoDelete = (type: string) => {
 
           <!-- 保存按钮 -->
           <div class="form-actions">
-            <el-button type="primary" size="large" @click="saveBasicInfo">保存设置</el-button>
+            <ElButton type="primary" size="large" @click="saveBasicInfo">保存设置</ElButton>
           </div>
         </div>
-      </el-tab-pane>
+      </ElTabPane>
 
       <!-- 其他标签页 -->
-      <el-tab-pane label="票据" name="invoice">
+      <ElTabPane label="票据" name="invoice">
         <div class="tab-content">
-          <el-empty description="票据设置功能开发中..." />
+          <ElEmpty description="票据设置功能开发中..." />
         </div>
-      </el-tab-pane>
+      </ElTabPane>
 
-      <el-tab-pane label="发票" name="tax">
+      <ElTabPane label="发票" name="tax">
         <div class="tab-content">
-          <el-empty description="发票设置功能开发中..." />
+          <ElEmpty description="发票设置功能开发中..." />
         </div>
-      </el-tab-pane>
+      </ElTabPane>
 
-      <el-tab-pane label="打印" name="print">
+      <ElTabPane label="打印" name="print">
         <div class="tab-content">
-          <el-empty description="打印设置功能开发中..." />
+          <ElEmpty description="打印设置功能开发中..." />
         </div>
-      </el-tab-pane>
-    </el-tabs>
+      </ElTabPane>
+    </ElTabs>
   </div>
 </template>
 
@@ -523,5 +532,3 @@ const handleLogoDelete = (type: string) => {
   }
 }
 </style>
-
-

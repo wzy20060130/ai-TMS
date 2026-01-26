@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import {
   Document,
   Location,
@@ -11,89 +11,98 @@ import {
   Fold,
   Expand,
   Calendar,
-  Grid
-} from '@element-plus/icons-vue'
+  Grid,
+} from '@element-plus/icons-vue';
 
-const router = useRouter()
-const route = useRoute()
-const isCollapse = ref(false)
+const router = useRouter();
+const route = useRoute();
+const isCollapse = ref(false);
 
 // 图标映射
-const iconMap: Record<string, any> = {
+import type { Component } from 'vue';
+const iconMap: Record<string, Component> = {
   Grid,
   Document,
   Location,
   Bell,
-  Setting
+  Setting,
+};
+
+interface MenuItem {
+  index: string;
+  title: string;
+  icon: Component;
+  path: string;
+  children?: MenuItem[];
 }
 
 // 从路由配置中获取菜单项（包含子菜单）
 const menuItems = computed(() => {
-  const routes = router.options.routes.find(r => r.path === '/')
+  const routes = router.options.routes.find(r => r.path === '/');
   if (routes && routes.children) {
-    return routes.children.map((child) => {
-      const item: any = {
+    return routes.children.map(child => {
+      const item: MenuItem = {
         index: child.path,
         title: child.meta?.title || '',
         icon: iconMap[child.meta?.icon as string] || Document,
-        path: `/${child.path}`
-      }
-      
+        path: `/${child.path}`,
+      };
+
       // 如果有子路由，添加到菜单项中
       if (child.children && child.children.length > 0) {
-        item.children = child.children.map((subChild) => ({
+        item.children = child.children.map(subChild => ({
           index: `${child.path}/${subChild.path}`,
           title: subChild.meta?.title || '',
           icon: iconMap[subChild.meta?.icon as string] || Document,
-          path: `/${child.path}/${subChild.path}`
-        }))
+          path: `/${child.path}/${subChild.path}`,
+        }));
       }
-      
-      return item
-    })
+
+      return item;
+    });
   }
-  return []
-})
+  return [];
+});
 
 // 当前激活的菜单
 const activeMenu = computed(() => {
-  const pathSegments = route.path.split('/').filter(Boolean)
+  const pathSegments = route.path.split('/').filter(Boolean);
   if (pathSegments.length >= 2) {
-    return `${pathSegments[0]}/${pathSegments[1]}`
+    return `${pathSegments[0]}/${pathSegments[1]}`;
   }
-  return pathSegments[0] || 'workbench'
-})
+  return pathSegments[0] || 'workbench';
+});
 
 // 当前页面标题
 const currentTitle = computed(() => {
-  return route.meta?.title || '工作台'
-})
+  return route.meta?.title || '工作台';
+});
 
 const handleSelect = (key: string) => {
-  router.push(`/${key}`)
-}
+  router.push(`/${key}`);
+};
 
 const toggleCollapse = () => {
-  isCollapse.value = !isCollapse.value
-}
+  isCollapse.value = !isCollapse.value;
+};
 </script>
 
 <template>
-  <el-container class="layout-container">
+  <ElContainer class="layout-container">
     <!-- 侧边栏 -->
-    <el-aside :width="isCollapse ? '64px' : '200px'" class="sidebar">
+    <ElAside :width="isCollapse ? '64px' : '200px'" class="sidebar">
       <!-- Logo区域 -->
       <div class="logo-container" :class="{ collapsed: isCollapse }">
-        <transition name="fade">
+        <Transition name="fade">
           <div v-if="!isCollapse" class="logo-text">
             <div class="logo-title">数据管理</div>
             <div class="logo-subtitle">TMS智能管理系统</div>
           </div>
-        </transition>
+        </Transition>
       </div>
 
       <!-- 菜单 -->
-      <el-menu
+      <ElMenu
         :default-active="activeMenu"
         class="sidebar-menu"
         :collapse="isCollapse"
@@ -102,99 +111,88 @@ const toggleCollapse = () => {
       >
         <template v-for="item in menuItems" :key="item.index">
           <!-- 没有子菜单的菜单项 -->
-          <el-menu-item 
-            v-if="!item.children || item.children.length === 0"
-            :index="item.index"
-          >
-            <el-icon><component :is="item.icon" /></el-icon>
+          <ElMenuItem v-if="!item.children || item.children.length === 0" :index="item.index">
+            <ElIcon><component :is="item.icon" /></ElIcon>
             <template #title>{{ item.title }}</template>
-          </el-menu-item>
-          
+          </ElMenuItem>
+
           <!-- 有子菜单的菜单项 -->
-          <el-sub-menu 
-            v-else
-            :index="item.index"
-          >
+          <ElSubMenu v-else :index="item.index">
             <template #title>
-              <el-icon><component :is="item.icon" /></el-icon>
+              <ElIcon><component :is="item.icon" /></ElIcon>
               <span>{{ item.title }}</span>
             </template>
-            <el-menu-item
+            <ElMenuItem
               v-for="subItem in item.children"
               :key="subItem.index"
               :index="subItem.index"
             >
-              <el-icon><component :is="subItem.icon" /></el-icon>
+              <ElIcon><component :is="subItem.icon" /></ElIcon>
               <template #title>{{ subItem.title }}</template>
-            </el-menu-item>
-          </el-sub-menu>
+            </ElMenuItem>
+          </ElSubMenu>
         </template>
-      </el-menu>
-    </el-aside>
+      </ElMenu>
+    </ElAside>
 
     <!-- 主内容区 -->
-    <el-container>
+    <ElContainer>
       <!-- 顶部导航栏 -->
-      <el-header class="header">
+      <ElHeader class="header">
         <div class="header-left">
           <!-- 折叠按钮 -->
-          <el-button 
-            :icon="isCollapse ? Expand : Fold" 
-            @click="toggleCollapse"
+          <ElButton
+            :icon="isCollapse ? Expand : Fold"
             text
             class="collapse-btn"
+            @click="toggleCollapse"
           />
-          
+
           <!-- 面包屑 -->
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item>首页</el-breadcrumb-item>
-            <el-breadcrumb-item>{{ currentTitle }}</el-breadcrumb-item>
-          </el-breadcrumb>
+          <ElBreadcrumb separator="/">
+            <ElBreadcrumbItem>首页</ElBreadcrumbItem>
+            <ElBreadcrumbItem>{{ currentTitle }}</ElBreadcrumbItem>
+          </ElBreadcrumb>
         </div>
 
         <div class="header-right">
           <!-- 搜索 -->
-          <el-input
-            placeholder="搜索..."
-            :prefix-icon="Search"
-            class="search-input"
-            clearable
-          />
+          <ElInput placeholder="搜索..." :prefix-icon="Search" class="search-input" clearable />
 
           <!-- 今日日期 -->
           <div class="date-info">
-            <el-icon><Calendar /></el-icon>
+            <ElIcon><Calendar /></ElIcon>
             <span>今日 2023年6月20日 星期二</span>
           </div>
 
           <!-- 通知 -->
-          <el-badge :value="12" class="notification-badge">
-            <el-button :icon="Bell" circle />
-          </el-badge>
+          <ElBadge :value="12" class="notification-badge">
+            <ElButton :icon="Bell" circle />
+          </ElBadge>
 
           <!-- 用户信息 -->
-          <el-dropdown>
+          <ElDropdown>
             <div class="user-info">
-              <el-avatar :size="32" :icon="User" />
+              <ElAvatar :size="32" :icon="User" />
               <span class="username">李文杰</span>
             </div>
             <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>个人中心</el-dropdown-item>
-                <el-dropdown-item>修改密码</el-dropdown-item>
-                <el-dropdown-item divided>退出登录</el-dropdown-item>
-              </el-dropdown-menu>
+              <ElDropdownMenu>
+                <ElDropdownItem>个人中心</ElDropdownItem>
+                <ElDropdownItem>修改密码</ElDropdownItem>
+                <ElDropdownItem divided>退出登录</ElDropdownItem>
+              </ElDropdownMenu>
             </template>
-          </el-dropdown>
+          </ElDropdown>
         </div>
-      </el-header>
+      </ElHeader>
 
       <!-- 主内容 - 二级路由出口 -->
-      <el-main class="main-content">
-        <router-view />
-      </el-main>
-    </el-container>
-  </el-container>
+      <ElMain class="main-content">
+        <RouterView />
+      </ElMain>
+    </ElContainer>
+  </ElContainer>
 </template>
 
 <style scoped>
@@ -426,4 +424,3 @@ const toggleCollapse = () => {
   opacity: 0;
 }
 </style>
-

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 统计数据
 const stats = ref([
@@ -10,30 +10,30 @@ const stats = ref([
     value: 85,
     change: '+1.2%',
     icon: '📋',
-    color: '#E3F2FD'
+    color: '#E3F2FD',
   },
   {
     label: '待接单运单',
     value: 42,
     change: '+5.0%',
     icon: '📄',
-    color: '#F3E5F5'
+    color: '#F3E5F5',
   },
   {
     label: '异常运单数',
     value: 44,
     change: '+2.8%',
     icon: '⚠️',
-    color: '#FFF3E0'
+    color: '#FFF3E0',
   },
   {
     label: '已完成运单',
     value: 16,
     change: '+1.6%',
     icon: '✅',
-    color: '#E8F5E9'
-  }
-])
+    color: '#E8F5E9',
+  },
+]);
 
 // 筛选条件
 const filters = reactive({
@@ -42,8 +42,8 @@ const filters = reactive({
   paymentStatus: '',
   timeType: '',
   dateRange: [],
-  keyword: ''
-})
+  keyword: '',
+});
 
 // 运单状态选项
 const waybillStatusOptions = [
@@ -51,31 +51,31 @@ const waybillStatusOptions = [
   { label: '待接单', value: '1' },
   { label: '运输中', value: '2' },
   { label: '已完成', value: '3' },
-  { label: '已取消', value: '4' }
-]
+  { label: '已取消', value: '4' },
+];
 
 // 运输方式选项
 const transportTypeOptions = [
   { label: '全部', value: '' },
   { label: '公路运输', value: '1' },
   { label: '铁路运输', value: '2' },
-  { label: '航空运输', value: '3' }
-]
+  { label: '航空运输', value: '3' },
+];
 
 // 付款状态选项
 const paymentStatusOptions = [
   { label: '全部', value: '' },
   { label: '未付款', value: '1' },
   { label: '部分付款', value: '2' },
-  { label: '已付款', value: '3' }
-]
+  { label: '已付款', value: '3' },
+];
 
 // 时间类型选项
 const timeTypeOptions = [
   { label: '创建时间', value: '1' },
   { label: '发货时间', value: '2' },
-  { label: '签收时间', value: '3' }
-]
+  { label: '签收时间', value: '3' },
+];
 
 // 运单列表
 const waybillList = ref([
@@ -91,13 +91,13 @@ const waybillList = ref([
       company: '宁夏物流有限公司',
       contact: '张三 [138****1234]',
       address: '上海市虹口区某某街道123号',
-      phone: '138****1234'
+      phone: '138****1234',
     },
     receiver: {
       company: '北京物流有限公司',
       contact: '李四 [139****5678]',
       address: '北京市朝阳区某某大厦456号',
-      phone: '139****5678'
+      phone: '139****5678',
     },
     cargo: '电子产品 | 7.5吨',
     driver: '王师傅',
@@ -107,7 +107,7 @@ const waybillList = ref([
     deliveryTime: '2023-05-17 08:00',
     signTime: '2023-05-17 09:32',
     amount: '8500.00',
-    paymentMethod: '转账'
+    paymentMethod: '转账',
   },
   {
     id: 'WB-2023051002',
@@ -121,13 +121,13 @@ const waybillList = ref([
       company: '南方货运有限公司',
       contact: '赵六 [135****9012]',
       address: '广州市天河区某某路789号',
-      phone: '135****9012'
+      phone: '135****9012',
     },
     receiver: {
       company: '深圳物流有限公司',
       contact: '孙七 [136****3456]',
       address: '深圳市南山区某某中心321号',
-      phone: '136****3456'
+      phone: '136****3456',
     },
     cargo: '日用百货 | 5.2吨',
     driver: '赵师傅',
@@ -137,7 +137,7 @@ const waybillList = ref([
     deliveryTime: '2023-05-16 16:00',
     signTime: '2023-05-16 17:20',
     amount: '3200.00',
-    paymentMethod: '现金'
+    paymentMethod: '现金',
   },
   {
     id: 'WB-2023051003',
@@ -151,13 +151,13 @@ const waybillList = ref([
       company: '宁夏物流有限公司',
       contact: '周八 [137****7890]',
       address: '苏州市工业园区某某街123号',
-      phone: '137****7890'
+      phone: '137****7890',
     },
     receiver: {
       company: '杭州物流有限公司',
       contact: '吴九 [138****1234]',
       address: '杭州市西湖区某某路456号',
-      phone: '138****1234'
+      phone: '138****1234',
     },
     cargo: '机械设备 | 12.8吨',
     driver: '-',
@@ -167,7 +167,7 @@ const waybillList = ref([
     deliveryTime: '2023-05-18 09:00',
     signTime: '-',
     amount: '4800.00',
-    paymentMethod: '转账'
+    paymentMethod: '转账',
   },
   {
     id: 'WB-2023051004',
@@ -181,13 +181,13 @@ const waybillList = ref([
       company: '宁夏物流有限公司',
       contact: '郑十 [139****5678]',
       address: '天津市滨海新区某某大道789号',
-      phone: '139****5678'
+      phone: '139****5678',
     },
     receiver: {
       company: '青岛物流有限公司',
       contact: '王十一 [135****9012]',
       address: '青岛市市南区某某街321号',
-      phone: '135****9012'
+      phone: '135****9012',
     },
     cargo: '化工原料 | 8.5吨',
     driver: '孙师傅',
@@ -197,7 +197,7 @@ const waybillList = ref([
     deliveryTime: '2023-05-17 10:00',
     signTime: '2023-05-17 11:30',
     amount: '6000.00',
-    paymentMethod: '月结'
+    paymentMethod: '月结',
   },
   {
     id: 'WB-2023051005',
@@ -211,13 +211,13 @@ const waybillList = ref([
       company: '中西物流',
       contact: '刘十二 [136****3456]',
       address: '成都市武侯区某某路123号',
-      phone: '136****3456'
+      phone: '136****3456',
     },
     receiver: {
       company: '重庆物流有限公司',
       contact: '陈十三 [137****7890]',
       address: '重庆市渝北区某某大厦456号',
-      phone: '137****7890'
+      phone: '137****7890',
     },
     cargo: '白酒 | 6.3吨',
     driver: '吴师傅',
@@ -227,7 +227,7 @@ const waybillList = ref([
     deliveryTime: '2023-05-17 08:00',
     signTime: '2023-05-17 09:20',
     amount: '7200.00',
-    paymentMethod: '转账'
+    paymentMethod: '转账',
   },
   {
     id: 'WB-2023051006',
@@ -241,13 +241,13 @@ const waybillList = ref([
       company: '宁夏物流有限公司',
       contact: '杨十四 [138****1234]',
       address: '广州市白云区某某街789号',
-      phone: '138****1234'
+      phone: '138****1234',
     },
     receiver: {
       company: '深圳物流有限公司',
       contact: '黄十五 [139****5678]',
       address: '深圳市福田区某某中心321号',
-      phone: '139****5678'
+      phone: '139****5678',
     },
     cargo: '服装纺织 | 4.2吨',
     driver: '赵师傅',
@@ -257,22 +257,22 @@ const waybillList = ref([
     deliveryTime: '2023-05-18 09:00',
     signTime: '2023-05-18 10:15',
     amount: '4800.00',
-    paymentMethod: '转账'
-  }
-])
+    paymentMethod: '转账',
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1238
-})
+  total: 1238,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -282,51 +282,55 @@ const handleReset = () => {
     paymentStatus: '',
     timeType: '',
     dateRange: [],
-    keyword: ''
-  })
-}
+    keyword: '',
+  });
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 新增运单
 const handleAdd = () => {
-  ElMessage.info('跳转到新增运单页面')
-}
+  ElMessage.info('跳转到新增运单页面');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface WaybillRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: WaybillRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: WaybillRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 删除
-const handleDelete = (row: any) => {
-  console.log('删除', row)
-}
+const handleDelete = (_row: WaybillRow) => {
+  // TODO: 实现删除逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="waybill-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -345,55 +349,55 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">运单状态</label>
-          <el-select v-model="filters.waybillStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.waybillStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in waybillStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">运输方式</label>
-          <el-select v-model="filters.transportType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.transportType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in transportTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">付款状态</label>
-          <el-select v-model="filters.paymentStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.paymentStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in paymentStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-select v-model="filters.timeType" placeholder="创建时间">
-            <el-option
+          <ElSelect v-model="filters.timeType" placeholder="创建时间">
+            <ElOption
               v-for="item in timeTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item date-range">
           <label class="filter-label">日期范围</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -403,147 +407,141 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入运单编号、发货方、收货方等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
     <!-- 操作栏 -->
     <div class="toolbar">
       <div class="toolbar-left">
-        <el-button type="danger" :icon="Plus" @click="handleAdd">新增</el-button>
-        <el-button type="primary" :icon="Download" @click="handleExport">导出</el-button>
+        <ElButton type="danger" :icon="Plus" @click="handleAdd">新增</ElButton>
+        <ElButton type="primary" :icon="Download" @click="handleExport">导出</ElButton>
       </div>
       <div class="toolbar-right">
-        <el-button text>刷新</el-button>
-        <el-button text>列设置</el-button>
+        <ElButton text>刷新</ElButton>
+        <ElButton text>列设置</ElButton>
       </div>
     </div>
 
     <!-- 运单列表 -->
     <div class="waybill-table-card">
-      <el-table :data="waybillList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="运单号" width="150" fixed>
+      <ElTable :data="waybillList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="运单号" width="150" fixed>
           <template #default="{ row }">
             <div class="waybill-id">{{ row.id }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运输路线" width="150">
+        <ElTableColumn label="运输路线" width="150">
           <template #default="{ row }">
             <div class="route-text">{{ row.orderNo }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运单状态" width="100">
+        <ElTableColumn label="运单状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusType" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusType" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="付款状态" width="100">
+        <ElTableColumn label="付款状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.paymentType" size="small">{{ row.paymentStatus }}</el-tag>
+            <ElTag :type="row.paymentType" size="small">{{ row.paymentStatus }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="发货方信息" width="200">
+        <ElTableColumn label="发货方信息" width="200">
           <template #default="{ row }">
             <div class="party-info">
               <div class="party-company">{{ row.sender.company }}</div>
               <div class="party-contact">{{ row.sender.contact }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="收货方信息" width="200">
+        <ElTableColumn label="收货方信息" width="200">
           <template #default="{ row }">
             <div class="party-info">
               <div class="party-company">{{ row.receiver.company }}</div>
               <div class="party-contact">{{ row.receiver.contact }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="货物信息" width="150">
+        <ElTableColumn label="货物信息" width="150">
           <template #default="{ row }">
             <div class="cargo-info">{{ row.cargo }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="司机/车辆" width="120">
+        <ElTableColumn label="司机/车辆" width="120">
           <template #default="{ row }">
             <div class="driver-info">
               <div>{{ row.driver }}</div>
               <div class="vehicle-no">{{ row.vehicle }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="创建时间" width="150">
+        <ElTableColumn label="创建时间" width="150">
           <template #default="{ row }">
             <div class="time-info">{{ row.createTime }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="提货时间" width="150">
+        <ElTableColumn label="提货时间" width="150">
           <template #default="{ row }">
             <div class="time-info">{{ row.pickupTime }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="签收时间" width="150">
+        <ElTableColumn label="签收时间" width="150">
           <template #default="{ row }">
             <div class="time-info">{{ row.signTime }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运单方式" width="100">
+        <ElTableColumn label="运单方式" width="100">
           <template #default="{ row }">
             <div class="payment-method">{{ row.paymentMethod }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="运费金额(元)" width="120" align="right">
+        <ElTableColumn label="运费金额(元)" width="120" align="right">
           <template #default="{ row }">
             <div class="amount">{{ row.amount }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="180" fixed="right">
+        <ElTableColumn label="操作" width="180" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              详情
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
-            <el-button link type="danger" size="small" @click="handleDelete(row)">
-              删除
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 详情 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
+            <ElButton link type="danger" size="small" @click="handleDelete(row)"> 删除 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -782,4 +780,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-

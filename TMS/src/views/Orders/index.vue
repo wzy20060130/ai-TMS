@@ -1,10 +1,9 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="orders-container">
     <!-- 这里是订单管理的布局容器，包含子路由出口 -->
-    <router-view />
+    <RouterView />
   </div>
 </template>
 
@@ -14,5 +13,3 @@
   height: 100%;
 }
 </style>
-
-

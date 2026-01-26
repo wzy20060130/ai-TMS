@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Download, Plus } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 统计数据
 const stats = ref([
@@ -10,30 +10,30 @@ const stats = ref([
     value: 85,
     change: '+1.2%',
     icon: '📋',
-    color: '#E3F2FD'
+    color: '#E3F2FD',
   },
   {
     label: '待签收',
     value: 42,
     change: '+5.0%',
     icon: '📝',
-    color: '#F3E5F5'
+    color: '#F3E5F5',
   },
   {
     label: '已签收',
     value: 44,
     change: '+2.8%',
     icon: '✅',
-    color: '#FFF3E0'
+    color: '#FFF3E0',
   },
   {
     label: '已完成订单',
     value: 16,
     change: '+1.6%',
     icon: '📦',
-    color: '#E8F5E9'
-  }
-])
+    color: '#E8F5E9',
+  },
+]);
 
 // 筛选条件
 const filters = reactive({
@@ -43,8 +43,8 @@ const filters = reactive({
   timeType: '',
   signType: '',
   dateRange: [],
-  keyword: ''
-})
+  keyword: '',
+});
 
 // 签收状态选项
 const signStatusOptions = [
@@ -52,30 +52,30 @@ const signStatusOptions = [
   { label: '待签收', value: '1' },
   { label: '已签收', value: '2' },
   { label: '拒签', value: '3' },
-  { label: '异常', value: '4' }
-]
+  { label: '异常', value: '4' },
+];
 
 // 付款状态选项
 const paymentStatusOptions = [
   { label: '全部', value: '' },
   { label: '未付款', value: '1' },
   { label: '部分付款', value: '2' },
-  { label: '已付款', value: '3' }
-]
+  { label: '已付款', value: '3' },
+];
 
 // 配送方式选项
 const deliveryTypeOptions = [
   { label: '全部', value: '' },
   { label: '送货上门', value: '1' },
-  { label: '自提', value: '2' }
-]
+  { label: '自提', value: '2' },
+];
 
 // 签收方式选项
 const signTypeOptions = [
   { label: '全部', value: '' },
   { label: '本人签收', value: '1' },
-  { label: '代签', value: '2' }
-]
+  { label: '代签', value: '2' },
+];
 
 // 签收单列表
 const signList = ref([
@@ -87,12 +87,12 @@ const signList = ref([
       company: '北京宝冠科技有限公司',
       contact: '张三',
       phone: '138****1234',
-      address: '北京市朝阳区某某街道123号'
+      address: '北京市朝阳区某某街道123号',
     },
     cargo: {
       name: '电子产品',
       weight: '500kg',
-      volume: '12.5m³'
+      volume: '12.5m³',
     },
     status: '已签收',
     statusType: 'success',
@@ -102,17 +102,17 @@ const signList = ref([
     signer: {
       name: '张三',
       phone: '138****1234',
-      time: '2023-06-16 10:00'
+      time: '2023-06-16 10:00',
     },
     driver: {
       name: '王师傅',
-      phone: '136****9012'
+      phone: '136****9012',
     },
     deliveryTime: '2023-06-16 09:30',
     signTime: '2023-06-16 10:00',
     remark: '货物完好，客户满意',
     images: ['签收单照片1.jpg', '货物照片1.jpg'],
-    amount: '8500.00'
+    amount: '8500.00',
   },
   {
     id: 'SIGN-2023061002',
@@ -122,12 +122,12 @@ const signList = ref([
       company: '杭州科技有限公司',
       contact: '李四',
       phone: '139****5678',
-      address: '杭州市西湖区某某路456号'
+      address: '杭州市西湖区某某路456号',
     },
     cargo: {
       name: '机械配件',
       weight: '800kg',
-      volume: '18.5m³'
+      volume: '18.5m³',
     },
     status: '拒签',
     statusType: 'danger',
@@ -137,17 +137,17 @@ const signList = ref([
     signer: {
       name: '-',
       phone: '-',
-      time: '-'
+      time: '-',
     },
     driver: {
       name: '赵师傅',
-      phone: '137****7890'
+      phone: '137****7890',
     },
     deliveryTime: '2023-06-16 14:00',
     signTime: '-',
     remark: '客户拒收，货物有损坏',
     images: [],
-    amount: '4200.00'
+    amount: '4200.00',
   },
   {
     id: 'SIGN-2023061003',
@@ -157,12 +157,12 @@ const signList = ref([
       company: '北京物流配送有限公司',
       contact: '王五',
       phone: '135****9012',
-      address: '北京市海淀区某某大厦789号'
+      address: '北京市海淀区某某大厦789号',
     },
     cargo: {
       name: '日用百货',
       weight: '300kg',
-      volume: '8.2m³'
+      volume: '8.2m³',
     },
     status: '待签收',
     statusType: 'warning',
@@ -172,17 +172,17 @@ const signList = ref([
     signer: {
       name: '-',
       phone: '-',
-      time: '-'
+      time: '-',
     },
     driver: {
       name: '孙师傅',
-      phone: '138****1234'
+      phone: '138****1234',
     },
     deliveryTime: '2023-06-16 15:00',
     signTime: '-',
     remark: '',
     images: [],
-    amount: '1800.00'
+    amount: '1800.00',
   },
   {
     id: 'SIGN-2023061004',
@@ -192,12 +192,12 @@ const signList = ref([
       company: '深圳物流配送中心',
       contact: '赵六',
       phone: '136****3456',
-      address: '深圳市南山区某某路321号'
+      address: '深圳市南山区某某路321号',
     },
     cargo: {
       name: '办公用品',
       weight: '200kg',
-      volume: '5.5m³'
+      volume: '5.5m³',
     },
     status: '部分签收',
     statusType: 'warning',
@@ -207,17 +207,17 @@ const signList = ref([
     signer: {
       name: '前台',
       phone: '0755-12345678',
-      time: '2023-06-16 16:00'
+      time: '2023-06-16 16:00',
     },
     driver: {
       name: '吴师傅',
-      phone: '139****5678'
+      phone: '139****5678',
     },
     deliveryTime: '2023-06-16 15:30',
     signTime: '2023-06-16 16:00',
     remark: '部分货物签收，剩余待确认',
     images: ['签收单照片2.jpg'],
-    amount: '1500.00'
+    amount: '1500.00',
   },
   {
     id: 'SIGN-2023061005',
@@ -227,12 +227,12 @@ const signList = ref([
       company: '成都货运中心',
       contact: '孙七',
       phone: '137****7890',
-      address: '成都市武侯区某某街654号'
+      address: '成都市武侯区某某街654号',
     },
     cargo: {
       name: '食品饮料',
       weight: '600kg',
-      volume: '15.8m³'
+      volume: '15.8m³',
     },
     status: '已签收',
     statusType: 'success',
@@ -242,17 +242,17 @@ const signList = ref([
     signer: {
       name: '孙七',
       phone: '137****7890',
-      time: '2023-06-17 09:15'
+      time: '2023-06-17 09:15',
     },
     driver: {
       name: '郑师傅',
-      phone: '138****1234'
+      phone: '138****1234',
     },
     deliveryTime: '2023-06-17 08:00',
     signTime: '2023-06-17 09:15',
     remark: '货物完好，冷链运输正常',
     images: ['签收单照片3.jpg', '货物照片2.jpg'],
-    amount: '3200.00'
+    amount: '3200.00',
   },
   {
     id: 'SIGN-2023061006',
@@ -262,12 +262,12 @@ const signList = ref([
       company: '南京宝冠出品有限公司',
       contact: '周八',
       phone: '139****5678',
-      address: '南京市鼓楼区某某路789号'
+      address: '南京市鼓楼区某某路789号',
     },
     cargo: {
       name: '家电产品',
       weight: '450kg',
-      volume: '10.2m³'
+      volume: '10.2m³',
     },
     status: '已签收',
     statusType: 'success',
@@ -277,17 +277,17 @@ const signList = ref([
     signer: {
       name: '周八',
       phone: '139****5678',
-      time: '2023-06-16 16:00'
+      time: '2023-06-16 16:00',
     },
     driver: {
       name: '刘师傅',
-      phone: '135****9012'
+      phone: '135****9012',
     },
     deliveryTime: '2023-06-16 14:30',
     signTime: '2023-06-16 16:00',
     remark: '货物完好，按时送达',
     images: ['签收单照片4.jpg'],
-    amount: '5200.00'
+    amount: '5200.00',
   },
   {
     id: 'SIGN-2023061007',
@@ -297,12 +297,12 @@ const signList = ref([
       company: '西安宝冠有限公司',
       contact: '吴九',
       phone: '136****3456',
-      address: '西安市雁塔区某某大道321号'
+      address: '西安市雁塔区某某大道321号',
     },
     cargo: {
       name: '工业设备',
       weight: '1200kg',
-      volume: '25.5m³'
+      volume: '25.5m³',
     },
     status: '待签收',
     statusType: 'warning',
@@ -312,32 +312,32 @@ const signList = ref([
     signer: {
       name: '-',
       phone: '-',
-      time: '-'
+      time: '-',
     },
     driver: {
       name: '陈师傅',
-      phone: '137****7890'
+      phone: '137****7890',
     },
     deliveryTime: '2023-06-17 10:00',
     signTime: '-',
     remark: '',
     images: [],
-    amount: '8800.00'
-  }
-])
+    amount: '8800.00',
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -348,51 +348,55 @@ const handleReset = () => {
     timeType: '',
     signType: '',
     dateRange: [],
-    keyword: ''
-  })
-}
+    keyword: '',
+  });
+};
 
 // 导出
 const handleExport = () => {
-  ElMessage.success('正在导出数据...')
-}
+  ElMessage.success('正在导出数据...');
+};
 
 // 新增签收单
 const handleAdd = () => {
-  ElMessage.info('跳转到新增签收单页面')
-}
+  ElMessage.info('跳转到新增签收单页面');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface PaymentRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: PaymentRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: PaymentRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 删除
-const handleDelete = (row: any) => {
-  console.log('删除', row)
-}
+const handleDelete = (_row: PaymentRow) => {
+  // TODO: 实现删除逻辑
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
   <div class="payment-container">
     <!-- 顶部统计卡片 -->
     <div class="stats-grid">
-      <div 
-        v-for="(stat, index) in stats" 
+      <div
+        v-for="(stat, index) in stats"
         :key="index"
         class="stat-card"
         :style="{ backgroundColor: stat.color }"
@@ -411,63 +415,63 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">签收状态</label>
-          <el-select v-model="filters.signStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.signStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in signStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">付款状态</label>
-          <el-select v-model="filters.paymentStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.paymentStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in paymentStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">配送方式</label>
-          <el-select v-model="filters.deliveryType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.deliveryType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in deliveryTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">签收方式</label>
-          <el-select v-model="filters.signType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.signType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in signTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-select v-model="filters.timeType" placeholder="签收时间">
-            <el-option label="签收时间" value="1" />
-            <el-option label="送达时间" value="2" />
-          </el-select>
+          <ElSelect v-model="filters.timeType" placeholder="签收时间">
+            <ElOption label="签收时间" value="1" />
+            <ElOption label="送达时间" value="2" />
+          </ElSelect>
         </div>
 
         <div class="filter-item date-range">
           <label class="filter-label">日期范围</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -477,92 +481,94 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入签收单编号、运单编号等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
     <!-- 操作栏 -->
     <div class="toolbar">
       <div class="toolbar-left">
-        <el-button type="danger" :icon="Plus" @click="handleAdd">新增</el-button>
-        <el-button type="primary" :icon="Download" @click="handleExport">导出</el-button>
+        <ElButton type="danger" :icon="Plus" @click="handleAdd">新增</ElButton>
+        <ElButton type="primary" :icon="Download" @click="handleExport">导出</ElButton>
       </div>
       <div class="toolbar-right">
-        <el-button text>刷新</el-button>
-        <el-button text>列设置</el-button>
+        <ElButton text>刷新</ElButton>
+        <ElButton text>列设置</ElButton>
       </div>
     </div>
 
     <!-- 签收单列表 -->
     <div class="sign-table-card">
-      <el-table :data="signList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="签收单号" width="150" fixed>
+      <ElTable :data="signList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="签收单号" width="150" fixed>
           <template #default="{ row }">
             <div class="sign-id">{{ row.id }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="关联运单号" width="150">
+        <ElTableColumn label="关联运单号" width="150">
           <template #default="{ row }">
             <div class="waybill-no">{{ row.waybillNo }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="关联提货单号" width="150">
+        <ElTableColumn label="关联提货单号" width="150">
           <template #default="{ row }">
             <div class="pickup-no">{{ row.pickupNo }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="收货方信息" width="200">
+        <ElTableColumn label="收货方信息" width="200">
           <template #default="{ row }">
             <div class="receiver-info">
               <div class="receiver-company">{{ row.receiver.company }}</div>
-              <div class="receiver-contact">{{ row.receiver.contact }} | {{ row.receiver.phone }}</div>
+              <div class="receiver-contact">
+                {{ row.receiver.contact }} | {{ row.receiver.phone }}
+              </div>
               <div class="receiver-address">{{ row.receiver.address }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="签收状态" width="100">
+        <ElTableColumn label="签收状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusType" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusType" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="付款状态" width="100">
+        <ElTableColumn label="付款状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.paymentType" size="small">{{ row.paymentStatus }}</el-tag>
+            <ElTag :type="row.paymentType" size="small">{{ row.paymentStatus }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="货物信息" width="150">
+        <ElTableColumn label="货物信息" width="150">
           <template #default="{ row }">
             <div class="cargo-info">
               <div class="cargo-name">{{ row.cargo.name }}</div>
               <div class="cargo-detail">{{ row.cargo.weight }} | {{ row.cargo.volume }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="签收人及时间" width="180">
+        <ElTableColumn label="签收人及时间" width="180">
           <template #default="{ row }">
             <div class="signer-info">
               <div class="signer-name">签收人：{{ row.signer.name }}</div>
@@ -570,67 +576,56 @@ const handleSizeChange = (size: number) => {
               <div class="signer-time">时间：{{ row.signer.time }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="司机/车辆信息" width="150">
+        <ElTableColumn label="司机/车辆信息" width="150">
           <template #default="{ row }">
             <div class="driver-info">
               <div class="driver-name">{{ row.driver.name }}</div>
               <div class="driver-phone">{{ row.driver.phone }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="送达时间" width="150">
+        <ElTableColumn label="送达时间" width="150">
           <template #default="{ row }">
             <div class="delivery-time">{{ row.deliveryTime }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="签收时间" width="150">
+        <ElTableColumn label="签收时间" width="150">
           <template #default="{ row }">
             <div class="sign-time">{{ row.signTime }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="签收备注" width="200">
+        <ElTableColumn label="签收备注" width="200">
           <template #default="{ row }">
             <div class="remark">{{ row.remark || '-' }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="附件" width="100">
+        <ElTableColumn label="附件" width="100">
           <template #default="{ row }">
-            <el-button 
-              v-if="row.images.length > 0" 
-              link 
-              type="primary" 
-              size="small"
-            >
+            <ElButton v-if="row.images.length > 0" link type="primary" size="small">
               查看({{ row.images.length }})
-            </el-button>
+            </ElButton>
             <span v-else class="no-images">-</span>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="180" fixed="right">
+        <ElTableColumn label="操作" width="180" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              详情
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
-            <el-button link type="danger" size="small" @click="handleDelete(row)">
-              删除
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 详情 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
+            <ElButton link type="danger" size="small" @click="handleDelete(row)"> 删除 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -900,4 +895,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-

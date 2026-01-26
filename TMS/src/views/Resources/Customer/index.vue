@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Search, Refresh, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive } from 'vue';
+import { Search, Refresh, Plus } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 // 筛选条件
 const filters = reactive({
@@ -11,32 +11,32 @@ const filters = reactive({
   responsiblePerson: '',
   businessType: '',
   keyword: '',
-  dateRange: []
-})
+  dateRange: [],
+});
 
 // 客户类型选项
 const customerTypeOptions = [
   { label: '全部', value: '' },
   { label: '企业客户', value: '1' },
   { label: '个人客户', value: '2' },
-  { label: '代理商', value: '3' }
-]
+  { label: '代理商', value: '3' },
+];
 
 // 客户状态选项
 const customerStatusOptions = [
   { label: '全部', value: '' },
   { label: '合作中', value: '1' },
   { label: '待审核', value: '2' },
-  { label: '已停用', value: '3' }
-]
+  { label: '已停用', value: '3' },
+];
 
 // 信用等级选项
 const creditLevelOptions = [
   { label: '全部', value: '' },
   { label: 'A级客户', value: 'A' },
   { label: 'B级客户', value: 'B' },
-  { label: 'C级客户', value: 'C' }
-]
+  { label: 'C级客户', value: 'C' },
+];
 
 // 业务类型选项
 const businessTypeOptions = [
@@ -44,8 +44,8 @@ const businessTypeOptions = [
   { label: '长途运输', value: '1' },
   { label: '短途配送', value: '2' },
   { label: '冷链运输', value: '3' },
-  { label: '危险品运输', value: '4' }
-]
+  { label: '危险品运输', value: '4' },
+];
 
 // 客户列表
 const customerList = ref([
@@ -64,7 +64,7 @@ const customerList = ref([
     phone: '138****5678',
     createDate: '2023-09-18',
     lastOrderDate: '2022-05-10',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 2,
@@ -81,7 +81,7 @@ const customerList = ref([
     phone: '139****2345',
     createDate: '2023-09-15',
     lastOrderDate: '2022-08-15',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 3,
@@ -98,7 +98,7 @@ const customerList = ref([
     phone: '137****9301',
     createDate: '2023-09-10',
     lastOrderDate: '2022-09-05',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 4,
@@ -115,7 +115,7 @@ const customerList = ref([
     phone: '136****2345',
     createDate: '2023-01-18',
     lastOrderDate: '',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 5,
@@ -132,7 +132,7 @@ const customerList = ref([
     phone: '135****6789',
     createDate: '2023-06-20',
     lastOrderDate: '2022-11-12',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 6,
@@ -149,7 +149,7 @@ const customerList = ref([
     phone: '137****9301',
     createDate: '2023-09-10',
     lastOrderDate: '2022-09-05',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 7,
@@ -166,7 +166,7 @@ const customerList = ref([
     phone: '136****2345',
     createDate: '2023-01-18',
     lastOrderDate: '',
-    actions: ['查看', '编辑', '删除']
+    actions: ['查看', '编辑', '删除'],
   },
   {
     id: 8,
@@ -183,22 +183,22 @@ const customerList = ref([
     phone: '135****6789',
     createDate: '2023-06-20',
     lastOrderDate: '2022-11-12',
-    actions: ['查看', '编辑', '删除']
-  }
-])
+    actions: ['查看', '编辑', '删除'],
+  },
+]);
 
 // 分页
 const pagination = ref({
   currentPage: 1,
   pageSize: 20,
-  total: 1248
-})
+  total: 1248,
+});
 
 // 搜索
 const handleSearch = () => {
-  console.log('搜索', filters)
-  ElMessage.success('搜索完成')
-}
+  // TODO: 实现搜索逻辑
+  ElMessage.success('搜索完成');
+};
 
 // 重置
 const handleReset = () => {
@@ -209,39 +209,43 @@ const handleReset = () => {
     responsiblePerson: '',
     businessType: '',
     keyword: '',
-    dateRange: []
-  })
-}
+    dateRange: [],
+  });
+};
 
 // 新增客户
 const handleAdd = () => {
-  ElMessage.info('跳转到新增客户页面')
-}
+  ElMessage.info('跳转到新增客户页面');
+};
 
 // 查看详情
-const handleView = (row: any) => {
-  console.log('查看详情', row)
+interface CustomerRow {
+  id: number;
+  [key: string]: unknown;
 }
+const handleView = (_row: CustomerRow) => {
+  // TODO: 实现查看详情逻辑
+};
 
 // 编辑
-const handleEdit = (row: any) => {
-  console.log('编辑', row)
-}
+const handleEdit = (_row: CustomerRow) => {
+  // TODO: 实现编辑逻辑
+};
 
 // 删除
-const handleDelete = (row: any) => {
-  console.log('删除', row)
-  ElMessage.warning('确认删除该客户？')
-}
+const handleDelete = (_row: CustomerRow) => {
+  // TODO: 实现删除逻辑
+  ElMessage.warning('确认删除该客户？');
+};
 
 // 分页改变
 const handlePageChange = (page: number) => {
-  pagination.value.currentPage = page
-}
+  pagination.value.currentPage = page;
+};
 
 const handleSizeChange = (size: number) => {
-  pagination.value.pageSize = size
-}
+  pagination.value.pageSize = size;
+};
 </script>
 
 <template>
@@ -251,69 +255,69 @@ const handleSizeChange = (size: number) => {
       <div class="filter-row">
         <div class="filter-item">
           <label class="filter-label">客户类型</label>
-          <el-select v-model="filters.customerType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.customerType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in customerTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">客户状态</label>
-          <el-select v-model="filters.customerStatus" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.customerStatus" placeholder="全部" clearable>
+            <ElOption
               v-for="item in customerStatusOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">信用等级</label>
-          <el-select v-model="filters.creditLevel" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.creditLevel" placeholder="全部" clearable>
+            <ElOption
               v-for="item in creditLevelOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">联系人/电话</label>
-          <el-input v-model="filters.responsiblePerson" placeholder="请输入" clearable />
+          <ElInput v-model="filters.responsiblePerson" placeholder="请输入" clearable />
         </div>
 
         <div class="filter-item">
           <label class="filter-label">所属行业</label>
-          <el-select v-model="filters.businessType" placeholder="全部" clearable>
-            <el-option
+          <ElSelect v-model="filters.businessType" placeholder="全部" clearable>
+            <ElOption
               v-for="item in businessTypeOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">目的地</label>
-          <el-select v-model="filters.keyword" placeholder="全部" clearable>
-            <el-option label="北京" value="1" />
-            <el-option label="上海" value="2" />
-            <el-option label="广州" value="3" />
-          </el-select>
+          <ElSelect v-model="filters.keyword" placeholder="全部" clearable>
+            <ElOption label="北京" value="1" />
+            <ElOption label="上海" value="2" />
+            <ElOption label="广州" value="3" />
+          </ElSelect>
         </div>
 
         <div class="filter-item">
           <label class="filter-label">时间</label>
-          <el-date-picker
+          <ElDatePicker
             v-model="filters.dateRange"
             type="daterange"
             range-separator="至"
@@ -323,122 +327,116 @@ const handleSizeChange = (size: number) => {
         </div>
 
         <div class="filter-actions">
-          <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
-          <el-button :icon="Refresh" @click="handleReset">重置</el-button>
+          <ElButton type="primary" :icon="Search" @click="handleSearch">搜索</ElButton>
+          <ElButton :icon="Refresh" @click="handleReset">重置</ElButton>
         </div>
       </div>
 
       <div class="keyword-search">
-        <el-input
+        <ElInput
           v-model="filters.keyword"
           placeholder="请输入客户名称、联系人等关键词搜索"
           clearable
           style="width: 400px"
         >
           <template #prefix>
-            <el-icon><Search /></el-icon>
+            <ElIcon><Search /></ElIcon>
           </template>
-        </el-input>
+        </ElInput>
       </div>
     </div>
 
     <!-- 操作栏 -->
     <div class="toolbar">
       <div class="toolbar-left">
-        <el-button type="primary" :icon="Plus" @click="handleAdd">新增</el-button>
-        <el-button>导出</el-button>
-        <el-button>打印</el-button>
+        <ElButton type="primary" :icon="Plus" @click="handleAdd">新增</ElButton>
+        <ElButton>导出</ElButton>
+        <ElButton>打印</ElButton>
       </div>
       <div class="toolbar-right">
-        <el-button text>刷新</el-button>
+        <ElButton text>刷新</ElButton>
       </div>
     </div>
 
     <!-- 客户列表 -->
     <div class="customer-table-card">
-      <el-table :data="customerList" stripe style="width: 100%">
-        <el-table-column type="selection" width="50" />
-        
-        <el-table-column label="客户编号" width="130" fixed>
+      <ElTable :data="customerList" stripe style="width: 100%">
+        <ElTableColumn type="selection" width="50" />
+
+        <ElTableColumn label="客户编号" width="130" fixed>
           <template #default="{ row }">
             <div class="customer-id">{{ row.customerId }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="客户名称" width="180">
+        <ElTableColumn label="客户名称" width="180">
           <template #default="{ row }">
             <div class="customer-name">
               <div class="name-text">{{ row.customerName }}</div>
               <div class="address-text">{{ row.address }}</div>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="信用/行业" width="120">
+        <ElTableColumn label="信用/行业" width="120">
           <template #default="{ row }">
             <div class="credit-info">
-              <el-tag v-if="row.creditType" :type="row.creditType" size="small">
+              <ElTag v-if="row.creditType" :type="row.creditType" size="small">
                 {{ row.creditLevel }}
-              </el-tag>
+              </ElTag>
               <span v-else class="credit-text">{{ row.creditLevel }}</span>
             </div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="客户等级" width="100">
+        <ElTableColumn label="客户等级" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.typeTag" size="small">{{ row.customerType }}</el-tag>
+            <ElTag :type="row.typeTag" size="small">{{ row.customerType }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="状态" width="100">
+        <ElTableColumn label="状态" width="100">
           <template #default="{ row }">
-            <el-tag :type="row.statusType" size="small">{{ row.status }}</el-tag>
+            <ElTag :type="row.statusType" size="small">{{ row.status }}</ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="联系人" width="100">
+        <ElTableColumn label="联系人" width="100">
           <template #default="{ row }">
             <div class="contact-person">{{ row.contactPerson }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="手机号码" width="130">
+        <ElTableColumn label="手机号码" width="130">
           <template #default="{ row }">
             <div class="phone">{{ row.phone }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="创建日期" width="120">
+        <ElTableColumn label="创建日期" width="120">
           <template #default="{ row }">
             <div class="create-date">{{ row.createDate }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="最新订单日期" width="120">
+        <ElTableColumn label="最新订单日期" width="120">
           <template #default="{ row }">
             <div class="last-order-date">{{ row.lastOrderDate || '-' }}</div>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="180" fixed="right">
+        <ElTableColumn label="操作" width="180" fixed="right">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleView(row)">
-              查看
-            </el-button>
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              编辑
-            </el-button>
-            <el-button link type="danger" size="small" @click="handleDelete(row)">
-              删除
-            </el-button>
+            <ElButton link type="primary" size="small" @click="handleView(row)"> 查看 </ElButton>
+            <ElButton link type="primary" size="small" @click="handleEdit(row)"> 编辑 </ElButton>
+            <ElButton link type="danger" size="small" @click="handleDelete(row)"> 删除 </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
       <!-- 分页 -->
       <div class="pagination-wrapper">
-        <el-pagination
+        <ElPagination
           v-model:current-page="pagination.currentPage"
           v-model:page-size="pagination.pageSize"
           :page-sizes="[10, 20, 50, 100]"
@@ -604,5 +602,3 @@ const handleSizeChange = (size: number) => {
   padding: 12px 0;
 }
 </style>
-
-

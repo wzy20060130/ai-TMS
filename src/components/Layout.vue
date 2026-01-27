@@ -206,6 +206,9 @@ const toggleCollapse = () => {
   background: #ffffff;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   transition: width 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -217,6 +220,7 @@ const toggleCollapse = () => {
   background: #f5f7fa;
   border-bottom: 1px solid #e5e7eb;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .logo-container.collapsed {
@@ -252,6 +256,27 @@ const toggleCollapse = () => {
   border: none;
   background: transparent;
   padding: 10px 0;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 自定义滚动条样式 */
+.sidebar-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background: #c0c4cc;
+  border-radius: 3px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb:hover {
+  background: #a0a4ac;
 }
 
 .sidebar-menu :deep(.el-menu-item) {

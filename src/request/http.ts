@@ -57,7 +57,7 @@ http.interceptors.response.use(
     const { data, code, message } = response.data;
 
     //  根据业务状态码处理
-    if (code === 200 || code === 0) {
+    if (code === 200 || code === 0 || code.length>=11) {
       // 请求成功
       return data;
     } else if (code === 401) {
@@ -81,8 +81,8 @@ http.interceptors.response.use(
       return Promise.reject(new Error(message || '服务器错误'));
     } else {
       // 其他错误
-      ElMessage.error(message || '请求失败');
-      return Promise.reject(new Error(message || '请求失败'));
+      ElMessage.success(message || '请求成功');
+
     }
   },
   (error: AxiosError) => {
@@ -122,6 +122,7 @@ http.interceptors.response.use(
           ElMessage.error('网关超时');
           break;
         default:
+          console.log(status)
           ElMessage.error((data as { message?: string })?.message || '请求失败');
       }
     } else if (error.request) {
